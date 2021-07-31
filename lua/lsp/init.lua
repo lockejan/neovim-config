@@ -9,6 +9,8 @@ else
   print("Unsupported system for sumneko")
 end
 
+require("lsp.lsp-install")
+
 -- Lua LSP
 local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
@@ -22,7 +24,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
 
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings
   local opts = {noremap = true, silent = true}
@@ -53,22 +55,64 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_command [[augroup END]]
   end
 
-  require("completion").on_attach(client, bufnr)
+  -- require("completion").on_attach(client, bufnr)
 end
 
-local luadev =
-  require("lua-dev").setup(
-  {
-    -- add any options here, or leave empty to use the default settings
-    lspconfig = {
-      on_attach = on_attach,
-      cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
-    }
-  }
-)
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+-- local luadev =
+--   require("lua-dev").setup(
+--   {
+--     -- add any options here, or leave empty to use the default settings
+--     lspconfig = {
+--       on_attach = on_attach,
+--       cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
+--     },
+--     settings = {
+--       Lua = {
+--         diagnostics = {
+--           globals = {"vim"}
+--         }
+--       }
+--     }
+--   }
+-- )
 
 local lspconfig = require("lspconfig")
-lspconfig.sumneko_lua.setup(luadev)
+-- lspconfig.sumneko_lua.setup(luadev)
+
+-- lua
+require("lspconfig").sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = "LuaJIT",
+        -- Setup your lua path
+        path = runtime_path
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {"vim", 'use'}
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+        maxPreload = 2000,
+        preloadFileSize = 1000
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false
+      }
+    }
+  }
+}
 
 -- docker
 lspconfig.dockerls.setup {}
@@ -79,8 +123,13 @@ lspconfig.pyright.setup {}
 -- nix lsp
 -- require'lspconfig'.rnix.setup{}
 
+-- java
+-- typescript
+-- bash
+lspconfig.bash.setup {}
+
 -- tex
--- require'lspconfig'.texlab.setup{}
+lspconfig.texlab.setup {}
 
 -- Yaml
 lspconfig.yamlls.setup {}

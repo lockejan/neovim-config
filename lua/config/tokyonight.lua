@@ -1,3 +1,6 @@
+local utils = require("utils")
+
+utils.opt("o", "termguicolors", true)
 -- Example config in Lua
 vim.g.tokyonight_style = "night"
 vim.g.tokyonight_italic_functions = true

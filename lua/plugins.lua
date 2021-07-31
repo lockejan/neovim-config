@@ -9,6 +9,11 @@ return require("packer").startup(
     -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
     -- use { 'gruvbox-community/gruvbox' }
     use "folke/tokyonight.nvim"
+    -- use {
+    --   "glepnir/galaxyline.nvim",
+    --   branch = "main",
+    --   requires = {"kyazdani42/nvim-web-devicons", opt = true}
+    -- }
 
     -- Fuzzy finder
     use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
@@ -19,8 +24,10 @@ return require("packer").startup(
 
     -- LSP and completion
     use "neovim/nvim-lspconfig"
+    use "kabouzeid/nvim-lspinstall"
     use "onsails/lspkind-nvim"
-    use "nvim-lua/completion-nvim"
+    -- use "nvim-lua/completion-nvim"
+    use "hrsh7th/nvim-compe" -- Autocompletion plugin
     use "glepnir/lspsaga.nvim"
     use "folke/lsp-colors.nvim"
     use "simrat39/symbols-outline.nvim" -- sidebar
@@ -60,21 +67,30 @@ return require("packer").startup(
     -- Syntax + Treesitter
     use "jiangmiao/auto-pairs"
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+    use "nvim-treesitter/nvim-treesitter-refactor"
+    use "romgrk/nvim-treesitter-context"
     use "p00f/nvim-ts-rainbow"
-    use "andymass/vim-matchup"
+    use {
+      "andymass/vim-matchup",
+      event = "CursorMoved"
+    }
+
     use "windwp/nvim-ts-autotag"
     -- use 'sheerun/vim-polyglot'
     -- use { 'JoosepAlviste/nvim-ts-context-commentstring' }
 
     -- additional plugins
     use "hoob3rt/lualine.nvim"
-    use "romgrk/barbar.nvim"
+    use {"akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons"}
+    -- use "romgrk/barbar.nvim"
     use "szw/vim-maximizer"
     use "tpope/vim-commentary"
+    -- use "b3nj5m1n/kommentary"
     use "tpope/vim-surround"
     -- use { 'sunjon/shade.nvim' }
 
-    -- use 'norcalli/nvim-colorizer.lua'
+    use "norcalli/nvim-colorizer.lua"
 
     -- Helpers + Cheatsheet
     use "folke/which-key.nvim"
@@ -90,6 +106,7 @@ return require("packer").startup(
     -- SNIPPETS
     use "honza/vim-snippets"
     use "SirVer/ultisnips"
+    use "L3MON4D3/LuaSnip"
 
     -- DEBUG with DAP
     -- use { 'mfussenegger/nvim-dap' }

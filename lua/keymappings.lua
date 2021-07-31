@@ -1,15 +1,12 @@
 local utils = require("utils")
 
 utils.map("n", "<C-l>", "<cmd>noh<CR>") -- Clear highlights
--- utils.map('i','jk', '<Esc>') -- jk to escape
 
 -- let maplocalleader = "ö"
 utils.map("n", "<leader>,", ":e ~/.config/nvim/init.lua<CR>")
 -- nnoremap <C-S> :so %<CR>
 utils.map("n", "<leader>ls", ":ls<CR>")
 utils.map("n", "<leader>cd", ":cd %:p:h<CR>")
-
-utils.map("n", "<leader>ef", ":NvimTreeToggle<CR>")
 
 -- delete without yanking
 -- nnoremap <leader>d "_dd
@@ -44,23 +41,14 @@ utils.map("v", "v", "<Esc>")
 -- Quick command mode
 utils.map("n", "<CR>", ":")
 
--- Buffer
--- utils.map('n', '<leader>bp', ':bprevious<CR>')
--- utils.map('n', '<leader>bn', ':bnext<CR>')
--- utils.map('n', '<leader>bf', ':bfirst<CR>')
--- utils.map('n', '<leader>bl', ':blast<CR>')
--- utils.map('n', '<leader>bd', ':bd<CR>')
--- utils.map('n', '<leader>bc', ':Bclose<CR>')
--- utils.map('n', '<leader>bk', ':bw<CR>')
-
 -- Bash like
 utils.map("i", "<C-a>", "<Home>")
 utils.map("i", "<C-e>", "<End>")
 utils.map("i", "<C-d>", "<Delete>")
 
 -- Buffer
-utils.map("n", "<A-.>", ":BufferNext<CR>")
-utils.map("n", "<A-,>", ":BufferPrevious<CR>")
+-- utils.map("n", "<A-.>", ":BufferNext<CR>")
+-- utils.map("n", "<A-,>", ":BufferPrevious<CR>")
 utils.map("n", "<leader>.", ":BufferPick<CR>")
 utils.map("n", "<A-1>", ":BufferGoto 1<CR>")
 utils.map("n", "<A-2>", ":BufferGoto 2<CR>")
@@ -78,16 +66,20 @@ utils.map("n", "<leader>dl", ":BufferCloseBuffersLeft<CR>")
 utils.map("n", "<leader>dr", ":BufferCloseBuffersRight<CR>")
 utils.map("n", "<leader>p", ":BufferPrevious<CR>")
 utils.map("n", "<leader>bn", ":BufferNext<CR>")
-utils.map("n", "<leader>bc", ":BufferClose<CR>")
+utils.map("n", "<leader>bc", ":bdelete<CR>")
 
 -- szw/vim-maximizer
 utils.map("n", "<leader>m", ":MaximizerToggle!<CR>")
 
-utils.map("n", "<leader>ef", ":lua require'config.tree'.toggle_tree()<CR>")
-utils.map("n", "<leader>q", ":lua require'config.tree'.close()<CR>")
+utils.map("n", "<leader>ef", ":NvimTreeToggle<CR>")
+-- utils.map("n", "<leader>ef", ":lua require'config.tree'.toggle_tree()<CR>")
+-- utils.map("n", "<leader>q", ":lua require'config.tree'.close()<CR>")
 
 -- secure gopass
 vim.cmd "au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile"
+
+-- Y yank until the end of line
+vim.api.nvim_set_keymap("n", "Y", "y$", {noremap = true})
 
 -- Trim trailing whitespace.
 utils.map("n", "<leader>tw", ":%s/\\s\\+$//e<cr>")
