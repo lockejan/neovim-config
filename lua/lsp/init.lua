@@ -63,56 +63,56 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
--- local luadev =
---   require("lua-dev").setup(
---   {
---     -- add any options here, or leave empty to use the default settings
---     lspconfig = {
---       on_attach = on_attach,
---       cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
---     },
---     settings = {
---       Lua = {
---         diagnostics = {
---           globals = {"vim"}
---         }
---       }
---     }
---   }
--- )
-
-local lspconfig = require("lspconfig")
--- lspconfig.sumneko_lua.setup(luadev)
-
--- lua
-require("lspconfig").sumneko_lua.setup {
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-        -- Setup your lua path
-        path = runtime_path
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {"vim", 'use'}
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        maxPreload = 2000,
-        preloadFileSize = 1000
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false
+local luadev =
+  require("lua-dev").setup(
+  {
+    -- add any options here, or leave empty to use the default settings
+    lspconfig = {
+      on_attach = on_attach,
+      cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
+    },
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = {"use"}
+        }
       }
     }
   }
-}
+)
+
+local lspconfig = require("lspconfig")
+lspconfig.sumneko_lua.setup(luadev)
+
+-- lua
+-- require("lspconfig").sumneko_lua.setup {
+--   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+--   on_attach = on_attach,
+--   settings = {
+--     Lua = {
+--       runtime = {
+--         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+--         version = "LuaJIT",
+--         -- Setup your lua path
+--         path = runtime_path
+--       },
+--       diagnostics = {
+--         -- Get the language server to recognize the `vim` global
+--         globals = {"vim", 'use'}
+--       },
+--       workspace = {
+--         -- Make the server aware of Neovim runtime files
+--         library = vim.api.nvim_get_runtime_file("", true),
+--         maxPreload = 2000,
+--         preloadFileSize = 1000
+--       },
+--       -- Do not send telemetry data containing a randomized but unique identifier
+--       telemetry = {
+--         enable = false
+--       }
+--     }
+--   }
+-- }
 
 -- docker
 lspconfig.dockerls.setup {}

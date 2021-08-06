@@ -27,6 +27,30 @@ utils.map("n", "<leader>cd", ":cd %:p:h<CR>")
 -- nnoremap <M-h>    :vertical resize -2<CR>
 -- nnoremap <M-l>    :vertical resize +2<CR>
 
+local map = vim.api.nvim_set_keymap
+-- map('n', '<Leader>w', ':write<CR>', {noremap = true})
+--
+-- Keeping it centered
+map("n", "n", "nzzzv", {noremap = true})
+map("n", "N", "Nzzzv", {noremap = true})
+map("n", "J", "mzJ`z", {noremap = true})
+-- vim.api.nvim_set_keymap("n", "<Leader>w", ":write<CR>", {noremap = true})
+
+-- Undo break points
+map("i", ",", ",<c-g>u", {noremap = true})
+map("i", ".", ".<c-g>u", {noremap = true})
+map("i", "!", "!<c-g>u", {noremap = true})
+map("i", "?", "?<c-g>u", {noremap = true})
+
+-- moving text
+map("n", "<leader>k", ":m .-2<CR>==", {noremap = true})
+map("n", "<leader>j", ":m .+1<CR>==", {noremap = true})
+map("i", "<C-j>", "<esc>:m .+2<CR>==", {noremap = true})
+map("i", "<C-k>", "<esc>:m .-2<CR>==", {noremap = true})
+
+utils.map("x", "K", ":move '<-2<CR>gv-gv")
+utils.map("x", "J", ":move '>+1<CR>gv-gv")
+
 -- Move visual selection vertically
 utils.map("x", "K", ":move '<-2<CR>gv-gv")
 utils.map("x", "J", ":move '>+1<CR>gv-gv")

@@ -1,7 +1,7 @@
 return require("packer").startup(
   function()
     -- Packer can manage itself as an optional plugin
-    use {"wbthomason/packer.nvim", opt = true}
+    use({"wbthomason/packer.nvim", opt = true})
 
     -- Color scheme
     -- use { 'sainnhe/gruvbox-material' }
@@ -9,6 +9,7 @@ return require("packer").startup(
     -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
     -- use { 'gruvbox-community/gruvbox' }
     use "folke/tokyonight.nvim"
+    use "tpope/vim-rhubarb"
     -- use {
     --   "glepnir/galaxyline.nvim",
     --   branch = "main",
@@ -38,6 +39,8 @@ return require("packer").startup(
         require("trouble").setup {}
       end
     }
+
+    use "cappyzawa/trim.nvim"
 
     -- Lua development
     use "folke/lua-dev.nvim"
@@ -81,13 +84,15 @@ return require("packer").startup(
     -- use { 'JoosepAlviste/nvim-ts-context-commentstring' }
 
     -- additional plugins
-    use "hoob3rt/lualine.nvim"
+    -- use "hoob3rt/lualine.nvim"
+    use "shadmansaleh/lualine.nvim"
     use {"akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons"}
     -- use "romgrk/barbar.nvim"
     use "szw/vim-maximizer"
     use "tpope/vim-commentary"
     -- use "b3nj5m1n/kommentary"
     use "tpope/vim-surround"
+    use "christoomey/vim-tmux-navigator"
     -- use { 'sunjon/shade.nvim' }
 
     use "norcalli/nvim-colorizer.lua"
@@ -95,6 +100,7 @@ return require("packer").startup(
     -- Helpers + Cheatsheet
     use "folke/which-key.nvim"
     use "sudormrfbin/cheatsheet.nvim"
+    use "danihodovic/vim-ansible-vault"
 
     -- Poweruser-helper
     use "tpope/vim-repeat"

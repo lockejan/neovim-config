@@ -27,9 +27,6 @@ require("lsp")
 -- treesitter config
 require("treesitter")
 
--- Autoformat lua code on write
-vim.cmd "autocmd BufWritePre *.lua FormatWrite"
-
 -- require('config')
 -- require("config.completion")
 -- require("config.galaxyline")
@@ -52,3 +49,12 @@ require("config.treesitter-context")
 require("config.trouble")
 require("config.web-devicons")
 require("config.which-key")
+
+function _G.lsp_reinstall_all()
+  local lspinstall = require "lspinstall"
+  for _, server in ipairs(lspinstall.installed_servers()) do
+    lspinstall.install_server(server)
+  end
+end
+
+vim.cmd "command! -nargs=0 LspReinstallAll call v:lua.lsp_reinstall_all()"

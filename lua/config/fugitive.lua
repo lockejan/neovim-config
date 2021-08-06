@@ -1,6 +1,6 @@
-local utils = require('utils')
+local utils = require("utils")
 
-utils.map('n', '<Leader>gs', '<cmd>Gstatus<CR>')  -- Git status
+utils.map("n", "<Leader>gs", "<cmd>G<CR>") -- Git status
 
 -- " Status line
 -- if !exists('*fugitive#statusline')
@@ -11,4 +11,3 @@ utils.map('n', '<Leader>gs', '<cmd>Gstatus<CR>')  -- Git status
 
 -- cnoreabbrev g Git
 -- cnoreabbrev gopen GBrowse
-

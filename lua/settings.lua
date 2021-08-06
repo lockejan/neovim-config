@@ -3,28 +3,28 @@ local utils = require("utils")
 local cmd = vim.cmd
 local indent = 4
 
-cmd "syntax enable"
-cmd "filetype plugin indent on"
-utils.opt("b", "expandtab", true)
-utils.opt("b", "shiftwidth", indent)
-utils.opt("b", "smartindent", true)
-utils.opt("b", "tabstop", indent)
+-- cmd "syntax enable"
+-- cmd "filetype plugin indent on"
+-- utils.opt("b", "expandtab", true)
+-- utils.opt("b", "shiftwidth", indent)
+-- utils.opt("b", "smartindent", true)
+-- utils.opt("b", "tabstop", indent)
 
-utils.opt("o", "hidden", true)
-utils.opt("o", "mouse", "a")
-utils.opt("o", "ignorecase", true)
-utils.opt("o", "scrolloff", 8) -- Minumum lines to keep above and below cursor
+-- utils.opt("o", "hidden", true)
+-- utils.opt("o", "mouse", "a")
+-- utils.opt("o", "ignorecase", true)
+-- utils.opt("o", "scrolloff", 8) -- Minumum lines to keep above and below cursor
 utils.opt("o", "shiftround", true)
-utils.opt("o", "smartcase", true)
-utils.opt("o", "splitbelow", true)
-utils.opt("o", "splitright", true)
+-- utils.opt("o", "smartcase", true)
+-- utils.opt("o", "splitbelow", true)
+-- utils.opt("o", "splitright", true)
 utils.opt("o", "wildmode", "list:longest")
 
-utils.opt("w", "number", true)
-utils.opt("w", "list", true)
+-- utils.opt("w", "number", true)
+-- utils.opt("w", "list", true)
 utils.opt("w", "spell", true)
-utils.opt("w", "wrap", true)
-utils.opt("w", "cursorline", true)
+-- utils.opt("w", "wrap", true)
+-- utils.opt("w", "cursorline", true)
 utils.opt("w", "colorcolumn", "80")
 
 utils.opt("o", "updatetime", 500)
@@ -42,25 +42,25 @@ vim.wo.number = true
 
 --Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 vim.opt.autowrite = true
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 
 vim.opt.hidden = true
-vim.opt.ignorecase = true
 
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.inccommand = "split" -- preview incremental substitute
+
 vim.opt.joinspaces = false -- No double spaces with join after a dot
-vim.opt.list = true -- Show some invisible characters (tabs...
+-- vim.opt.list = true -- Show some invisible characters (tabs...
 vim.opt.mouse = "a" -- enable mouse mode
 vim.opt.number = true -- Print line number
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 -- vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.scrolloff = 4 -- Lines of context
+vim.opt.scrolloff = 6 -- Lines of context
 vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = indent -- Size of an indent
 vim.opt.showmode = false -- dont show mode since we have a statusline
@@ -68,8 +68,8 @@ vim.opt.sidescrolloff = 8 -- Columns of context
 vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.smartcase = true -- Don't ignore case with capitals
 vim.opt.smartindent = true -- Insert indents automatically
-vim.opt.splitbelow = true -- Put new windows below current
-vim.opt.splitright = true -- Put new windows right of current
+-- vim.opt.splitbelow = true -- Put new windows below current
+-- vim.opt.splitright = true -- Put new windows right of current
 vim.opt.tabstop = indent -- Number of spaces tabs count for
 vim.opt.termguicolors = true -- True color support
 vim.opt.undofile = true
@@ -93,10 +93,10 @@ vim.o.shortmess = "IToOlxfitn"
 -- vim.g.loaded_matchparen = 1
 
 local disabled_built_ins = {
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
+  -- "netrw",
+  -- "netrwPlugin",
+  -- "netrwSettings",
+  -- "netrwFileHandlers",
   "gzip",
   "zip",
   "zipPlugin",
@@ -108,6 +108,7 @@ local disabled_built_ins = {
   "vimballPlugin",
   "2html_plugin",
   "logipat",
+  "tutor_mode_plugin",
   "rrhelper",
   "spellfile_plugin",
   "matchit",
@@ -189,12 +190,12 @@ vim.spelllang = en_us, de_de
 vim.opt.wildignore:append {"*swp", "*.class", "*.pyc", "*.png", "*.jpg", "*.gif", "*.zip"}
 vim.opt.wildignore:append {"*/tmp/*", "*.o", "*.obj", "*.so"}
 
--- " systemwide clipboard
-if vim.fn.has("unnamedplus") == 1 then
-  utils.opt("o", "clipboard", "unnamed,unnamedplus")
-else
-  vim.opt.clipboard.append({"unnamedplus"})
-end
+-- -- " systemwide clipboard
+-- if vim.fn.has("unnamedplus") == 1 then
+--   utils.opt("o", "clipboard", "unnamed,unnamedplus")
+-- else
+--   vim.opt.clipboard.append({"unnamedplus"})
+-- end
 
 -- write undo for file changes
 if vim.fn.has("persistent_undo") == 1 then
