@@ -204,7 +204,7 @@ if vim.fn.has("persistent_undo") == 1 then
   utils.opt("o", "undoreload", 10000)
 end
 
--- utils.opt("o", "clipboard", "unnamed,unnamedplus")
+utils.opt("o", "clipboard", "unnamed,unnamedplus")
 
 -- vim.g.netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"
 
