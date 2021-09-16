@@ -42,6 +42,16 @@ require("formatter").setup(
           }
         end
       },
+      python = {
+        function()
+          return {
+            exe = "yapf",
+            args = {"--style", "pep8"},
+            stdin = true
+            -- cwd = vim.fn.expand("%:p:h")
+          }
+        end
+      },
       cpp = {
         -- clang-format
         function()
@@ -61,7 +71,7 @@ vim.api.nvim_exec(
   [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua,*.clj FormatWrite
+  autocmd BufWritePost *.js,*.rs,*.lua,*.clj,*.py FormatWrite
 augroup END
 ]],
   true
