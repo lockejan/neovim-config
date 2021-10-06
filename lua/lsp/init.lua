@@ -15,6 +15,7 @@ require("lsp.lsp-install")
 local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
+local nvim_lsp = require("lspconfig")
 -- Your custom attach function for nvim-lspconfig goes here.
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
@@ -28,7 +29,6 @@ local on_attach = function(client, bufnr)
 
   -- Mappings
   local opts = {noremap = true, silent = true}
-
   buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -40,22 +40,32 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
   buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
   -- formatting
   if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-    vim.api.nvim_command [[augroup END]]
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  elseif client.resolved_capabilities.document_range_formatting then
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   end
+end
 
-  -- require("completion").on_attach(client, bufnr)
+-- require("completion").on_attach(client, bufnr)
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = {"pyright", "dockerls", "bash"}
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    -- capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    flags = {
+      debounce_text_changes = 150
+    }
+  }
 end
 
 -- Make runtime files discoverable to the server
@@ -71,68 +81,37 @@ local luadev =
       on_attach = on_attach,
       cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
     },
+    runtime = {
+      -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+      version = "LuaJIT",
+      -- Setup your lua path
+      path = runtime_path
+    },
     settings = {
       Lua = {
-        diagnostics = {
-          globals = {"use"}
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = "LuaJIT",
+          -- Setup your lua path
+          path = runtime_path
         }
+      },
+      diagnostics = {
+        globals = {"vim"}
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true)
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false
       }
     }
   }
 )
 
-local lspconfig = require("lspconfig")
-lspconfig.sumneko_lua.setup(luadev)
-
--- lua
--- require("lspconfig").sumneko_lua.setup {
---   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
---   on_attach = on_attach,
---   settings = {
---     Lua = {
---       runtime = {
---         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
---         version = "LuaJIT",
---         -- Setup your lua path
---         path = runtime_path
---       },
---       diagnostics = {
---         -- Get the language server to recognize the `vim` global
---         globals = {"vim", 'use'}
---       },
---       workspace = {
---         -- Make the server aware of Neovim runtime files
---         library = vim.api.nvim_get_runtime_file("", true),
---         maxPreload = 2000,
---         preloadFileSize = 1000
---       },
---       -- Do not send telemetry data containing a randomized but unique identifier
---       telemetry = {
---         enable = false
---       }
---     }
---   }
--- }
-
--- docker
-lspconfig.dockerls.setup {}
-
--- pyright
-lspconfig.pyright.setup {}
-
--- nix lsp
--- require'lspconfig'.rnix.setup{}
-
--- java
--- typescript
--- bash
-lspconfig.bash.setup {}
-
--- tex
-lspconfig.texlab.setup {}
-
--- Yaml
-lspconfig.yamlls.setup {}
+nvim_lsp.sumneko_lua.setup(luadev)
 
 require("lspkind").init(
   {
@@ -171,22 +150,11 @@ require("lspkind").init(
   }
 )
 
--- icon
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
   {
     underline = true,
-    -- This sets the spacing and the prefix, obviously.
-    virtual_text = {
-      spacing = 4,
-      prefix = ""
-    }
+    virtual_text = false
   }
 )
-
--- Typescript
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  filetypes = {"typescript", "typescriptreact", "typescript.tsx"}
-}

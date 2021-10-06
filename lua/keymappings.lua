@@ -95,9 +95,8 @@ utils.map("n", "<leader>bc", ":bdelete<CR>")
 -- szw/vim-maximizer
 utils.map("n", "<leader>m", ":MaximizerToggle!<CR>")
 
+utils.map("n", "<leader>fe", ":NvimTreeFindFile<CR>")
 utils.map("n", "<leader>ef", ":NvimTreeToggle<CR>")
--- utils.map("n", "<leader>ef", ":lua require'config.tree'.toggle_tree()<CR>")
--- utils.map("n", "<leader>q", ":lua require'config.tree'.close()<CR>")
 
 -- secure gopass
 vim.cmd "au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile"

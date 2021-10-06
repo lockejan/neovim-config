@@ -13,7 +13,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
   exec("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
 vim.cmd [[packadd packer.nvim]]
-vim.cmd "autocmd BufWritePost luafile plugins.lua PackerSync" -- Auto compile when there are changes in plugins.lua
+-- Auto compile when there are changes in plugins.lua
+vim.cmd "autocmd BufWritePost luafile plugins.lua PackerSync"
 
 -- Install plugins
 require("plugins")
@@ -27,16 +28,11 @@ require("lsp")
 -- treesitter config
 require("treesitter")
 
--- require('config')
--- require("config.completion")
--- require("config.galaxyline")
 -- require("config.lspsaga")
--- require("config.tokyonight")
--- require("config.tree")
 -- require("config.bufferline")
-require("config.colorizer")
+-- require("config.colorizer")
 require("config.colorscheme")
-require("config.compe")
+require("config.cmp")
 -- require("config.diffview")
 require("config.formatter")
 require("config.fugitive")

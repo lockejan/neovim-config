@@ -3,6 +3,9 @@ local utils = require("utils")
 local cmd = vim.cmd
 local indent = 4
 
+-- Do not source the default filetype.vim
+vim.g.did_load_filetypes = 1
+
 -- cmd "syntax enable"
 -- cmd "filetype plugin indent on"
 -- utils.opt("b", "expandtab", true)
@@ -32,7 +35,7 @@ utils.opt("o", "timeoutlen", 500)
 utils.opt("o", "sessionoptions", "blank,curdir,folds,help,tabpages,winsize")
 -- utils.opt("o", "inccommand", "split")
 
--- vim.g.python3_host_prog="~/.pyenv/versions/neovim3/bin/python"
+vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python"
 
 --Incremental live completion
 -- vim.o.inccommand = 'nosplit'

@@ -1,20 +1,20 @@
 return require("packer").startup(
-  function()
+  function(use)
     -- Packer can manage itself as an optional plugin
     use({"wbthomason/packer.nvim", opt = true})
 
-    -- Color scheme
-    -- use { 'sainnhe/gruvbox-material' }
+    -- lua-based filetype to speedup starttime
+    use("nathom/filetype.nvim")
+
+    -- Color schemes
     use "shaunsingh/nord.nvim"
+    -- use { 'sainnhe/gruvbox-material' }
     -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
     -- use { 'gruvbox-community/gruvbox' }
-    use "folke/tokyonight.nvim"
+    -- use "folke/tokyonight.nvim"
+
+    -- Browse git-repos on GH,...
     use "tpope/vim-rhubarb"
-    -- use {
-    --   "glepnir/galaxyline.nvim",
-    --   branch = "main",
-    --   requires = {"kyazdani42/nvim-web-devicons", opt = true}
-    -- }
 
     -- Fuzzy finder
     use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
@@ -24,14 +24,48 @@ return require("packer").startup(
     }
 
     -- LSP and completion
+    -- simplify usage of lsps
     use "neovim/nvim-lspconfig"
-    use "kabouzeid/nvim-lspinstall"
-    use "onsails/lspkind-nvim"
-    -- use "nvim-lua/completion-nvim"
-    use "hrsh7th/nvim-compe" -- Autocompletion plugin
+    -- improved and extended lsp integration
+    -- decoration and code actions
     use "glepnir/lspsaga.nvim"
-    use "folke/lsp-colors.nvim"
-    use "simrat39/symbols-outline.nvim" -- sidebar
+
+    -- Easy LS installation
+    use "kabouzeid/nvim-lspinstall"
+
+    -- LSP Autocompletion plugin
+    -- use "nvim-lua/completion-nvim"
+    -- use "hrsh7th/nvim-compe"
+    use {
+      "hrsh7th/nvim-cmp",
+      requires = {
+        "f3fora/cmp-spell",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-path",
+        "quangnguyen30192/cmp-nvim-ultisnips",
+        {"andersevenrud/compe-tmux", branch = "cmp"}
+        -- "rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide",
+        -- "octaltree/cmp-look",
+        -- "hrsh7th/cmp-calc",
+        -- "hrsh7th/cmp-emoji"
+      }
+    }
+
+    -- db interaction within vim
+    use "tpope/vim-dadbod"
+
+    -- pictograms for LSP completion
+    use "onsails/lspkind-nvim"
+
+    -- sidebar with ooutlines
+    -- use "simrat39/symbols-outline.nvim"
+
+    -- fn signature while typing
+    -- use "ray-x/lsp_signature.nvim"
+
+    -- quick LSP warnings+errors navigation
     use {
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
@@ -40,10 +74,13 @@ return require("packer").startup(
       end
     }
 
+    -- trim whitespaces on save
     use "cappyzawa/trim.nvim"
 
     -- Lua development
     use "folke/lua-dev.nvim"
+
+    -- custom formatter on save
     use "mhartington/formatter.nvim"
 
     -- Vim dispatch
@@ -51,15 +88,25 @@ return require("packer").startup(
 
     -- file explorer and interaction
     -- use 'tpope/vim-vinegar' -- improved netrw
-    use "tpope/vim-eunuch" -- unix helper
-    use "kyazdani42/nvim-tree.lua" -- lua file explorer
-    use "kyazdani42/nvim-web-devicons"
-    use "airblade/vim-rooter" -- autochange to project dir
+
+    -- unix command bridge for vim
+    -- use "tpope/vim-eunuch"
+
+    -- lua file explorer
+    use "kyazdani42/nvim-tree.lua"
+
+    -- autochange to project root dir
+    use "airblade/vim-rooter"
 
     -- Git features
+    -- git wrapper on steroids
     use "tpope/vim-fugitive"
-    -- use 'junegunn/gv.vim'
-    use "sindrets/diffview.nvim"
+
+    -- git history navigation
+    use "junegunn/gv.vim"
+    -- use "sindrets/diffview.nvim"
+
+    -- file change indication for git
     use {
       "lewis6991/gitsigns.nvim",
       requires = {
@@ -68,51 +115,77 @@ return require("packer").startup(
     }
 
     -- Syntax + Treesitter
-    use "jiangmiao/auto-pairs"
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-    use "nvim-treesitter/nvim-treesitter-textobjects"
+    -- smart rename in scope/file, go to ref/def/usage
     use "nvim-treesitter/nvim-treesitter-refactor"
+    -- insert or delete parentheses in pairs
+    use "jiangmiao/auto-pairs"
+    -- displays head of scope on top (e.g. fn/class/method)
     use "romgrk/nvim-treesitter-context"
+    -- colorize parentheses
     use "p00f/nvim-ts-rainbow"
-    use {
-      "andymass/vim-matchup",
-      event = "CursorMoved"
-    }
+    -- additional textobjects for functions, classes,...
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+    -- match parentheses and scopes to quickly jump between them
+    -- use {
+    --   "andymass/vim-matchup",
+    --   event = "CursorMoved"
+    -- }
 
+    -- additional text objects e.g. da,
+    -- use "wellle/targets.vim"
+
+    -- save/restore vim-session
+    use "tpope/vim-obsession"
+
+    -- autoclose html/tsx/...-tags
     use "windwp/nvim-ts-autotag"
-    -- use 'sheerun/vim-polyglot'
+
+    -- comment codeblocks even in mixed environments
     -- use { 'JoosepAlviste/nvim-ts-context-commentstring' }
 
-    -- additional plugins
-    -- use "hoob3rt/lualine.nvim"
+    -- extensible lua statusline inspired by airline
     use "shadmansaleh/lualine.nvim"
-    use {"akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons"}
+
+    -- use {"akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons"}
     -- use "romgrk/barbar.nvim"
+
+    -- temporary maximize current split
     use "szw/vim-maximizer"
+
+    -- commenting using motions
     use "tpope/vim-commentary"
     -- use "b3nj5m1n/kommentary"
+
+    -- surround textobjects with literals using motions
     use "tpope/vim-surround"
-    use "christoomey/vim-tmux-navigator"
+
+    -- use "christoomey/vim-tmux-navigator"
+    -- ???
     -- use { 'sunjon/shade.nvim' }
 
-    use "norcalli/nvim-colorizer.lua"
+    -- use "norcalli/nvim-colorizer.lua"
 
     -- Helpers + Cheatsheet
     use "folke/which-key.nvim"
     use "sudormrfbin/cheatsheet.nvim"
+    -- decrypt and encrypt ansible-vault stuff
     use "danihodovic/vim-ansible-vault"
 
-    -- Poweruser-helper
+    -- extend repeatability of motions
     use "tpope/vim-repeat"
-    use "tpope/vim-speeddating"
-    use "wellle/targets.vim"
 
+    -- smarter vim-based increasements of dates and numbers
+    use "tpope/vim-speeddating"
+
+    -- preview rendered markdown files
     use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview"}
 
     -- SNIPPETS
-    use "honza/vim-snippets"
-    use "SirVer/ultisnips"
     use "L3MON4D3/LuaSnip"
+    use "saadparwaiz1/cmp_luasnip"
+    use "SirVer/ultisnips"
+    -- use "honza/vim-snippets"
 
     -- DEBUG with DAP
     -- use { 'mfussenegger/nvim-dap' }
