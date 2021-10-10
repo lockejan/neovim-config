@@ -9,9 +9,11 @@ utils.opt("o", "termguicolors", true)
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 -- vim.g.tokyonight_colors = {hint = "orange", error = "#ff0000"}
 
-vim.g.nord_contrast = true
--- vim.g.nord_borders = true
-vim.g.nord_disable_background = false
+-- Example config in lua
+vim.g.nord_contrast = false
+vim.g.nord_borders = true
+vim.g.nord_disable_background = true
+vim.g.nord_italic = true
 
 -- Load the colorscheme
 require("nord").set()

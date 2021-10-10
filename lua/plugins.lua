@@ -9,9 +9,9 @@ return require("packer").startup(
     -- Color schemes
     use "shaunsingh/nord.nvim"
     -- use { 'sainnhe/gruvbox-material' }
-    -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
     -- use { 'gruvbox-community/gruvbox' }
-    -- use "folke/tokyonight.nvim"
+    use "folke/tokyonight.nvim"
 
     -- Browse git-repos on GH,...
     use "tpope/vim-rhubarb"
@@ -53,6 +53,8 @@ return require("packer").startup(
       }
     }
 
+    -- virtualenv handling's
+    use {"HallerPatrick/py_lsp.nvim"}
     -- db interaction within vim
     use "tpope/vim-dadbod"
 
@@ -63,7 +65,7 @@ return require("packer").startup(
     -- use "simrat39/symbols-outline.nvim"
 
     -- fn signature while typing
-    -- use "ray-x/lsp_signature.nvim"
+    use "ray-x/lsp_signature.nvim"
 
     -- quick LSP warnings+errors navigation
     use {
@@ -104,7 +106,7 @@ return require("packer").startup(
 
     -- git history navigation
     use "junegunn/gv.vim"
-    -- use "sindrets/diffview.nvim"
+    use "sindrets/diffview.nvim"
 
     -- file change indication for git
     use {
@@ -160,7 +162,8 @@ return require("packer").startup(
     -- surround textobjects with literals using motions
     use "tpope/vim-surround"
 
-    -- use "christoomey/vim-tmux-navigator"
+    -- split navigation between vim and tmux
+    use "christoomey/vim-tmux-navigator"
     -- ???
     -- use { 'sunjon/shade.nvim' }
 

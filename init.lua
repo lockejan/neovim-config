@@ -28,12 +28,11 @@ require("lsp")
 -- treesitter config
 require("treesitter")
 
--- require("config.lspsaga")
 -- require("config.bufferline")
--- require("config.colorizer")
-require("config.colorscheme")
+-- require("config.lspsaga")
 require("config.cmp")
--- require("config.diffview")
+require("config.colorscheme")
+require("config.diffview")
 require("config.formatter")
 require("config.fugitive")
 require("config.gitsigns")
@@ -45,12 +44,3 @@ require("config.treesitter-context")
 require("config.trouble")
 require("config.web-devicons")
 require("config.which-key")
-
-function _G.lsp_reinstall_all()
-  local lspinstall = require "lspinstall"
-  for _, server in ipairs(lspinstall.installed_servers()) do
-    lspinstall.install_server(server)
-  end
-end
-
-vim.cmd "command! -nargs=0 LspReinstallAll call v:lua.lsp_reinstall_all()"

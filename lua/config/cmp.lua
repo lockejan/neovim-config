@@ -1,4 +1,4 @@
-vim.o.completeopt = "menu,menuone,noselect"
+vim.o.completeopt = "menu,menuone,noinsert"
 
 -- Setup nvim-cmp.
 local cmp = require "cmp"
@@ -6,26 +6,21 @@ local cmp = require "cmp"
 cmp.setup(
   {
     formatting = {
-      format = function(entry, vim_item)
-        -- fancy icons and a name of kind
-        vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
-        -- set a name for each source
-        vim_item.menu =
-          ({
-          -- calc = "[Calc]",
-          -- emoji = "[Emoji]"
-          -- look = "[Look]",
-          path = "[Path]",
-          buffer = "[Buffer]",
-          luasnip = "[LuaSnip]",
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[Lua]",
-          spell = "[Spell]",
-          tmux = "[Tmux]",
-          ultisnips = "[UltiSnips]"
-        })[entry.source.name]
-        return vim_item
-      end
+      format = require("lspkind").cmp_format(
+        {
+          with_text = true,
+          menu = ({
+            path = "[Path]",
+            buffer = "[Buffer]",
+            luasnip = "[LuaSnip]",
+            nvim_lsp = "[LSP]",
+            nvim_lua = "[Lua]",
+            spell = "[Spell]",
+            tmux = "[Tmux]",
+            ultisnips = "[UltiSnips]"
+          })
+        }
+      )
     },
     snippet = {
       expand = function(args)
