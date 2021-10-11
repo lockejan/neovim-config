@@ -3,8 +3,8 @@
 require("lualine").setup {
   options = {
     icons_enabled = true,
-    -- theme = "tokyonight",
-    theme = "nord",
+    theme = "tokyonight",
+    -- theme = "nord",
     section_separators = {left = "", right = ""},
     component_separators = {left = "", right = ""},
     disabled_filetypes = {}

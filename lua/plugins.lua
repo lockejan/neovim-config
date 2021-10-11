@@ -188,7 +188,8 @@ return require("packer").startup(
     use "L3MON4D3/LuaSnip"
     use "saadparwaiz1/cmp_luasnip"
     use "SirVer/ultisnips"
-    -- use "honza/vim-snippets"
+    use "quangnguyen30192/cmp-nvim-ultisnips"
+    use "honza/vim-snippets"
 
     -- DEBUG with DAP
     -- use { 'mfussenegger/nvim-dap' }
