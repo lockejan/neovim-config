@@ -1,32 +1,5 @@
 require "nvim-treesitter.configs".setup {
-  ensure_installed = {
-    "bash",
-    "c",
-    "cmake",
-    "comment",
-    "cpp",
-    "css",
-    "go",
-    "graphql",
-    "html",
-    "javascript",
-    "jsonc",
-    "latex",
-    "lua",
-    -- "markdown",
-    "nix",
-    "php",
-    "python",
-    "regex",
-    "rust",
-    "scss",
-    "toml",
-    "tsx",
-    "typescript",
-    "vue",
-    "yaml"
-    -- "json",
-  },
+  ensure_installed = "maintained",
   highlight = {
     enable = true, -- false will disable the whole extension
     use_languagetree = true,

@@ -10,14 +10,8 @@ else
 end
 
 require("py_lsp").setup {}
-
-require("lsp.lsp-install")
-
--- Lua LSP
-local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
-local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
-
 local nvim_lsp = require("lspconfig")
+
 -- Your custom attach function for nvim-lspconfig goes here.
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
@@ -27,7 +21,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
 
-  -- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings
   local opts = {noremap = true, silent = true}
@@ -56,30 +50,55 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- require("completion").on_attach(client, bufnr)
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = {"pyright", "dockerls"}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    require "lsp_signature".on_attach(
-      {
-        bind = true, -- This is mandatory, otherwise border config won't get registered.
-        handler_opts = {
-          border = "single"
+local function setup_servers()
+  require "lspinstall".setup()
+
+  local servers = require "lspinstall".installed_servers()
+  table.insert(servers, "pyright")
+  table.insert(servers, "dockerls")
+  for _, server in pairs(servers) do
+    nvim_lsp[server].setup {
+      on_attach = on_attach,
+      -- cmd = server,
+      require "lsp_signature".on_attach(
+        {
+          bind = true, -- This is mandatory, otherwise border config won't get registered.
+          handler_opts = {
+            border = "single"
+          },
+          toggle_key = "<C-x>",
+          hint_enable = false
         },
-        toggle_key = "<C-x>",
-        hint_enable = false
-      },
-      bufnr
-    ),
-    -- capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    flags = {
-      debounce_text_changes = 150
+        bufnr
+      ),
+      -- capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+      flags = {
+        debounce_text_changes = 150
+      }
     }
-  }
+  end
 end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require "lspinstall".post_install_hook = function()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
+
+function _G.lsp_reinstall_all()
+  local lspinstall = require "lspinstall"
+  for _, server in ipairs(lspinstall.installed_servers()) do
+    lspinstall.install_server(server)
+  end
+end
+
+vim.cmd "command! -nargs=0 LspReinstallAll call v:lua.lsp_reinstall_all()"
+
+-- Lua LSP
+local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
+local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ";")
@@ -123,7 +142,6 @@ local luadev =
     }
   }
 )
-
 nvim_lsp.sumneko_lua.setup(luadev)
 
 require("lspkind").init(
