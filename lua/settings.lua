@@ -35,7 +35,7 @@ utils.opt("o", "timeoutlen", 500)
 utils.opt("o", "sessionoptions", "blank,curdir,folds,help,tabpages,winsize")
 -- utils.opt("o", "inccommand", "split")
 
-vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python"
+-- vim.g.python3_host_prog = "~/.pyenv/versions/neovim3/bin/python"
 
 --Incremental live completion
 -- vim.o.inccommand = 'nosplit'

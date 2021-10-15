@@ -5,7 +5,6 @@ local map = vim.api.nvim_set_keymap
 map("n", "<C-l>", "<cmd>noh<CR>", {noremap = true}) -- Clear highlights
 
 map("n", "<leader>,", ":e ~/.config/nvim/init.lua<CR>", {noremap = true})
-map("n", "<leader>fo", ":Telescope oldfiles<CR>", {noremap = true})
 -- nnoremap <C-S> :so %<CR>
 map("n", "<leader>ls", ":ls<CR>", {noremap = true})
 map("n", "<leader>bn", ":bn<CR>", {noremap = true})
