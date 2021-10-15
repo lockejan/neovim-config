@@ -112,6 +112,7 @@ local luadev =
     lspconfig = {
       on_attach = on_attach,
       cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
+      -- cmd = {"lua"}
     },
     runtime = {
       -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
