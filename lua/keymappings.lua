@@ -1,25 +1,16 @@
 local utils = require("utils")
 
-utils.map("n", "<C-l>", "<cmd>noh<CR>") -- Clear highlights
+local map = vim.api.nvim_set_keymap
 
--- let maplocalleader = "ö"
-utils.map("n", "<leader>,", ":e ~/.config/nvim/init.lua<CR>")
+map("n", "<C-l>", "<cmd>noh<CR>", {noremap = true}) -- Clear highlights
+
+map("n", "<leader>,", ":e ~/.config/nvim/init.lua<CR>", {noremap = true})
+map("n", "<leader>fo", ":Telescope oldfiles<CR>", {noremap = true})
 -- nnoremap <C-S> :so %<CR>
-utils.map("n", "<leader>ls", ":ls<CR>")
-utils.map("n", "<leader>cd", ":cd %:p:h<CR>")
-
--- delete without yanking
--- nnoremap <leader>d "_dd
--- vnoremap <leader>d "_dd
-
--- replace currently selected text with default register
--- without yanking it
--- vnoremap <leader>p "_dP
--- nnoremap <leader>p "0p
-
--- Better nav for omnicomplete
--- inoremap <expr> <c-j> ("\<C-n>")
--- inoremap <expr> <c-k> ("\<C-p>")
+map("n", "<leader>ls", ":ls<CR>", {noremap = true})
+map("n", "<leader>bn", ":bn<CR>", {noremap = true})
+map("n", "<leader>bp", ":bp<CR>", {noremap = true})
+map("n", "<leader>cd", ":cd %:p:h<CR>", {noremap = true})
 
 -- -- Use alt + hjkl to resize windows
 -- nnoremap <M-j>    :resize -2<CR>
@@ -27,13 +18,12 @@ utils.map("n", "<leader>cd", ":cd %:p:h<CR>")
 -- nnoremap <M-h>    :vertical resize -2<CR>
 -- nnoremap <M-l>    :vertical resize +2<CR>
 
-local map = vim.api.nvim_set_keymap
 -- map('n', '<Leader>w', ':write<CR>', {noremap = true})
---
+
 -- Keeping it centered
-map("n", "n", "nzzzv", {noremap = true})
-map("n", "N", "Nzzzv", {noremap = true})
-map("n", "J", "mzJ`z", {noremap = true})
+-- map("n", "n", "nzzzv", {noremap = true})
+-- map("n", "N", "Nzzzv", {noremap = true})
+-- map("n", "J", "mzJ`z", {noremap = true})
 -- vim.api.nvim_set_keymap("n", "<Leader>w", ":write<CR>", {noremap = true})
 
 -- Undo break points
@@ -64,6 +54,7 @@ utils.map("v", "v", "<Esc>")
 
 -- Quick command mode
 utils.map("n", "<CR>", ":")
+utils.map("n", "<leader>of", ":browse oldfiles<CR>")
 
 -- Bash like
 utils.map("i", "<C-a>", "<Home>")
@@ -88,9 +79,9 @@ utils.map("n", "<A-9>", ":BufferLast<CR>")
 utils.map("n", "<leader>da", ":BufferCloseAllButCurrent<CR>")
 utils.map("n", "<leader>dl", ":BufferCloseBuffersLeft<CR>")
 utils.map("n", "<leader>dr", ":BufferCloseBuffersRight<CR>")
-utils.map("n", "<leader>p", ":BufferPrevious<CR>")
-utils.map("n", "<leader>bn", ":BufferNext<CR>")
-utils.map("n", "<leader>bc", ":bdelete<CR>")
+-- utils.map("n", "<leader>p", ":BufferPrevious<CR>")
+-- utils.map("n", "<leader>bn", ":BufferNext<CR>")
+utils.map("n", "<leader>bd", ":bdelete<CR>")
 
 -- szw/vim-maximizer
 utils.map("n", "<leader>m", ":MaximizerToggle!<CR>")

@@ -57,7 +57,7 @@ vim.opt.ignorecase = true -- Ignore case
 vim.opt.inccommand = "split" -- preview incremental substitute
 
 vim.opt.joinspaces = false -- No double spaces with join after a dot
--- vim.opt.list = true -- Show some invisible characters (tabs...
+vim.opt.list = true -- Show some invisible characters (tabs...
 vim.opt.mouse = "a" -- enable mouse mode
 vim.opt.number = true -- Print line number
 vim.opt.pumblend = 10 -- Popup blend
@@ -71,8 +71,8 @@ vim.opt.sidescrolloff = 8 -- Columns of context
 vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.smartcase = true -- Don't ignore case with capitals
 vim.opt.smartindent = true -- Insert indents automatically
--- vim.opt.splitbelow = true -- Put new windows below current
--- vim.opt.splitright = true -- Put new windows right of current
+vim.opt.splitbelow = true -- Put new windows below current
+vim.opt.splitright = true -- Put new windows right of current
 vim.opt.tabstop = indent -- Number of spaces tabs count for
 vim.opt.termguicolors = true -- True color support
 vim.opt.undofile = true
@@ -83,17 +83,7 @@ vim.opt.wrap = false -- Disable line wrap
 vim.opt.sessionoptions = {"buffers", "curdir", "tabpages", "winsize"}
 vim.o.shortmess = "IToOlxfitn"
 -- vim.opt.shell = "/bin/bash"
--- opt.lazyredraw = true -- faster macro exec
--- -- don't load the plugins below
--- vim.g.loaded_gzip = 1
--- vim.g.loaded_tar = 1
--- vim.g.loaded_tarPlugin = 1
--- vim.g.loaded_zipPlugin = 1
--- vim.g.loaded_2html_plugin = 1
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
--- vim.g.loaded_matchit = 1
--- vim.g.loaded_matchparen = 1
+-- opt.lazyredraw = true -- faster macro execute
 
 local disabled_built_ins = {
   -- "netrw",
