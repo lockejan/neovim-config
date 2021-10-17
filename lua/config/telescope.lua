@@ -2,13 +2,12 @@ local utils = require("utils")
 
 -- " Find files using Telescope command-line sugar.
 utils.map("n", "<leader>ff", "<cmd>Telescope fd<cr>")
-utils.map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>")
+utils.map("n", "<leader>fo", "<cmd>Telescope frecency<cr>")
 utils.map("n", "<leader>fg", "<cmd>Telescope git_files<cr>")
 utils.map("n", "<leader>fc", "<cmd>Telescope git_commits<cr>")
 utils.map("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
 utils.map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 
-local trouble = require("trouble.providers.telescope")
 local actions = require("telescope.actions")
 -- Global remapping
 ------------------------------

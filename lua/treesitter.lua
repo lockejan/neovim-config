@@ -6,8 +6,8 @@ require "nvim-treesitter.configs".setup {
     disable = {}
   },
   indent = {
-    enable = false
-    -- disable_filetype = {"python"}
+    enable = false,
+    disable_filetype = {"python"}
   },
   incremental_selection = {
     enable = true,
