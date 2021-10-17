@@ -33,12 +33,16 @@ return require("packer").startup(
     -- LSP and completion
     -- simplify usage of lsps
     use "neovim/nvim-lspconfig"
+
     -- improved and extended lsp integration
     -- decoration and code actions
-    use "glepnir/lspsaga.nvim"
+    -- use "glepnir/lspsaga.nvim"
 
     -- Easy LS installation
     use "kabouzeid/nvim-lspinstall"
+
+    -- autopair of brackets on insert
+    use "windwp/nvim-autopairs"
 
     -- LSP Autocompletion plugin
     -- use "nvim-lua/completion-nvim"
