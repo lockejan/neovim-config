@@ -1,46 +1,37 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
-
 local fn = vim.fn
 local exec = vim.api.nvim_command
-
--- Sensible defaults
-require("settings")
 
 -- Auto install packer.nvim if not exists
 local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
   exec("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
-vim.cmd [[packadd packer.nvim]]
--- Auto compile when there are changes in plugins.lua
-vim.cmd "autocmd BufWritePost luafile plugins.lua PackerSync"
 
--- Install plugins
+-- Setup plugins
 require("plugins")
+
+-- Sensible defaults
+require("settings")
+require("config.trailing")
 
 -- Key mappings
 require("keymappings")
+require("config.which-key")
 
--- Setup Lua language server using submodule
+-- Language Server Setup
 require("lsp")
+require("config.cmp")
+require("config.trouble")
+require("config.formatter")
 
 -- treesitter config
 require("treesitter")
 
--- require("config.bufferline")
--- require("config.lspsaga")
-require("config.cmp")
-require("config.colorscheme")
-require("config.diffview")
-require("config.formatter")
-require("config.fugitive")
+-- Git tools
 require("config.gitsigns")
+require("config.diffview")
+
+-- File handling and exploring
 require("config.lualine")
-require("config.nvim-autotag")
 require("config.nvim-tree")
 require("config.telescope")
-require("config.treesitter-context")
-require("config.trouble")
-require("config.web-devicons")
-require("config.which-key")

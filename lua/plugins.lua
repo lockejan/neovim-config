@@ -1,5 +1,6 @@
-return require("packer").startup(
-  function(use)
+vim.cmd [[packadd packer.nvim]]
+
+return require("packer").startup(function(use)
     -- Packer can manage itself as an optional plugin
     use({"wbthomason/packer.nvim", opt = true})
 
@@ -7,46 +8,47 @@ return require("packer").startup(
     use("nathom/filetype.nvim")
 
     -- Color schemes
-    use "shaunsingh/nord.nvim"
+    -- use "shaunsingh/nord.nvim"
     -- use { 'sainnhe/gruvbox-material' }
-    use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
     -- use { 'gruvbox-community/gruvbox' }
-    use "folke/tokyonight.nvim"
+    -- use "folke/tokyonight.nvim"
+    -- use "joshdick/onedark.vim"
+    use "navarasu/onedark.nvim"
 
-    -- Browse git-repos on GH,...
-    use "tpope/vim-rhubarb"
-
-    -- Fuzzy finder
+    -- Fuzzy finding stuff via telescope
     use {
       "nvim-telescope/telescope.nvim",
       requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}}
     }
     use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
-    use {
-      "nvim-telescope/telescope-frecency.nvim",
-      config = function()
-        require "telescope".load_extension("frecency")
-      end,
-      requires = {"tami5/sqlite.lua"}
-    }
 
     -- LSP and completion
     -- simplify usage of lsps
     use "neovim/nvim-lspconfig"
+
+    use "ludovicchabant/vim-gutentags"
+
+    -- use "nvim-lua/lsp-status.nvim"
+    -- use({ "jose-elias-alvarez/null-ls.nvim",
+    -- config = function()
+    --     require("null-ls").config({})
+    --     require("lspconfig")["null-ls"].setup({})
+    -- end,
+    -- requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+    -- })
 
     -- improved and extended lsp integration
     -- decoration and code actions
     -- use "glepnir/lspsaga.nvim"
 
     -- Easy LS installation
-    use "kabouzeid/nvim-lspinstall"
+    -- use "kabouzeid/nvim-lspinstall"
 
     -- autopair of brackets on insert
     use "windwp/nvim-autopairs"
 
     -- LSP Autocompletion plugin
-    -- use "nvim-lua/completion-nvim"
-    -- use "hrsh7th/nvim-compe"
     use {
       "hrsh7th/nvim-cmp",
       requires = {
@@ -55,6 +57,7 @@ return require("packer").startup(
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-path",
+        "quangnguyen30192/cmp-nvim-tags",
         "quangnguyen30192/cmp-nvim-ultisnips",
         {"andersevenrud/compe-tmux", branch = "cmp"}
         -- "rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide",
@@ -65,7 +68,8 @@ return require("packer").startup(
     }
 
     -- virtualenv handling's
-    use {"HallerPatrick/py_lsp.nvim"}
+    -- use {"HallerPatrick/py_lsp.nvim"}
+
     -- db interaction within vim
     use "tpope/vim-dadbod"
 
@@ -76,7 +80,7 @@ return require("packer").startup(
     -- use "simrat39/symbols-outline.nvim"
 
     -- fn signature while typing
-    use "ray-x/lsp_signature.nvim"
+    -- use "ray-x/lsp_signature.nvim"
 
     -- quick LSP warnings+errors navigation
     use {
@@ -97,7 +101,7 @@ return require("packer").startup(
     use "mhartington/formatter.nvim"
 
     -- Vim dispatch
-    -- use 'tpope/vim-dispatch' -- compile helper
+    -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
     -- file explorer and interaction
     -- use 'tpope/vim-vinegar' -- improved netrw
@@ -118,6 +122,9 @@ return require("packer").startup(
     -- git history navigation
     use "junegunn/gv.vim"
     use "sindrets/diffview.nvim"
+
+    -- Browse git-repos on GH,...
+    use "tpope/vim-rhubarb"
 
     -- file change indication for git
     use {
@@ -140,10 +147,10 @@ return require("packer").startup(
     -- additional textobjects for functions, classes,...
     use "nvim-treesitter/nvim-treesitter-textobjects"
     -- match parentheses and scopes to quickly jump between them
-    -- use {
-    --   "andymass/vim-matchup",
-    --   event = "CursorMoved"
-    -- }
+    use {
+      "andymass/vim-matchup",
+      event = "CursorMoved"
+    }
 
     -- additional text objects e.g. da,
     -- use "wellle/targets.vim"
@@ -184,7 +191,7 @@ return require("packer").startup(
     use "folke/which-key.nvim"
     use "sudormrfbin/cheatsheet.nvim"
     -- decrypt and encrypt ansible-vault stuff
-    use "danihodovic/vim-ansible-vault"
+    -- use "danihodovic/vim-ansible-vault"
 
     -- extend repeatability of motions
     use "tpope/vim-repeat"
@@ -196,10 +203,9 @@ return require("packer").startup(
     use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview"}
 
     -- SNIPPETS
-    use "L3MON4D3/LuaSnip"
-    use "saadparwaiz1/cmp_luasnip"
+    -- use "L3MON4D3/LuaSnip"
+    -- use "saadparwaiz1/cmp_luasnip"
     use "SirVer/ultisnips"
-    use "quangnguyen30192/cmp-nvim-ultisnips"
     use "honza/vim-snippets"
 
     -- DEBUG with DAP

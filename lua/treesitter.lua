@@ -94,3 +94,5 @@ parser_config.markdown = {
     files = {"src/parser.c", "src/scanner.cc"}
   }
 }
+
+require "treesitter-context".setup {enable = true, throttle = true}

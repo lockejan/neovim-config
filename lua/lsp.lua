@@ -9,7 +9,16 @@ else
   print("Unsupported system for sumneko")
 end
 
-require("py_lsp").setup {}
+-- disable virtual_text diagnostics in buffer
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    underline = true,
+    virtual_text = false
+  }
+)
+
 local nvim_lsp = require("lspconfig")
 
 -- Your custom attach function for nvim-lspconfig goes here.
@@ -50,51 +59,30 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local function setup_servers()
-  require "lspinstall".setup()
+local servers = {
+    'bashls',
+    'clangd',
+    'clojure_lsp',
+    'cssls',
+    'dockerls',
+    'eslint',
+    'html',
+    'jsonls',
+    'pyright',
+    'tsserver',
+    'yamlls',
+}
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-  local servers = require "lspinstall".installed_servers()
-  table.insert(servers, "pyright")
-  table.insert(servers, "dockerls")
-  for _, server in pairs(servers) do
-    nvim_lsp[server].setup {
-      on_attach = on_attach,
-      -- cmd = server,
-      require "lsp_signature".on_attach(
-        {
-          bind = true, -- This is mandatory, otherwise border config won't get registered.
-          handler_opts = {
-            border = "single"
-          },
-          toggle_key = "<C-x>",
-          hint_enable = false
-        },
-        bufnr
-      ),
-      -- capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-      flags = {
-        debounce_text_changes = 150
-      }
-    }
-  end
+for _, server in pairs(servers) do
+  nvim_lsp[server].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 end
 
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require "lspinstall".post_install_hook = function()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
-
-function _G.lsp_reinstall_all()
-  local lspinstall = require "lspinstall"
-  for _, server in ipairs(lspinstall.installed_servers()) do
-    lspinstall.install_server(server)
-  end
-end
-
-vim.cmd "command! -nargs=0 LspReinstallAll call v:lua.lsp_reinstall_all()"
 
 -- Lua LSP
 local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
@@ -144,49 +132,3 @@ local luadev =
   }
 )
 nvim_lsp.sumneko_lua.setup(luadev)
-
-require("lspkind").init(
-  {
-    -- enables text annotations
-    -- default: true
-    with_text = true,
-    -- default symbol map
-    -- can be either 'default' or
-    -- 'codicons' for codicon preset (requires vscode-codicons font installed)
-    -- default: 'default'
-    preset = "codicons",
-    -- override preset symbols
-    -- default: {}
-    symbol_map = {
-      Text = "",
-      Method = "ƒ",
-      Function = "",
-      Constructor = "",
-      Variable = "",
-      Class = "",
-      Interface = "ﰮ",
-      Module = "",
-      Property = "",
-      Unit = "",
-      Value = "",
-      Enum = "了",
-      Keyword = "",
-      Snippet = "﬌",
-      Color = "",
-      File = "",
-      Folder = "",
-      EnumMember = "",
-      Constant = "",
-      Struct = ""
-    }
-  }
-)
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    underline = true,
-    virtual_text = false
-  }
-)

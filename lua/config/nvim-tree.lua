@@ -16,5 +16,4 @@ require("nvim-tree").setup {
   }
 }
 
--- -- utils.map("n", "<leader>ef", ":lua require'config.tree'.toggle_tree()<CR>")
 vim.cmd("autocmd BufWinEnter NvimTree setlocal cursorline")
