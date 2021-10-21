@@ -10,14 +10,10 @@ else
 end
 
 -- disable virtual_text diagnostics in buffer
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    underline = true,
-    virtual_text = false
-  }
-)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  underline = true,
+  virtual_text = false,
+})
 
 local nvim_lsp = require("lspconfig")
 
@@ -33,7 +29,7 @@ local on_attach = function(client, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings
-  local opts = {noremap = true, silent = true}
+  local opts = { noremap = true, silent = true }
   buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -60,29 +56,28 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {
-    'bashls',
-    'clangd',
-    'clojure_lsp',
-    'cssls',
-    'dockerls',
-    'eslint',
-    'html',
-    'jsonls',
-    'pyright',
-    'tsserver',
-    'yamlls',
+  "bashls",
+  "clangd",
+  "clojure_lsp",
+  "cssls",
+  "dockerls",
+  "eslint",
+  "html",
+  "jsonls",
+  "pyright",
+  "tsserver",
+  "yamlls",
 }
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 for _, server in pairs(servers) do
-  nvim_lsp[server].setup {
+  nvim_lsp[server].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
 end
-
 
 -- Lua LSP
 local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
@@ -93,42 +88,39 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-local luadev =
-  require("lua-dev").setup(
-  {
-    -- add any options here, or leave empty to use the default settings
-    lspconfig = {
-      on_attach = on_attach,
-      cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
-      -- cmd = {"lua"}
+local luadev = require("lua-dev").setup({
+  -- add any options here, or leave empty to use the default settings
+  lspconfig = {
+    on_attach = on_attach,
+    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+    -- cmd = {"lua"}
+  },
+  runtime = {
+    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+    version = "LuaJIT",
+    -- Setup your lua path
+    path = runtime_path,
+  },
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = "LuaJIT",
+        -- Setup your lua path
+        path = runtime_path,
+      },
     },
-    runtime = {
-      -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-      version = "LuaJIT",
-      -- Setup your lua path
-      path = runtime_path
+    diagnostics = {
+      globals = { "vim" },
     },
-    settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT",
-          -- Setup your lua path
-          path = runtime_path
-        }
-      },
-      diagnostics = {
-        globals = {"vim"}
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true)
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false
-      }
-    }
-  }
-)
+    workspace = {
+      -- Make the server aware of Neovim runtime files
+      library = vim.api.nvim_get_runtime_file("", true),
+    },
+    -- Do not send telemetry data containing a randomized but unique identifier
+    telemetry = {
+      enable = false,
+    },
+  },
+})
 nvim_lsp.sumneko_lua.setup(luadev)

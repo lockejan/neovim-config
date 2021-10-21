@@ -1,10 +1,10 @@
-require("gitsigns").setup {
+require("gitsigns").setup({
   signs = {
-    add = {hl = "GitGutterAdd", text = "+"},
-    change = {hl = "GitGutterChange", text = "~"},
-    delete = {hl = "GitGutterDelete", text = "_"},
-    topdelete = {hl = "GitGutterDelete", text = "‾"},
-    changedelete = {hl = "GitGutterChange", text = "~"}
+    add = { hl = "GitGutterAdd", text = "+" },
+    change = { hl = "GitGutterChange", text = "~" },
+    delete = { hl = "GitGutterDelete", text = "_" },
+    topdelete = { hl = "GitGutterDelete", text = "‾" },
+    changedelete = { hl = "GitGutterChange", text = "~" },
   },
 
   -- require('gitsigns').setup {
@@ -20,8 +20,8 @@ require("gitsigns").setup {
   keymaps = {
     -- Default keymap options
     noremap = true,
-    ["n ]c"] = {expr = true, '&diff ? \']c\' : \'<cmd>lua require"gitsigns.actions".next_hunk()<CR>\''},
-    ["n [c"] = {expr = true, '&diff ? \'[c\' : \'<cmd>lua require"gitsigns.actions".prev_hunk()<CR>\''},
+    ["n ]c"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'" },
+    ["n [c"] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'" },
     ["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
     ["v <leader>hs"] = '<cmd>lua require"gisigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
     ["n <leader>hu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
@@ -32,11 +32,11 @@ require("gitsigns").setup {
     ["n <leader>hb"] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     -- Text objects
     ["o ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    ["x ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+    ["x ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
   },
   watch_index = {
     interval = 1000,
-    follow_files = true
+    follow_files = true,
   },
   -- current_line_blame = false,
   -- current_line_blame_delay = 700,
@@ -46,5 +46,5 @@ require("gitsigns").setup {
   status_formatter = nil, -- Use default
   word_diff = false,
   -- use_decoration_api = true,
-  use_internal_diff = true -- If luajit is present
-}
+  use_internal_diff = true, -- If luajit is present
+})

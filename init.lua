@@ -4,10 +4,13 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
 
-vim.api.nvim_exec([[ augroup Packer
+vim.api.nvim_exec(
+  [[ augroup Packer
 autocmd!
 autocmd BufWritePost init.lua PackerCompile
-augroup end ]], false)
+augroup end ]],
+  false
+)
 
 -- Setup plugins
 require("plugins")

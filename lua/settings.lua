@@ -50,10 +50,10 @@ vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.o.wrap = false -- Disable line wrap
 
 vim.opt.spell = true
-vim.opt.spelllang = { 'en_us', 'de_de' }
+vim.opt.spelllang = { "en_us", "de_de" }
 
 vim.g.onedark_terminal_italics = 1
-vim.cmd [[colorscheme onedark]]
+vim.cmd([[colorscheme onedark]])
 
 -- disable unwanted core plugins
 local disabled_built_ins = {
@@ -76,7 +76,7 @@ local disabled_built_ins = {
   "rrhelper",
   "spellfile_plugin",
   "matchit",
-  "matchitparen"
+  "matchitparen",
 }
 for _, plugin in pairs(disabled_built_ins) do
   vim.g["loaded_" .. plugin] = 1
@@ -94,7 +94,7 @@ local fences = {
   "shell=sh",
   "python",
   "sh",
-  "console=sh"
+  "console=sh",
 }
 vim.g.markdown_fenced_languages = fences
 
@@ -133,6 +133,6 @@ vim.api.nvim_exec(
 )
 
 -- secure gopass
-vim.cmd "au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile"
+vim.cmd("au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile")
 
-require'nvim-web-devicons'.setup {}
+require("nvim-web-devicons").setup({})

@@ -1,4 +1,4 @@
-vim.g.nvim_tree_ignore = {".DS_Store"}
+vim.g.nvim_tree_ignore = { ".DS_Store" }
 -- vim.g.nvim_tree_gitignore = 1
 -- vim.g.nvim_tree_auto_open = 1
 -- vim.g.nvim_tree_auto_close = 0
@@ -10,10 +10,10 @@ vim.g.nvim_tree_ignore = {".DS_Store"}
 -- vim.g.nvim_tree_lsp_diagnostics = 1
 -- vim.g.nvim_tree_disable_default_keybindings = 1
 
-require("nvim-tree").setup {
+require("nvim-tree").setup({
   view = {
-    width = 40
-  }
-}
+    width = 40,
+  },
+})
 
 vim.cmd("autocmd BufWinEnter NvimTree setlocal cursorline")
