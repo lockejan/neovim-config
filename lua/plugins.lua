@@ -1,6 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
 
-return require("packer").startup(function(use)
+return require("packer").startup(
+  function(use)
     -- Packer can manage itself as an optional plugin
     use({"wbthomason/packer.nvim", opt = true})
 
@@ -104,13 +105,15 @@ return require("packer").startup(function(use)
     -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
     -- file explorer and interaction
-    -- use 'tpope/vim-vinegar' -- improved netrw
+    use "tpope/vim-vinegar" -- improved netrw
+    use "justinmk/vim-dirvish"
+    use "justinmk/vim-sneak"
 
-    -- unix command bridge for vim
-    -- use "tpope/vim-eunuch"
-
+    -- unix commands for vim
+    use "tpope/vim-eunuch"
+    use "tpope/vim-unimpaired"
     -- lua file explorer
-    use "kyazdani42/nvim-tree.lua"
+    -- use "kyazdani42/nvim-tree.lua"
 
     -- autochange to project root dir
     use "airblade/vim-rooter"

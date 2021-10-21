@@ -1,11 +1,13 @@
-local fn = vim.fn
-local exec = vim.api.nvim_command
-
 -- Auto install packer.nvim if not exists
-local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  exec("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
+
+vim.api.nvim_exec([[ augroup Packer
+autocmd!
+autocmd BufWritePost init.lua PackerCompile
+augroup end ]], false)
 
 -- Setup plugins
 require("plugins")
@@ -33,5 +35,5 @@ require("config.diffview")
 
 -- File handling and exploring
 require("config.lualine")
-require("config.nvim-tree")
+-- require("config.nvim-tree")
 require("config.telescope")

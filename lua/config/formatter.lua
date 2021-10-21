@@ -3,7 +3,6 @@ require("formatter").setup(
     logging = false,
     filetype = {
       javascript = {
-        -- prettier
         function()
           return {
             exe = "prettier",
@@ -23,7 +22,6 @@ require("formatter").setup(
         end
       },
       rust = {
-        -- Rustfmt
         function()
           return {
             exe = "rustfmt",
@@ -33,11 +31,10 @@ require("formatter").setup(
         end
       },
       lua = {
-        -- luafmt
         function()
           return {
-            exe = "luafmt",
-            args = {"--indent-count", 2, "--stdin"},
+            exe = "stylua",
+            args = {"-"},
             stdin = true
           }
         end
@@ -48,12 +45,10 @@ require("formatter").setup(
             exe = "yapf",
             args = {"--style", "pep8"},
             stdin = true
-            -- cwd = vim.fn.expand("%:p:h")
           }
         end
       },
       cpp = {
-        -- clang-format
         function()
           return {
             exe = "clang-format",
@@ -71,7 +66,7 @@ vim.api.nvim_exec(
   [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua,*.clj,*.py FormatWrite
+  autocmd BufWritePost *.js,*.rs,*.lua,*.clj,*.py Format
 augroup END
 ]],
   true
