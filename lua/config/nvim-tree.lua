@@ -14,6 +14,8 @@ require("nvim-tree").setup({
   view = {
     width = 40,
   },
+    disable_netrw       = false,
+      hijack_netrw        = false,
 })
 
 vim.cmd("autocmd BufWinEnter NvimTree setlocal cursorline")

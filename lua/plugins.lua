@@ -92,7 +92,7 @@ return require("packer").startup(function(use)
   })
 
   -- trim whitespaces on save
-  use("cappyzawa/trim.nvim")
+  -- use("cappyzawa/trim.nvim")
 
   -- Lua development
   use("folke/lua-dev.nvim")
@@ -106,13 +106,13 @@ return require("packer").startup(function(use)
   -- file explorer and interaction
   use("tpope/vim-vinegar") -- improved netrw
   use("justinmk/vim-dirvish")
-  use("justinmk/vim-sneak")
+  -- use("justinmk/vim-sneak")
 
   -- unix commands for vim
   use("tpope/vim-eunuch")
   use("tpope/vim-unimpaired")
   -- lua file explorer
-  -- use "kyazdani42/nvim-tree.lua"
+  use("kyazdani42/nvim-tree.lua")
 
   -- autochange to project root dir
   use("airblade/vim-rooter")
@@ -167,7 +167,7 @@ return require("packer").startup(function(use)
   -- use { 'JoosepAlviste/nvim-ts-context-commentstring' }
 
   -- extensible lua statusline inspired by airline
-  use("shadmansaleh/lualine.nvim")
+  use("nvim-lualine/lualine.nvim")
 
   -- use {"akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons"}
   -- use "romgrk/barbar.nvim"

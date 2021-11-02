@@ -12,12 +12,12 @@ augroup end ]],
   false
 )
 
--- Setup plugins
-require("plugins")
-
 -- Sensible defaults
 require("settings")
-require("config.trailing")
+
+-- Setup plugins
+require("plugins")
+-- require("config.trailing")
 
 -- Key mappings
 require("keymappings")
@@ -38,5 +38,5 @@ require("config.diffview")
 
 -- File handling and exploring
 require("config.lualine")
--- require("config.nvim-tree")
+require("config.nvim-tree")
 require("config.telescope")

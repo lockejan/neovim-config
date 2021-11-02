@@ -1,5 +1,5 @@
 -- Do not source the default filetype.vim
-vim.g.did_load_filetypes = 1
+-- vim.g.did_load_filetypes = 1
 
 -- Disable neovim python support
 vim.g.loaded_python_provider = 0
@@ -14,21 +14,21 @@ vim.wo.number = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
 
--- vim.api.nvim_set_option('ruler', true) --" show the cursor position all the time
+-- vim.api.nvim_set_option("ruler", true) --" show the cursor position all the time (default)
 -- vim.o.shortmess = "IToOlxfitn"
--- vim.o.autowrite = true
+vim.o.autowrite = true
 vim.o.breakindent = true -- indent wrapped lines accordingly
 vim.o.cursorline = true -- display cursorline
 vim.o.expandtab = true -- Tabs are spaces, not tabs
-vim.o.hidden = true -- switch buffers without save
+-- vim.o.hidden = true -- switch buffers without save (default)
 vim.o.ignorecase = true -- Ignore case for search
-vim.o.joinspaces = false -- No double spaces with join after a dot
+-- vim.o.joinspaces = false -- No double spaces with join after a dot (default)
 vim.o.lazyredraw = true -- faster macro execute
 vim.o.list = true -- Show some invisible characters (tabs...
 vim.o.mouse = "a" -- enable mouse mode
 vim.o.number = true -- Show line number
 -- vim.o.pumblend = 10 -- Popup blend
--- vim.o.pumheight = 10 -- Maximum number of entries in a popup
+vim.o.pumheight = 30 -- Maximum number of entries in a popup
 vim.o.scrolloff = 8 -- Minumum lines to keep above and below cursor
 -- vim.o.sessionoptions = {"buffers", "curdir", "tabpages", "winsize"}
 -- vim.o.shell = "/bin/bash"
