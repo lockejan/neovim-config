@@ -14,7 +14,7 @@ cmp.setup({
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
         spell = "[Spell]",
-        tags = "[Tag]",
+        -- tags = "[Tag]",
         tmux = "[Tmux]",
         ultisnips = "[UltiSnips]",
       },
@@ -36,7 +36,7 @@ cmp.setup({
     }),
   },
   sources = {
-    { name = "buffer" },
+    { name = "buffer", keyword_length = 3, priority = 50 },
     --     {name = "calc"},
     --     {name = "cmp_tabnine"},
     --     {name = "emoji"},
@@ -45,10 +45,14 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
-    { name = "spell" },
-    { name = "tags" },
+    { name = "spell", keyword_length = 3 },
+    -- { name = "tags" },
     { name = "tmux" },
     { name = "ultisnips" },
+  },
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
   },
 })
 

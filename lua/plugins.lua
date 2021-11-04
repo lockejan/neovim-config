@@ -27,7 +27,7 @@ return require("packer").startup(function(use)
   -- simplify usage of lsps
   use("neovim/nvim-lspconfig")
 
-  use("ludovicchabant/vim-gutentags")
+  -- use("ludovicchabant/vim-gutentags")
 
   -- use "nvim-lua/lsp-status.nvim"
   -- use({ "jose-elias-alvarez/null-ls.nvim",
