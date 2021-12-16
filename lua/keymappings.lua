@@ -89,3 +89,4 @@ map("n", "<leader>bm", "<cmd>lua ToggleMouse()<cr>", { noremap = true })
 
 -- fugitive
 map("n", "<Leader>gs", "<cmd>G<CR>", { noremap = true })
+map("n", "<Leader>gb", "<cmd>G blame<CR>", { noremap = true })

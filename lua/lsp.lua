@@ -50,6 +50,7 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {
+  "ansiblels",
   "bashls",
   "clangd",
   "clojure_lsp",
@@ -57,10 +58,10 @@ local servers = {
   "dockerls",
   "eslint",
   "html",
+  "intelephense",
   "jsonls",
   "rnix",
   "pyright",
-  "tsserver",
   "yamlls",
 }
 --Enable (broadcasting) snippet capability for completion
