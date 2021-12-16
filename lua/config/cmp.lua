@@ -10,7 +10,7 @@ cmp.setup({
       menu = {
         path = "[Path]",
         buffer = "[Buffer]",
-        -- luasnip = "[LuaSnip]",
+        luasnip = "[LuaSnip]",
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
         spell = "[Spell]",
@@ -35,8 +35,7 @@ cmp.setup({
       behavior = cmp.ConfirmBehavior.Replace,
     }),
   },
-  sources = {
-    { name = "buffer", keyword_length = 3, priority = 50 },
+  sources = cmp.config.sources({
     --     {name = "calc"},
     --     {name = "cmp_tabnine"},
     --     {name = "emoji"},
@@ -49,7 +48,9 @@ cmp.setup({
     -- { name = "tags" },
     { name = "tmux" },
     { name = "ultisnips" },
-  },
+  }, {
+    { name = "buffer", keyword_length = 3, priority = 50 },
+  }),
   experimental = {
     native_menu = false,
     ghost_text = true,
@@ -57,7 +58,7 @@ cmp.setup({
 })
 
 -- autopairs setup
-require("nvim-autopairs").setup({})
+-- require("nvim-autopairs").setup({})
 -- you need setup cmp first put this after cmp.setup()
 -- require("nvim-autopairs.completion.cmp").setup({
 --   map_cr = true, --  map <CR> on insert mode

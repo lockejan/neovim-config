@@ -84,5 +84,8 @@ end
 
 map("n", "<leader>bm", "<cmd>lua ToggleMouse()<cr>", { noremap = true })
 
+-- custom replace
+-- map("n", "<silent> s*", "<cmd>let @/='<'.expand('<cword>').'>'<cr>cgn", { noremap = true })
+
 -- fugitive
 map("n", "<Leader>gs", "<cmd>G<CR>", { noremap = true })

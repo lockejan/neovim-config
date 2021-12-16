@@ -8,13 +8,14 @@ return require("packer").startup(function(use)
   use("nathom/filetype.nvim")
 
   -- Color schemes
-  -- use "shaunsingh/nord.nvim"
+  use("shaunsingh/nord.nvim")
   -- use { 'sainnhe/gruvbox-material' }
   -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   -- use { 'gruvbox-community/gruvbox' }
-  -- use "folke/tokyonight.nvim"
-  -- use "joshdick/onedark.vim"
+  use("folke/tokyonight.nvim")
+  -- use("joshdick/onedark.vim")
   use("navarasu/onedark.nvim")
+  use("tanvirtin/monokai.nvim")
 
   -- Fuzzy finding stuff via telescope
   use({
@@ -52,14 +53,14 @@ return require("packer").startup(function(use)
   use({
     "hrsh7th/nvim-cmp",
     requires = {
-      "f3fora/cmp-spell",
+      -- "f3fora/cmp-spell",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
-      "quangnguyen30192/cmp-nvim-tags",
+      -- "quangnguyen30192/cmp-nvim-tags",
       "quangnguyen30192/cmp-nvim-ultisnips",
-      { "andersevenrud/compe-tmux", branch = "cmp" },
+      "andersevenrud/cmp-tmux",
       -- "rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide",
       -- "octaltree/cmp-look",
       -- "hrsh7th/cmp-calc",
@@ -205,8 +206,8 @@ return require("packer").startup(function(use)
   use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview" })
 
   -- SNIPPETS
-  -- use "L3MON4D3/LuaSnip"
-  -- use "saadparwaiz1/cmp_luasnip"
+  use("L3MON4D3/LuaSnip")
+  use("saadparwaiz1/cmp_luasnip")
   use("SirVer/ultisnips")
   use("honza/vim-snippets")
 
