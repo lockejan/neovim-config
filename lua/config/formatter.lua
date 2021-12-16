@@ -29,6 +29,15 @@ require("formatter").setup({
         }
       end,
     },
+    nix = {
+      function()
+        return {
+          exe = "nixpkgs-fmt",
+          args = {},
+          stdin = true,
+        }
+      end,
+    },
     lua = {
       function()
         return {
@@ -64,7 +73,7 @@ vim.api.nvim_exec(
   [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua,*.clj,*.py Format
+  autocmd BufWritePost *.js,*.rs,*.lua,*.clj,*.py,*.nix Format
 augroup END
 ]],
   true
