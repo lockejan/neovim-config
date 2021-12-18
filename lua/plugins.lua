@@ -78,6 +78,9 @@ return require("packer").startup(function(use)
     },
   })
 
+  -- clojure
+  use("Olical/conjure")
+
   -- virtualenv handling's
   -- use {"HallerPatrick/py_lsp.nvim"}
 
