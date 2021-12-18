@@ -90,3 +90,18 @@ map("n", "<leader>bm", "<cmd>lua ToggleMouse()<cr>", { noremap = true })
 -- fugitive
 map("n", "<Leader>gs", "<cmd>G<CR>", { noremap = true })
 map("n", "<Leader>gb", "<cmd>G praise<CR>", { noremap = true })
+map("n", "<leader>gc", ":G commit<cr>", { noremap = true })
+map("n", "<leader>gd", ":tabe %<cr>:Gvdiffsplit!<CR>", { noremap = true })
+map("n", "<leader>gD", ":DiffviewOpen<cr>", { noremap = true })
+map("n", "<leader>gm", ":tabe %<cr>:Gvdiffsplit! main<CR>", { noremap = true })
+map("n", "<leader>gM", ":DiffviewOpen main<cr>", { noremap = true })
+map("n", "<leader>gl", ":Git log<cr>", { noremap = true })
+map("n", "<leader>gp", ":Git push<cr>", { noremap = true })
+
+-- vim-test
+-- these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+map("n", "<silent> t<C-n>", ":TestNearest<CR>", { noremap = true })
+map("n", "<silent> t<C-f>", ":TestFile<CR>", { noremap = true })
+map("n", "<silent> t<C-s>", ":TestSuite<CR>", { noremap = true })
+map("n", "<silent> t<C-l>", ":TestLast<CR>", { noremap = true })
+map("n", "<silent> t<C-g>", ":TestVisit<CR>", { noremap = true })
