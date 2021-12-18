@@ -17,26 +17,20 @@ require("settings")
 
 -- Setup plugins
 require("plugins")
--- require("config.trailing")
 
--- Key mappings
+-- Core
 require("keymappings")
-require("config.which-key")
-
--- Language Server Setup
 require("lsp")
-require("config.cmp")
-require("config.trouble")
-require("config.formatter")
-
--- treesitter config
 require("treesitter")
 
--- Git tools
-require("config.gitsigns")
+-- Plugin config
+require("config.cmp")
 require("config.diffview")
-
--- File handling and exploring
+require("config.formatter")
+require("config.gitsigns")
+require("config.indent-blankline")
 require("config.lualine")
 require("config.nvim-tree")
 require("config.telescope")
+require("config.trouble")
+require("config.which-key")

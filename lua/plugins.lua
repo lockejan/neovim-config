@@ -5,29 +5,37 @@ return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim", opt = true })
 
   -- lua-based filetype to speedup starttime
-  use("nathom/filetype.nvim")
+  -- use("nathom/filetype.nvim")
 
   -- Color schemes
-  use("shaunsingh/nord.nvim")
+  -- use("shaunsingh/nord.nvim")
   -- use { 'sainnhe/gruvbox-material' }
   -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   -- use { 'gruvbox-community/gruvbox' }
-  use("folke/tokyonight.nvim")
+  -- use("folke/tokyonight.nvim")
   -- use("joshdick/onedark.vim")
   use("navarasu/onedark.nvim")
-  use("tanvirtin/monokai.nvim")
+  -- use("tanvirtin/monokai.nvim")
 
   -- Fuzzy finding stuff via telescope
+  use("cljoly/telescope-repo.nvim")
+  use("fhill2/telescope-ultisnips.nvim")
+  use("nvim-telescope/telescope-packer.nvim")
+  use("dhruvmanila/telescope-bookmarks.nvim")
   use({
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
   })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
+  -- essentials: telescope, nvim-lspconfig, nvim-dap
   -- LSP and completion
   -- simplify usage of lsps
   use("neovim/nvim-lspconfig")
-
+  -- use("tpope/vim-projectionist")
+  use("vim-test/vim-test")
+  use("mfussenegger/nvim-jdtls")
+  use("lukas-reineke/indent-blankline.nvim")
   -- use("ludovicchabant/vim-gutentags")
 
   -- use "nvim-lua/lsp-status.nvim"
@@ -58,9 +66,11 @@ return require("packer").startup(function(use)
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
-      -- "quangnguyen30192/cmp-nvim-tags",
       "quangnguyen30192/cmp-nvim-ultisnips",
+      "David-Kunz/cmp-npm",
       "andersevenrud/cmp-tmux",
+      "PaterJason/cmp-conjure",
+
       -- "rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide",
       -- "octaltree/cmp-look",
       -- "hrsh7th/cmp-calc",
@@ -105,12 +115,12 @@ return require("packer").startup(function(use)
   -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   -- file explorer and interaction
-  use("tpope/vim-vinegar") -- improved netrw
+  -- use("tpope/vim-vinegar") -- improved netrw
   use("justinmk/vim-dirvish")
   -- use("justinmk/vim-sneak")
 
   -- unix commands for vim
-  use("tpope/vim-eunuch")
+  -- use("tpope/vim-eunuch")
   use("tpope/vim-unimpaired")
   -- lua file explorer
   use("kyazdani42/nvim-tree.lua")
@@ -123,7 +133,7 @@ return require("packer").startup(function(use)
   use("tpope/vim-fugitive")
 
   -- git history navigation
-  use("junegunn/gv.vim")
+  -- use("junegunn/gv.vim")
   use("sindrets/diffview.nvim")
 
   -- Browse git-repos on GH,...
@@ -165,13 +175,10 @@ return require("packer").startup(function(use)
   use("windwp/nvim-ts-autotag")
 
   -- comment codeblocks even in mixed environments
-  -- use { 'JoosepAlviste/nvim-ts-context-commentstring' }
+  use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 
   -- extensible lua statusline inspired by airline
   use("nvim-lualine/lualine.nvim")
-
-  -- use {"akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons"}
-  -- use "romgrk/barbar.nvim"
 
   -- temporary maximize current split
   use("szw/vim-maximizer")
@@ -184,15 +191,14 @@ return require("packer").startup(function(use)
   use("tpope/vim-surround")
 
   -- split navigation between vim and tmux
-  use("christoomey/vim-tmux-navigator")
-  -- ???
-  -- use { 'sunjon/shade.nvim' }
+  -- use("christoomey/vim-tmux-navigator")
 
   -- use "norcalli/nvim-colorizer.lua"
 
   -- Helpers + Cheatsheet
   use("folke/which-key.nvim")
   use("sudormrfbin/cheatsheet.nvim")
+
   -- decrypt and encrypt ansible-vault stuff
   -- use "danihodovic/vim-ansible-vault"
 
@@ -212,7 +218,9 @@ return require("packer").startup(function(use)
   use("honza/vim-snippets")
 
   -- DEBUG with DAP
-  -- use { 'mfussenegger/nvim-dap' }
-  -- use { 'nvim-telescope/telescope-dap.nvim' }
+  use({ "mfussenegger/nvim-dap" })
+  use({ "nvim-telescope/telescope-dap.nvim" })
+  use("theHamsta/nvim-dap-virtual-text")
+
   -- use { 'mfussenegger/nvim-dap-python' } -- Python
 end)

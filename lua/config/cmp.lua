@@ -7,6 +7,7 @@ cmp.setup({
   formatting = {
     format = require("lspkind").cmp_format({
       with_text = true,
+      maxwidth = 50,
       menu = {
         path = "[Path]",
         buffer = "[Buffer]",
@@ -14,7 +15,8 @@ cmp.setup({
         nvim_lsp = "[LSP]",
         nvim_lua = "[Lua]",
         spell = "[Spell]",
-        -- tags = "[Tag]",
+        npm = "[NPM]",
+        -- conjure = "[Conjure]",
         tmux = "[Tmux]",
         ultisnips = "[UltiSnips]",
       },
@@ -41,11 +43,12 @@ cmp.setup({
     --     {name = "emoji"},
     --     {name = "look"},
     -- {name = "luasnip"},
+    { name = "npm", keyword_length = 4 },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
     { name = "spell", keyword_length = 3 },
-    -- { name = "tags" },
+    { name = "conjure" },
     { name = "tmux" },
     { name = "ultisnips" },
   }, {
@@ -56,18 +59,3 @@ cmp.setup({
     ghost_text = true,
   },
 })
-
--- autopairs setup
--- require("nvim-autopairs").setup({})
--- you need setup cmp first put this after cmp.setup()
--- require("nvim-autopairs.completion.cmp").setup({
---   map_cr = true, --  map <CR> on insert mode
---   map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
---   auto_select = true, -- automatically select the first item
---   insert = false, -- use insert confirm behavior instead of replace
---   map_char = {
---     -- modifies the function or method delimiter by filetypes
---     all = "(",
---     tex = "{",
---   },
--- })
