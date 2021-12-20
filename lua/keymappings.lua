@@ -97,6 +97,8 @@ map("n", "<leader>gm", ":tabe %<cr>:Gvdiffsplit! main<CR>", { noremap = true })
 map("n", "<leader>gM", ":DiffviewOpen main<cr>", { noremap = true })
 map("n", "<leader>gl", ":Git log<cr>", { noremap = true })
 map("n", "<leader>gp", ":Git push<cr>", { noremap = true })
+map("n", "<leader>ll", ":diffget LOCAL<cr>", { noremap = true })
+map("n", "<leader>rr", ":diffget REMOTE<cr>", { noremap = true })
 
 -- vim-test
 -- these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl

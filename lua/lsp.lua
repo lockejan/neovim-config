@@ -47,6 +47,7 @@ local servers = {
   "dockerls",
   "eslint",
   "html",
+  "hls",
   "intelephense",
   "jsonls",
   "rnix",

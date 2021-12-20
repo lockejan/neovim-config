@@ -1,3 +1,11 @@
+local shell_fmt = function()
+  return {
+    exe = "shfmt", -- google code style
+    args = { "-i", 2, "-ci", "-bn" },
+    stdin = true,
+  }
+end
+
 require("formatter").setup({
   logging = false,
   filetype = {
@@ -66,15 +74,9 @@ require("formatter").setup({
         }
       end,
     },
-    shell = {
-      function()
-        return {
-          exe = "shfmt -i 2 -ci -bn", -- google code style
-          args = {},
-          stdin = true,
-        }
-      end,
-    },
+    zsh = { shell_fmt },
+    sh = { shell_fmt },
+    bash = { shell_fmt },
   },
 })
 
