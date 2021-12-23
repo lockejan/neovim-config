@@ -14,6 +14,7 @@ return require("packer").startup(function(use)
   -- use { 'gruvbox-community/gruvbox' }
   -- use("folke/tokyonight.nvim")
   -- use("joshdick/onedark.vim")
+  use("rebelot/kanagawa.nvim")
   use("navarasu/onedark.nvim")
   -- use("tanvirtin/monokai.nvim")
 
@@ -170,6 +171,8 @@ return require("packer").startup(function(use)
 
   -- additional text objects e.g. da,
   -- use "wellle/targets.vim"
+
+  use("jamessan/vim-gnupg")
 
   -- save/restore vim-session
   use("tpope/vim-obsession")
