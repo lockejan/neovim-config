@@ -48,8 +48,12 @@ vim.o.undolevels = 10000
 vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.o.wrap = false -- Disable line wrap
 
-vim.opt.spell = true
-vim.opt.spelllang = { "en_us", "de_de" }
+-- vim.opt.spell = true
+-- vim.opt.spelllang = { "en_us", "de_de" }
+
+--Add spellchecking
+vim.cmd([[ autocmd FileType gitcommit setlocal spell ]])
+vim.cmd([[ autocmd FileType markdown setlocal spell ]])
 
 vim.g.onedark_terminal_italics = 1
 vim.cmd([[colorscheme onedark]])

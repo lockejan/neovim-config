@@ -2,9 +2,22 @@
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
   virtual_text = false,
+  signs = true,
+  update_in_insert = true,
+  severity_sort = false,
 })
 
+-- diagnostic signs in column
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 local nvim_lsp = require("lspconfig")
+
+-- diagnostic preview on line visit
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 -- Your custom attach function for nvim-lspconfig goes here.
 local on_attach = function(client, bufnr)
@@ -70,19 +83,8 @@ for _, server in pairs(servers) do
 end
 
 -- Lua LSP
-local system_name
-if vim.fn.has("mac") == 1 then
-  system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-  system_name = "Linux"
-elseif vim.fn.has("win32") == 1 then
-  system_name = "Windows"
-else
-  print("Unsupported system for sumneko")
-end
-
 local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
-local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
+local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ";")
