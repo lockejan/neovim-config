@@ -14,7 +14,7 @@ return require("packer").startup(function(use)
   -- use { 'gruvbox-community/gruvbox' }
   -- use("folke/tokyonight.nvim")
   -- use("joshdick/onedark.vim")
-  use("rebelot/kanagawa.nvim")
+  -- use("rebelot/kanagawa.nvim")
   use("navarasu/onedark.nvim")
   -- use("tanvirtin/monokai.nvim")
 
@@ -70,7 +70,7 @@ return require("packer").startup(function(use)
       "quangnguyen30192/cmp-nvim-ultisnips",
       "David-Kunz/cmp-npm",
       "andersevenrud/cmp-tmux",
-      "PaterJason/cmp-conjure",
+      -- "PaterJason/cmp-conjure",
 
       -- "rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide",
       -- "octaltree/cmp-look",

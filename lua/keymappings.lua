@@ -16,12 +16,6 @@ map("i", ".", ".<c-g>u", { noremap = true })
 map("i", "!", "!<c-g>u", { noremap = true })
 map("i", "?", "?<c-g>u", { noremap = true })
 
--- moving text
-map("n", "<leader>k", ":m .-2<CR>==", { noremap = true })
-map("n", "<leader>j", ":m .+1<CR>==", { noremap = true })
-map("i", "<C-j>", "<esc>:m .+2<CR>==", { noremap = true })
-map("i", "<C-k>", "<esc>:m .-2<CR>==", { noremap = true })
-
 -- Visual shifting (does not exit Visual mode)
 map("v", "<", "<gv", { noremap = true })
 map("v", ">", ">gv", { noremap = true })
@@ -46,9 +40,6 @@ map("n", "<leader>bd", ":bdelete<CR>", { noremap = true })
 -- szw/vim-maximizer
 map("n", "<leader>m", ":MaximizerToggle!<CR>", { noremap = true })
 
-map("n", "<leader>fe", ":NvimTreeFindFile<CR>", { noremap = true })
-map("n", "<leader>ef", ":NvimTreeToggle<CR>", { noremap = true })
-
 -- Trim trailing whitespace.
 map("n", "<leader>tw", ":%s/\\s\\+$//e<cr>", { noremap = true })
 
@@ -59,6 +50,11 @@ map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true })
 map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true })
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true })
+-- moving text
+map("n", "<leader>k", ":m .-2<CR>==", { noremap = true })
+map("n", "<leader>j", ":m .+1<CR>==", { noremap = true })
+map("i", "<C-j>", "<esc>:m .+2<CR>==", { noremap = true })
+map("i", "<C-k>", "<esc>:m .-2<CR>==", { noremap = true })
 
 --Remap escape to leave terminal mode
 map("t", "<Esc>", [[<c-\><c-n>]], { noremap = true })
@@ -107,3 +103,33 @@ map("n", "<silent> t<C-f>", ":TestFile<CR>", { noremap = true })
 map("n", "<silent> t<C-s>", ":TestSuite<CR>", { noremap = true })
 map("n", "<silent> t<C-l>", ":TestLast<CR>", { noremap = true })
 map("n", "<silent> t<C-g>", ":TestVisit<CR>", { noremap = true })
+
+-- Toggle to disable mouse mode and indentlines for easier paste
+ToggleMouse = function()
+  if vim.o.mouse == "a" then
+    vim.cmd([[IndentBlanklineDisable]])
+    vim.wo.signcolumn = "no"
+    vim.o.mouse = "v"
+    vim.wo.number = false
+    print("Mouse disabled")
+  else
+    vim.cmd([[IndentBlanklineEnable]])
+    vim.wo.signcolumn = "yes"
+    vim.o.mouse = "a"
+    vim.wo.number = true
+    print("Mouse enabled")
+  end
+end
+
+map("n", "<leader>tm", "<cmd>lua ToggleMouse()<cr>", { noremap = true })
+
+--Disable numbers in terminal mode
+vim.cmd([[
+  augroup Terminal
+    autocmd!
+    au TermOpen * set nonu
+  augroup end
+]])
+
+--Remap escape to leave terminal mode
+vim.api.nvim_set_keymap("t", "<Esc>", [[<c-\><c-n>]], { noremap = true })

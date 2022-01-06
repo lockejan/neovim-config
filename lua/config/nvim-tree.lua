@@ -61,3 +61,7 @@ require("nvim-tree").setup({
 })
 
 vim.cmd("autocmd BufWinEnter NvimTree setlocal cursorline")
+--
+-- NvimTree Shortcuts
+vim.api.nvim_set_keymap("n", "<leader>fe", ":NvimTreeFindFile<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<CR>", { noremap = true })

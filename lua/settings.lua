@@ -36,7 +36,6 @@ vim.o.scrolloff = 8 -- Minumum lines to keep above and below cursor
 vim.o.shiftwidth = 4 -- Size of an indent
 -- vim.o.showmode = false -- dont show mode since we have a statusline
 vim.o.sidescrolloff = 8 -- Columns of context
--- vim.o.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.o.smartcase = true -- Don't ignore case with capitals
 vim.o.smartindent = true -- Insert indents automatically
 vim.o.splitbelow = true -- Put new windows below current
