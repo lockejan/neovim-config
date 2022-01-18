@@ -7,6 +7,15 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   severity_sort = false,
 })
 
+vim.diagnostic.config({
+  virtual_text = {
+    source = "always", -- Or "if_many"
+  },
+  float = {
+    source = "always", -- Or "if_many"
+  },
+})
+
 -- diagnostic signs in column
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -17,7 +26,7 @@ end
 local nvim_lsp = require("lspconfig")
 
 -- diagnostic preview on line visit
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
 
 -- Your custom attach function for nvim-lspconfig goes here.
 local on_attach = function(client, bufnr)
@@ -96,7 +105,7 @@ local luadev = require("lua-dev").setup({
   lspconfig = {
     on_attach = on_attach,
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-    -- cmd = {"lua"}
+    -- cmd = { "lua-language-server" },
   },
   settings = {
     Lua = {

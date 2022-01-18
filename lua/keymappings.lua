@@ -27,15 +27,10 @@ map("v", "v", "<Esc>", { noremap = true })
 map("n", "<CR>", ":", { noremap = true })
 map("n", "<leader>of", ":Telescope oldfiles<CR>", { noremap = true })
 
--- Bash like
--- map("i", "<C-a>", "<Home>", { noremap = true })
--- map("i", "<C-e>", "<End>", { noremap = true })
--- map("i", "<C-d>", "<Delete>", { noremap = true })
-
--- Buffer
-map("n", "<leader>bn", ":bnext<CR>", { noremap = true })
-map("n", "<leader>bp", ":bprevious<CR>", { noremap = true })
-map("n", "<leader>bd", ":bdelete<CR>", { noremap = true })
+-- -- Buffer
+-- map("n", "<leader>bn", ":bnext<CR>", { noremap = true })
+-- map("n", "<leader>bp", ":bprevious<CR>", { noremap = true })
+-- map("n", "<leader>bd", ":bdelete<CR>", { noremap = true })
 
 -- szw/vim-maximizer
 map("n", "<leader>m", ":MaximizerToggle!<CR>", { noremap = true })
@@ -133,3 +128,9 @@ vim.cmd([[
 
 --Remap escape to leave terminal mode
 vim.api.nvim_set_keymap("t", "<Esc>", [[<c-\><c-n>]], { noremap = true })
+
+-- Test Runner
+vim.api.nvim_set_keymap("n", "<leader>tf", ":TestFile<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ts", ":TestSuite<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>te", ":TestError<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>tv", ":TestVisit<CR>", { noremap = true })

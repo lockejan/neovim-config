@@ -80,7 +80,7 @@ return require("packer").startup(function(use)
   })
 
   -- clojure
-  use("Olical/conjure")
+  -- use("Olical/conjure")
 
   -- virtualenv handling's
   -- use {"HallerPatrick/py_lsp.nvim"}
@@ -126,6 +126,7 @@ return require("packer").startup(function(use)
   -- unix commands for vim
   -- use("tpope/vim-eunuch")
   use("tpope/vim-unimpaired")
+
   -- lua file explorer
   use("kyazdani42/nvim-tree.lua")
 
