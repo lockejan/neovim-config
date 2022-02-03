@@ -5,24 +5,26 @@ return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim", opt = true })
 
   -- lua-based filetype to speedup starttime
-  -- use("nathom/filetype.nvim")
+  use("nathom/filetype.nvim")
 
   -- Color schemes
-  -- use("shaunsingh/nord.nvim")
+  use("shaunsingh/nord.nvim")
   -- use { 'sainnhe/gruvbox-material' }
   -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   -- use { 'gruvbox-community/gruvbox' }
   -- use("folke/tokyonight.nvim")
   -- use("joshdick/onedark.vim")
   -- use("rebelot/kanagawa.nvim")
-  use("navarasu/onedark.nvim")
+  use("sainnhe/everforest")
   -- use("tanvirtin/monokai.nvim")
+  use("EdenEast/nightfox.nvim")
+  use("navarasu/onedark.nvim")
 
   -- Fuzzy finding stuff via telescope
   use("cljoly/telescope-repo.nvim")
   use("fhill2/telescope-ultisnips.nvim")
   use("nvim-telescope/telescope-packer.nvim")
-  use("dhruvmanila/telescope-bookmarks.nvim")
+  -- use("dhruvmanila/telescope-bookmarks.nvim")
   use({
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
@@ -39,6 +41,8 @@ return require("packer").startup(function(use)
   use("lukas-reineke/indent-blankline.nvim")
   -- use("ludovicchabant/vim-gutentags")
 
+  use({ "j-hui/fidget.nvim" })
+  use({ "RRethy/vim-illuminate" })
   -- use "nvim-lua/lsp-status.nvim"
   -- use({ "jose-elias-alvarez/null-ls.nvim",
   -- config = function()
@@ -86,7 +90,7 @@ return require("packer").startup(function(use)
   -- use {"HallerPatrick/py_lsp.nvim"}
 
   -- db interaction within vim
-  use("tpope/vim-dadbod")
+  -- use("tpope/vim-dadbod")
 
   -- pictograms for LSP completion
   use("onsails/lspkind-nvim")
@@ -98,13 +102,20 @@ return require("packer").startup(function(use)
   -- use "ray-x/lsp_signature.nvim"
 
   -- quick LSP warnings+errors navigation
-  use({
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup({})
-    end,
-  })
+  -- use({
+  --   "folke/trouble.nvim",
+  --   requires = "kyazdani42/nvim-web-devicons",
+  --   config = function()
+  --     require("trouble").setup({})
+  --   end,
+  -- })
+  -- use({
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   config = function()
+  --     require("null-ls").setup()
+  --   end,
+  --   requires = { "nvim-lua/plenary.nvim" },
+  -- })
 
   -- trim whitespaces on save
   -- use("cappyzawa/trim.nvim")
@@ -119,8 +130,8 @@ return require("packer").startup(function(use)
   -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   -- file explorer and interaction
-  -- use("tpope/vim-vinegar") -- improved netrw
-  use("justinmk/vim-dirvish")
+  use("tpope/vim-vinegar") -- improved netrw
+  -- use("justinmk/vim-dirvish")
   -- use("justinmk/vim-sneak")
 
   -- unix commands for vim
@@ -142,7 +153,7 @@ return require("packer").startup(function(use)
   use("sindrets/diffview.nvim")
 
   -- Browse git-repos on GH,...
-  use("tpope/vim-rhubarb")
+  -- use("tpope/vim-rhubarb")
 
   -- file change indication for git
   use({
@@ -165,14 +176,15 @@ return require("packer").startup(function(use)
   -- additional textobjects for functions, classes,...
   use("nvim-treesitter/nvim-treesitter-textobjects")
   -- match parentheses and scopes to quickly jump between them
-  use({
-    "andymass/vim-matchup",
-    event = "CursorMoved",
-  })
+  -- use({
+  --   "andymass/vim-matchup",
+  --   event = "CursorMoved",
+  -- })
 
   -- additional text objects e.g. da,
   -- use "wellle/targets.vim"
 
+  -- open gpg encrypted files securely
   use("jamessan/vim-gnupg")
 
   -- save/restore vim-session
@@ -182,7 +194,7 @@ return require("packer").startup(function(use)
   use("windwp/nvim-ts-autotag")
 
   -- comment codeblocks even in mixed environments
-  use({ "JoosepAlviste/nvim-ts-context-commentstring" })
+  use("JoosepAlviste/nvim-ts-context-commentstring")
 
   -- extensible lua statusline inspired by airline
   use("nvim-lualine/lualine.nvim")
@@ -191,7 +203,8 @@ return require("packer").startup(function(use)
   use("szw/vim-maximizer")
 
   -- commenting using motions
-  use("tpope/vim-commentary")
+  -- use("tpope/vim-commentary")
+  use("numToStr/Comment.nvim")
   -- use "b3nj5m1n/kommentary"
 
   -- surround textobjects with literals using motions
@@ -200,7 +213,7 @@ return require("packer").startup(function(use)
   -- split navigation between vim and tmux
   -- use("christoomey/vim-tmux-navigator")
 
-  -- use "norcalli/nvim-colorizer.lua"
+  use("norcalli/nvim-colorizer.lua")
 
   -- Helpers + Cheatsheet
   use("folke/which-key.nvim")
@@ -219,15 +232,15 @@ return require("packer").startup(function(use)
   use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview" })
 
   -- SNIPPETS
-  use("L3MON4D3/LuaSnip")
-  use("saadparwaiz1/cmp_luasnip")
+  --use("L3MON4D3/LuaSnip")
+  --use("saadparwaiz1/cmp_luasnip")
   use("SirVer/ultisnips")
   use("honza/vim-snippets")
 
   -- DEBUG with DAP
-  use({ "mfussenegger/nvim-dap" })
-  use({ "nvim-telescope/telescope-dap.nvim" })
-  use("theHamsta/nvim-dap-virtual-text")
+  --use({ "mfussenegger/nvim-dap" })
+  --use({ "nvim-telescope/telescope-dap.nvim" })
+  --use("theHamsta/nvim-dap-virtual-text")
 
   -- use { 'mfussenegger/nvim-dap-python' } -- Python
 end)

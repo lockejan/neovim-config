@@ -48,7 +48,7 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("repo")
 require("telescope").load_extension("ultisnips")
 require("telescope").load_extension("packer")
-require("telescope").load_extension("bookmarks")
+-- require("telescope").load_extension("bookmarks")
 
 --Add leader shortcuts
 map("n", "<leader><space>", [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })

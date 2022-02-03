@@ -37,6 +37,8 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
 
+  require("illuminate").on_attach(client)
+
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings
@@ -58,6 +60,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<A-n>", '<cmd>lua require"illuminate".next_reference{wrap=true}<CR>', opts)
+  buf_set_keymap("n", "<A-p>", '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<CR>', opts)
 end
 
 local servers = {
@@ -69,7 +73,7 @@ local servers = {
   "dockerls",
   "eslint",
   "html",
-  "hls",
+  -- "hls",
   "intelephense",
   "jsonls",
   "rnix",

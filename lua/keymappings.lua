@@ -3,12 +3,16 @@ local map = vim.api.nvim_set_keymap
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-map("n", "<C-c>", "<cmd>nohl<CR>", { noremap = true }) -- Clear highlights -- <c-l> became default in core
+-- center matching line
+map("n", "<leader>n", "nzz", { noremap = true })
+map("n", "<leader>N", "Nzz", { noremap = true })
+
+-- map("n", "<C-c>", "<cmd>nohl<CR>", { noremap = true }) -- Clear highlights -- <c-l> became default in core
 map("n", "<leader>,", ":e ~/.config/nvim/init.lua<CR>", { noremap = true })
-map("n", "<C-s>", ":luafile %<CR>", { noremap = true })
+map("n", "<C-s>", ":w | luafile %<CR>", { noremap = true })
 map("n", "<leader>ls", ":ls<CR>", { noremap = true })
 map("n", "<leader>cd", ":cd %:p:h<CR>", { noremap = true })
-map("n", "<Leader>w", ":write<CR>", { noremap = true })
+map("n", "<leader>w", ":write<CR>", { noremap = true })
 
 -- Undo break points
 map("i", ",", ",<c-g>u", { noremap = true })
@@ -21,16 +25,17 @@ map("v", "<", "<gv", { noremap = true })
 map("v", ">", ">gv", { noremap = true })
 
 -- Quit visual mode
-map("v", "v", "<Esc>", { noremap = true })
+-- map("v", "v", "<Esc>", { noremap = true })
 
 -- Quick command mode
-map("n", "<CR>", ":", { noremap = true })
+-- map("n", "<CR>", ":", { noremap = true })
 map("n", "<leader>of", ":Telescope oldfiles<CR>", { noremap = true })
 
--- -- Buffer
--- map("n", "<leader>bn", ":bnext<CR>", { noremap = true })
--- map("n", "<leader>bp", ":bprevious<CR>", { noremap = true })
--- map("n", "<leader>bd", ":bdelete<CR>", { noremap = true })
+vim.o.wildcharm = 9
+-- vim.o.wildcharm = vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-i>", true, false, true), "n", false)
+-- vim.cmd([[ set wildcharm=<C-i> ]])
+-- vim.opt.wildcharm = vim.fn.char2nr("^I")
+map("n", "<leader>bb", ":buffer<Space><C-i>", { noremap = true })
 
 -- szw/vim-maximizer
 map("n", "<leader>m", ":MaximizerToggle!<CR>", { noremap = true })
@@ -45,11 +50,6 @@ map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { noremap = true })
 map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true })
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true })
--- moving text
-map("n", "<leader>k", ":m .-2<CR>==", { noremap = true })
-map("n", "<leader>j", ":m .+1<CR>==", { noremap = true })
-map("i", "<C-j>", "<esc>:m .+2<CR>==", { noremap = true })
-map("i", "<C-k>", "<esc>:m .-2<CR>==", { noremap = true })
 
 --Remap escape to leave terminal mode
 map("t", "<Esc>", [[<c-\><c-n>]], { noremap = true })
@@ -134,3 +134,10 @@ vim.api.nvim_set_keymap("n", "<leader>tf", ":TestFile<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>ts", ":TestSuite<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>te", ":TestError<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>tv", ":TestVisit<CR>", { noremap = true })
+
+-- quick help
+vim.api.nvim_set_keymap("n", "<leader>gh", ":h <C-R><C-W><CR>", { noremap = true })
+
+-- autoexpand current file dir
+-- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+--
