@@ -79,13 +79,13 @@ map("n", "<leader>bm", "<cmd>lua ToggleMouse()<cr>", { noremap = true })
 -- map("n", "<silent> s*", "<cmd>let @/='<'.expand('<cword>').'>'<cr>cgn", { noremap = true })
 
 -- fugitive
-map("n", "<Leader>gs", "<cmd>G<CR>", { noremap = true })
-map("n", "<Leader>gb", "<cmd>G praise<CR>", { noremap = true })
+map("n", "<leader>gs", ":G<CR>", { noremap = true })
+map("n", "<leader>gb", ":G praise<CR>", { noremap = true })
 map("n", "<leader>gc", ":G commit<cr>", { noremap = true })
 map("n", "<leader>gd", ":tabe %<cr>:Gvdiffsplit!<CR>", { noremap = true })
 map("n", "<leader>gD", ":DiffviewOpen<cr>", { noremap = true })
-map("n", "<leader>gm", ":tabe %<cr>:Gvdiffsplit! main<CR>", { noremap = true })
-map("n", "<leader>gM", ":DiffviewOpen main<cr>", { noremap = true })
+-- map("n", "<leader>gm", ":tabe %<cr>:Gvdiffsplit! main<CR>", { noremap = true })
+-- map("n", "<leader>gM", ":DiffviewOpen main<cr>", { noremap = true })
 map("n", "<leader>gl", ":Git log<cr>", { noremap = true })
 map("n", "<leader>gp", ":Git push<cr>", { noremap = true })
 map("n", "<leader>ll", ":diffget LOCAL<cr>", { noremap = true })
@@ -93,11 +93,11 @@ map("n", "<leader>rr", ":diffget REMOTE<cr>", { noremap = true })
 
 -- vim-test
 -- these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
-map("n", "<silent> t<C-n>", ":TestNearest<CR>", { noremap = true })
-map("n", "<silent> t<C-f>", ":TestFile<CR>", { noremap = true })
-map("n", "<silent> t<C-s>", ":TestSuite<CR>", { noremap = true })
-map("n", "<silent> t<C-l>", ":TestLast<CR>", { noremap = true })
-map("n", "<silent> t<C-g>", ":TestVisit<CR>", { noremap = true })
+map("n", "t<C-n>", ":TestNearest<CR>", { noremap = true, silent = true })
+map("n", "t<C-f>", ":TestFile<CR>", { noremap = true, silent = true })
+map("n", "t<C-s>", ":TestSuite<CR>", { noremap = true, silent = true })
+map("n", "t<C-l>", ":TestLast<CR>", { noremap = true, silent = true })
+map("n", "t<C-v>", ":TestVisit<CR>", { noremap = true, silent = true })
 
 -- Toggle to disable mouse mode and indentlines for easier paste
 ToggleMouse = function()
@@ -129,14 +129,11 @@ vim.cmd([[
 --Remap escape to leave terminal mode
 vim.api.nvim_set_keymap("t", "<Esc>", [[<c-\><c-n>]], { noremap = true })
 
--- Test Runner
-vim.api.nvim_set_keymap("n", "<leader>tf", ":TestFile<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>ts", ":TestSuite<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>te", ":TestError<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tv", ":TestVisit<CR>", { noremap = true })
-
 -- quick help
 vim.api.nvim_set_keymap("n", "<leader>gh", ":h <C-R><C-W><CR>", { noremap = true })
+
+-- duplicate line
+vim.api.nvim_set_keymap("n", "<A-d>", ":t.<CR>", { noremap = true })
 
 -- autoexpand current file dir
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'

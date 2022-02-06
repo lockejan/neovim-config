@@ -38,7 +38,15 @@ return require("packer").startup(function(use)
   -- use("tpope/vim-projectionist")
   use("vim-test/vim-test")
   use("mfussenegger/nvim-jdtls")
+
+  -- indentation guides
   use("lukas-reineke/indent-blankline.nvim")
+  use({ "tpope/vim-sleuth" })
+
+  -- automatic closing Syntax
+  use({ "tpope/vim-endwise" })
+
+  -- automatic ctags creation
   -- use("ludovicchabant/vim-gutentags")
 
   use({ "j-hui/fidget.nvim" })
@@ -122,6 +130,7 @@ return require("packer").startup(function(use)
 
   -- Lua development
   use("folke/lua-dev.nvim")
+  use("bfredl/nvim-luadev")
 
   -- custom formatter on save
   use("mhartington/formatter.nvim")
@@ -173,6 +182,7 @@ return require("packer").startup(function(use)
   use("romgrk/nvim-treesitter-context")
   -- colorize parentheses
   use("p00f/nvim-ts-rainbow")
+  vim.cmd([[hi rainbowcol1 guifg=#c678dd]])
   -- additional textobjects for functions, classes,...
   use("nvim-treesitter/nvim-treesitter-textobjects")
   -- match parentheses and scopes to quickly jump between them
@@ -227,6 +237,9 @@ return require("packer").startup(function(use)
 
   -- smarter vim-based increasements of dates and numbers
   use("tpope/vim-speeddating")
+
+  -- improved pattern matching and instant switch case for vars
+  use("tpope/vim-abolish")
 
   -- preview rendered markdown files
   use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview" })
