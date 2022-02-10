@@ -35,6 +35,7 @@ return require("packer").startup(function(use)
   -- LSP and completion
   -- simplify usage of lsps
   use("neovim/nvim-lspconfig")
+  use({ "tami5/lspsaga.nvim" })
   -- use("tpope/vim-projectionist")
   use("vim-test/vim-test")
   use("mfussenegger/nvim-jdtls")
@@ -117,13 +118,13 @@ return require("packer").startup(function(use)
   --     require("trouble").setup({})
   --   end,
   -- })
-  -- use({
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   config = function()
-  --     require("null-ls").setup()
-  --   end,
-  --   requires = { "nvim-lua/plenary.nvim" },
-  -- })
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require("null-ls").setup()
+    end,
+    requires = { "nvim-lua/plenary.nvim" },
+  })
 
   -- trim whitespaces on save
   -- use("cappyzawa/trim.nvim")
@@ -251,9 +252,10 @@ return require("packer").startup(function(use)
   use("honza/vim-snippets")
 
   -- DEBUG with DAP
-  --use({ "mfussenegger/nvim-dap" })
-  --use({ "nvim-telescope/telescope-dap.nvim" })
-  --use("theHamsta/nvim-dap-virtual-text")
+  use({ "mfussenegger/nvim-dap" })
+  use({ "mfussenegger/nvim-dap-python" })
+  use({ "nvim-telescope/telescope-dap.nvim" })
+  use("theHamsta/nvim-dap-virtual-text")
 
   -- use { 'mfussenegger/nvim-dap-python' } -- Python
 end)

@@ -36,7 +36,7 @@ require("nvim-tree").setup({
     custom = { ".DS_Store" },
   },
   git = {
-    enable = true,
+    enable = false,
     ignore = true,
     timeout = 500,
   },
