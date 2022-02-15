@@ -75,5 +75,7 @@ map("n", "<leader>sp", [[<cmd>lua require('telescope.builtin').live_grep()<CR>]]
 map("n", "<leader>?", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 map("n", "<leader>sg", "<cmd>lua require('config.telescope-config').project_files()<cr>", { noremap = true })
 map("n", "<leader>sc", "<cmd>Telescope git_commits<cr>", { noremap = true })
+map("n", "<leader>sd", "<cmd>Telescope git_bcommits<cr>", { noremap = true })
+map("n", "<leader>sb", "<cmd>Telescope git_branches<cr>", { noremap = true })
 -- map("n", "<leader>sb", "<cmd>Telescope buffers<cr>", {noremap = true})
 -- map("n", "<leader>sd", [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], {noremap = true, silent = true})

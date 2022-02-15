@@ -91,6 +91,19 @@ map("n", "<leader>gp", ":Git push<cr>", { noremap = true })
 map("n", "<leader>ll", ":diffget LOCAL<cr>", { noremap = true })
 map("n", "<leader>rr", ":diffget REMOTE<cr>", { noremap = true })
 
+-- close all open buffers
+map("n", "<leader>Q", ":bufdo bdelete<cr>", { noremap = true })
+
+-- lsp shortcuts
+map("n", "<leader>li", ":LspInfo<CR>", { noremap = true, silent = true })
+map("n", "<leader>lr", ":LspRestart<CR>", { noremap = true, silent = true })
+-- map("n", "l<C-s>", ":LspStop<Space><C-i>", { noremap = true, silent = true })
+
+-- visit file even if not present
+map("n", "gF", ":edit <cfile><cr>", { noremap = true })
+
+map("n", "<leader>x", ":!open %<cr>", { noremap = true })
+
 -- vim-test
 -- these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
 map("n", "t<C-n>", ":TestNearest<CR>", { noremap = true, silent = true })
@@ -125,9 +138,6 @@ vim.cmd([[
     au TermOpen * set nonu
   augroup end
 ]])
-
---Remap escape to leave terminal mode
-vim.api.nvim_set_keymap("t", "<Esc>", [[<c-\><c-n>]], { noremap = true })
 
 -- quick help
 vim.api.nvim_set_keymap("n", "<leader>gh", ":h <C-R><C-W><CR>", { noremap = true })
