@@ -47,6 +47,8 @@ return require("packer").startup(function(use)
   -- automatic closing Syntax
   use({ "tpope/vim-endwise" })
 
+  -- schema support
+  use({ "b0o/schemastore.nvim" })
   -- automatic ctags creation
   -- use("ludovicchabant/vim-gutentags")
 

@@ -76,10 +76,10 @@ local servers = {
   "hls",
   "gopls",
   "intelephense",
-  "jsonls",
+  -- "jsonls",
   "rnix",
   "pyright",
-  "yamlls",
+  -- "yamlls",
 }
 --Enable (broadcasting) snippet capability for completion
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -90,11 +90,31 @@ for _, server in pairs(servers) do
   nvim_lsp[server].setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    },
   })
 end
+
+nvim_lsp.yamlls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://raw.githubusercontent.com/Threagile/threagile/master/support/schema.json"] = "/*.threagile.yaml",
+      },
+    },
+  },
+})
+
+nvim_lsp.jsonls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    json = {
+      schemas = require("schemastore").json.schemas(),
+    },
+  },
+})
 
 -- Lua LSP
 local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
