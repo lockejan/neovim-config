@@ -18,8 +18,8 @@ return require("packer").startup(function(use)
   use("shaunsingh/nord.nvim")
   use("sainnhe/everforest")
   -- use("joshdick/onedark.vim")
+  -- use("olimorris/onedarkpro.nvim")
   use("navarasu/onedark.nvim")
-  use("olimorris/onedarkpro.nvim")
 
   -- Fuzzy finding stuff via telescope
   use("cljoly/telescope-repo.nvim")

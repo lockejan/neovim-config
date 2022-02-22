@@ -148,3 +148,7 @@ vim.api.nvim_set_keymap("n", "<A-d>", ":t.<CR>", { noremap = true })
 -- autoexpand current file dir
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 --
+
+-- ansible vault
+vim.api.nvim_set_keymap("n", "<leader>dv", ":!ansible-vault decrypt %<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ev", ":!ansible-vault encrypt %<CR>", { noremap = true })
