@@ -117,9 +117,6 @@ nvim_lsp.jsonls.setup({
 })
 
 -- Lua LSP
-local sumneko_root_path = vim.fn.stdpath("cache") .. "/nlua/sumneko_lua"
-local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
-
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -129,8 +126,7 @@ local luadev = require("lua-dev").setup({
   -- add any options here, or leave empty to use the default settings
   lspconfig = {
     on_attach = on_attach,
-    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-    -- cmd = { "lua-language-server" },
+    cmd = { "lua-language-server" },
   },
   settings = {
     Lua = {
