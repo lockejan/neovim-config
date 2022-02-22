@@ -8,17 +8,18 @@ return require("packer").startup(function(use)
   use("nathom/filetype.nvim")
 
   -- Color schemes
-  use("shaunsingh/nord.nvim")
   -- use { 'sainnhe/gruvbox-material' }
   -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
   -- use { 'gruvbox-community/gruvbox' }
   -- use("folke/tokyonight.nvim")
-  -- use("joshdick/onedark.vim")
   -- use("rebelot/kanagawa.nvim")
-  use("sainnhe/everforest")
   -- use("tanvirtin/monokai.nvim")
-  use("EdenEast/nightfox.nvim")
+  -- use("EdenEast/nightfox.nvim")
+  use("shaunsingh/nord.nvim")
+  use("sainnhe/everforest")
+  -- use("joshdick/onedark.vim")
   use("navarasu/onedark.nvim")
+  use("olimorris/onedarkpro.nvim")
 
   -- Fuzzy finding stuff via telescope
   use("cljoly/telescope-repo.nvim")
