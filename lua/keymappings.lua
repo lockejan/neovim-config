@@ -9,7 +9,8 @@ map("n", "<leader>N", "Nzz", { noremap = true })
 
 -- map("n", "<C-c>", "<cmd>nohl<CR>", { noremap = true }) -- Clear highlights -- <c-l> became default in core
 map("n", "<leader>,", ":e ~/.config/nvim/init.lua<CR>", { noremap = true })
-map("n", "<C-s>", ":w | luafile %<CR>", { noremap = true })
+map("n", "<leader><C-s>", ":w | luafile %<CR>", { noremap = true })
+map("n", "<C-s>", ":w<CR>", { noremap = true })
 map("n", "<leader>ls", ":ls<CR>", { noremap = true })
 map("n", "<leader>cd", ":cd %:p:h<CR>", { noremap = true })
 map("n", "<leader>w", ":write<CR>", { noremap = true })
@@ -84,8 +85,9 @@ map("n", "<leader>gs", ":G<CR>", { noremap = true })
 map("n", "<leader>gb", ":G praise<CR>", { noremap = true })
 map("n", "<leader>gc", ":G commit<cr>", { noremap = true })
 map("n", "<leader>ga", ":G commit --amend<cr>", { noremap = true })
-map("n", "<leader>gd", ":tabe %<cr>:Gvdiffsplit!<CR>", { noremap = true })
+-- map("n", "<leader>gd", ":tabe %<cr>:Gvdiffsplit!<CR>", { noremap = true })
 map("n", "<leader>gD", ":DiffviewOpen<cr>", { noremap = true })
+map("n", "<leader>gF", ":DiffviewFileHistory<cr>", { noremap = true })
 map("n", "<leader>gtd", ":G team disable<cr>", { noremap = true })
 map("n", "<leader>gte", ":G team ", { noremap = true })
 -- map("n", "<leader>gm", ":tabe %<cr>:Gvdiffsplit! main<CR>", { noremap = true })
@@ -94,10 +96,6 @@ map("n", "<leader>gl", ":Git log<cr>", { noremap = true })
 map("n", "<leader>gp", ":Git push<cr>", { noremap = true })
 map("n", "<leader>ll", ":diffget LOCAL<cr>", { noremap = true })
 map("n", "<leader>rr", ":diffget REMOTE<cr>", { noremap = true })
-
-map("n", "<leader>rh", ":Gitsigns reset_hunk<cr>", { noremap = true })
-map("n", "<leader>ss", ":Gitsigns stage_hunk<cr>", { noremap = true })
-map("n", "<leader>uh", ":Gitsigns undo_stage_hunk<cr>", { noremap = true })
 
 -- close all open buffers
 map("n", "<leader>Q", ":bufdo bdelete<cr>", { noremap = true })
@@ -158,7 +156,8 @@ vim.api.nvim_set_keymap("n", "<A-d>", ":t.<CR>", { noremap = true })
 
 -- tmp diff
 vim.api.nvim_set_keymap("n", "<leader>ds", ":windo diffthis<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>de", ":diffoff!<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>df", ":Gitsigns diffthis<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>do", ":diffoff!<CR>", { noremap = true })
 
 -- ansible vault
 vim.api.nvim_set_keymap("n", "<leader>dv", ":!ansible-vault decrypt %<CR>", { noremap = true })

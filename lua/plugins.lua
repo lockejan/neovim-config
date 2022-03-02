@@ -73,6 +73,8 @@ return require("packer").startup(function(use)
 
   -- autopair of brackets on insert
   use("windwp/nvim-autopairs")
+  -- insert or delete parentheses in pairs
+  use("jiangmiao/auto-pairs")
 
   -- LSP Autocompletion plugin
   use({
@@ -180,8 +182,6 @@ return require("packer").startup(function(use)
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   -- smart rename in scope/file, go to ref/def/usage
   use("nvim-treesitter/nvim-treesitter-refactor")
-  -- insert or delete parentheses in pairs
-  use("jiangmiao/auto-pairs")
   -- displays head of scope on top (e.g. fn/class/method)
   use("romgrk/nvim-treesitter-context")
   -- colorize parentheses

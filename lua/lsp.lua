@@ -25,7 +25,7 @@ end
 
 local nvim_lsp = require("lspconfig")
 
--- diagnostic preview on line visit
+-- diagnostic preview on cursor visit
 vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
 
 -- Your custom attach function for nvim-lspconfig goes here.
@@ -55,6 +55,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  buf_set_keymap("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
   buf_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
@@ -76,11 +77,10 @@ local servers = {
   "hls",
   "gopls",
   "intelephense",
-  -- "jsonls",
   "rnix",
   "pyright",
-  -- "yamlls",
 }
+
 --Enable (broadcasting) snippet capability for completion
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -117,37 +117,11 @@ nvim_lsp.jsonls.setup({
 })
 
 -- Lua LSP
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
 local luadev = require("lua-dev").setup({
-  -- add any options here, or leave empty to use the default settings
   lspconfig = {
     on_attach = on_attach,
+    capabilities = capabilities,
     cmd = { "lua-language-server" },
-  },
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-        -- Setup your lua path
-        path = runtime_path,
-      },
-    },
-    diagnostics = {
-      globals = { "vim" },
-    },
-    workspace = {
-      -- Make the server aware of Neovim runtime files
-      library = vim.api.nvim_get_runtime_file("", true),
-    },
-    -- Do not send telemetry data containing a randomized but unique identifier
-    telemetry = {
-      enable = false,
-    },
   },
 })
 nvim_lsp.sumneko_lua.setup(luadev)

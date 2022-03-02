@@ -1,8 +1,15 @@
 require("lualine").setup({
   options = {
     theme = "onedark",
+    component_separators = "|",
+    section_separators = "",
   },
   sections = {
+    -- lualine_b = {
+    --   function()
+    --     return vim.fn["nvim_treesitter#statusline"](90)
+    --   end,
+    -- },
     lualine_c = {
       {
         "filename",
@@ -20,5 +27,8 @@ require("lualine").setup({
         },
       },
     },
+    lualine_x = { "encoding", "filetype" },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
   },
 })

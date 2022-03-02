@@ -70,12 +70,12 @@ map(
   [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]],
   { noremap = true, silent = true }
 )
-map("n", "<leader>sh", [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
-map("n", "<leader>sp", [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
-map("n", "<leader>?", [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
-map("n", "<leader>sg", "<cmd>lua require('config.telescope-config').project_files()<cr>", { noremap = true })
+map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { noremap = true, silent = true })
+map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
+map("n", "<leader>sg", "<cmd>Telescope git_files<cr>", { noremap = true })
+map("n", "<leader>sG", "<cmd>Telescope find_files<cr>", { noremap = true })
 map("n", "<leader>sc", "<cmd>Telescope git_commits<cr>", { noremap = true })
 map("n", "<leader>sd", "<cmd>Telescope git_bcommits<cr>", { noremap = true })
 map("n", "<leader>sb", "<cmd>Telescope git_branches<cr>", { noremap = true })
--- map("n", "<leader>sb", "<cmd>Telescope buffers<cr>", {noremap = true})
--- map("n", "<leader>sd", [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], {noremap = true, silent = true})
+map("n", "<leader>ss", "<cmd>Telescope ultisnips<cr>", { noremap = true })
+map("n", "<leader>sP", "<cmd>Telescope packer<cr>", { noremap = true })
