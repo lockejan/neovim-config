@@ -31,6 +31,7 @@ return require("packer").startup(function(use)
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
   })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  use({ "jremmen/vim-ripgrep" })
 
   -- essentials: telescope, nvim-lspconfig, nvim-dap
   -- LSP and completion
@@ -186,7 +187,7 @@ return require("packer").startup(function(use)
   use("romgrk/nvim-treesitter-context")
   -- colorize parentheses
   use("p00f/nvim-ts-rainbow")
-  vim.cmd([[hi rainbowcol1 guifg=#c678dd]])
+  -- vim.cmd([[hi rainbowcol1 guifg=#c678dd]])
   -- additional textobjects for functions, classes,...
   use("nvim-treesitter/nvim-treesitter-textobjects")
   -- match parentheses and scopes to quickly jump between them

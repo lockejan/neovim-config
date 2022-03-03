@@ -49,6 +49,10 @@ vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.opt.spell = true
 -- vim.opt.spelllang = { "en_us", "de_de" }
 
+-- path
+vim.cmd([[ set path+=** ]])
+-- vim.cmd([[ autocmd FileType netrw setl bufhidden=delete ]])
+
 --Add spellchecking
 vim.cmd([[ autocmd FileType gitcommit setlocal spell ]])
 vim.cmd([[ autocmd FileType markdown setlocal spell ]])

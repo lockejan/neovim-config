@@ -20,7 +20,8 @@ require("nvim-treesitter.configs").setup({
   },
   rainbow = {
     enable = true,
-    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    extended_mode = true,
+    -- colors = {},
     max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
   },
   matchup = {
@@ -42,6 +43,16 @@ require("nvim-treesitter.configs").setup({
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["aC"] = "@conditional.outer",
+        ["iC"] = "@conditional.inner",
+        ["ad"] = "@comment.outer",
+        ["ae"] = "@block.outer",
+        ["am"] = "@call.outer",
+        ["al"] = "@loop.outer",
+        -- ["id"] = "@rhs.inner",
+        -- ["ad"] = "@lhs.inner",
+        -- ["iM"] = "@frame.inner",
+        -- ["ai"] = "@parameter.outer",
       },
     },
     move = {
@@ -73,12 +84,40 @@ require("nvim-treesitter.configs").setup({
         ["<leader>A"] = "@parameter.inner",
       },
     },
+    autopairs = { enable = true },
     lsp_interop = {
       enable = true,
       border = "none",
       peek_definition_code = {
-        ["df"] = "@function.outer",
-        ["dF"] = "@class.outer",
+        ["<leader>df"] = "@function.outer",
+        ["<leader>dF"] = "@class.outer",
+      },
+      peek_type_definition_code = {
+        ["<leader>TF"] = "@class.outer",
+      },
+    },
+    refactor = {
+      highlight_definitions = {
+        enable = true,
+        -- Set to false if you have an `updatetime` of ~100.
+        clear_on_cursor_move = true,
+      },
+      highlight_current_scope = { enable = true },
+      smart_rename = {
+        enable = true,
+        keymaps = {
+          smart_rename = "grr",
+        },
+      },
+      navigation = {
+        enable = true,
+        keymaps = {
+          goto_definition = "gnd",
+          list_definitions = "gnD",
+          list_definitions_toc = "gO",
+          goto_next_usage = "<a-*>",
+          goto_previous_usage = "<a-#>",
+        },
       },
     },
   },
@@ -96,3 +135,5 @@ parser_config.markdown = {
 }
 
 require("treesitter-context").setup({ enable = true, throttle = true })
+
+vim.cmd([[hi rainbowcol1 guifg=#c678dd]])
