@@ -1,6 +1,8 @@
 -- Disable neovim python support
 vim.g.loaded_python_provider = 0
 
+vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
+
 -- Preview incremental substitution
 vim.o.inccommand = "nosplit"
 
@@ -99,3 +101,6 @@ vim.api.nvim_exec(
 vim.cmd("au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile")
 
 -- remove whitespace on save
+
+-- detect djangohtml
+vim.cmd("au BufNewFile,BufRead *.html set filetype=htmldjango")

@@ -160,6 +160,6 @@ vim.api.nvim_set_keymap("n", "<leader>df", ":Gitsigns diffthis<CR>", { noremap =
 vim.api.nvim_set_keymap("n", "<leader>do", ":diffoff!<CR>", { noremap = true })
 
 -- ansible vault
-vim.api.nvim_set_keymap("n", "<leader>dv", ":!ansible-vault decrypt %<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>ev", ":!ansible-vault encrypt %<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vd", ":!ansible-vault decrypt %<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ve", ":!ansible-vault encrypt %<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>vv", ":!ansible-vault view %<CR>", { noremap = true })

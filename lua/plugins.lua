@@ -72,6 +72,18 @@ return require("packer").startup(function(use)
   -- Easy LS installation
   -- use "kabouzeid/nvim-lspinstall"
 
+  -- Regex explain
+  use({
+    "bennypowers/nvim-regexplainer",
+    config = function()
+      require("regexplainer").setup()
+    end,
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+  })
+
   -- autopair of brackets on insert
   use("windwp/nvim-autopairs")
   -- insert or delete parentheses in pairs
@@ -101,9 +113,6 @@ return require("packer").startup(function(use)
   -- clojure
   -- use("Olical/conjure")
 
-  -- virtualenv handling's
-  -- use {"HallerPatrick/py_lsp.nvim"}
-
   -- db interaction within vim
   -- use("tpope/vim-dadbod")
 
@@ -131,9 +140,6 @@ return require("packer").startup(function(use)
     end,
     requires = { "nvim-lua/plenary.nvim" },
   })
-
-  -- trim whitespaces on save
-  -- use("cappyzawa/trim.nvim")
 
   -- Lua development
   use("folke/lua-dev.nvim")
