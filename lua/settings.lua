@@ -31,7 +31,6 @@ vim.o.mouse = "a" -- enable mouse mode
 vim.o.pumheight = 30 -- Maximum number of entries in a popup
 vim.o.scrolloff = 8 -- Minumum lines to keep above and below cursor
 -- vim.o.sessionoptions = {"buffers", "curdir", "tabpages", "winsize"}
--- vim.o.shell = "/bin/bash"
 -- vim.o.shiftround = true -- Round indent
 vim.o.shiftwidth = 4 -- Size of an indent
 -- vim.o.showmode = false -- dont show mode since we have a statusline
@@ -61,6 +60,16 @@ vim.cmd([[ autocmd FileType markdown setlocal spell ]])
 
 vim.g.onedark_terminal_italics = 1
 vim.cmd([[colorscheme onedark]])
+
+-- autosave when leaving insert mode
+vim.cmd([[
+  autocmd InsertLeave * wa
+]])
+
+-- trim whitespace on save
+vim.cmd([[
+autocmd BufWritePre * :%s/\s\+$//e
+]])
 
 -- show cursor line only in active window
 vim.cmd([[

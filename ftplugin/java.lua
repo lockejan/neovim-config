@@ -1,3 +1,13 @@
+local map = vim.api.nvim_set_keymap
+
+-- jdtls
+map("n", "<A-o>", "<Cmd>lua require'jdtls'.organize_imports()<CR>", { noremap = true })
+map("n", "<leader>ev", "<Cmd>lua require('jdtls').extract_variable()<CR>", { noremap = true })
+map("v", "<leader>ev", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", { noremap = true })
+map("n", "<leader>ec", "<Cmd>lua require('jdtls').extract_constant()<CR>", { noremap = true })
+map("v", "<leader>ec", "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", { noremap = true })
+map("v", "<leader>em", "<Esc><Cmd>lua require('jdtls').extract_method()<CR>", { noremap = true })
+
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
