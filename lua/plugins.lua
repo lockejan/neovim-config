@@ -4,6 +4,9 @@ return require("packer").startup(function(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim", opt = true })
 
+  -- improve startup
+  use({ "lewis6991/impatient.nvim" })
+
   -- lua-based filetype to speedup starttime
   use("nathom/filetype.nvim")
 

@@ -1,5 +1,5 @@
 -- Disable neovim python support
-vim.g.loaded_python_provider = 0
+-- vim.g.loaded_python_provider = 0 # default on master
 
 vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
 
@@ -43,7 +43,7 @@ vim.o.tabstop = 4 -- Number of spaces tabs count for
 vim.o.termguicolors = true -- True color support
 vim.o.undofile = true
 vim.o.undolevels = 10000
--- vim.o.colorcolumn = '80'
+vim.o.colorcolumn = "80"
 vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.o.wrap = false -- Disable line wrap
 
@@ -108,8 +108,6 @@ vim.api.nvim_exec(
 
 -- secure gopass
 vim.cmd("au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile")
-
--- remove whitespace on save
 
 -- detect djangohtml
 vim.cmd("au BufNewFile,BufRead *.html set filetype=htmldjango")

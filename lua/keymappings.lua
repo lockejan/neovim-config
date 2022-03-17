@@ -77,6 +77,11 @@ end
 
 map("n", "<leader>bm", "<cmd>lua ToggleMouse()<cr>", { noremap = true })
 
+local opts = { noremap = true }
+map("n", "<leader>tc", "<cmd>tabclose<cr>", opts)
+map("n", "<leader>tn", "<cmd>tabnext<cr>", opts)
+map("n", "<leader>te", "<cmd>tabnew<cr>", opts)
+
 -- custom replace
 -- map("n", "<silent> s*", "<cmd>let @/='<'.expand('<cword>').'>'<cr>cgn", { noremap = true })
 

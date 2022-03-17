@@ -16,6 +16,7 @@ augroup end ]],
 require("settings")
 
 -- Setup plugins
+require("impatient")
 require("plugins")
 
 -- Core
