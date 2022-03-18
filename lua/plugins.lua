@@ -136,13 +136,13 @@ return require("packer").startup(function(use)
   --     require("trouble").setup({})
   --   end,
   -- })
-  use({
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      require("null-ls").setup()
-    end,
-    requires = { "nvim-lua/plenary.nvim" },
-  })
+  -- use({
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   config = function()
+  --     require("null-ls").setup()
+  --   end,
+  --   requires = { "nvim-lua/plenary.nvim" },
+  -- })
 
   -- Lua development
   use("folke/lua-dev.nvim")

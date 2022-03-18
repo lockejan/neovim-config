@@ -72,6 +72,7 @@ map(
 )
 map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { noremap = true, silent = true })
 map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
+map("n", "<leader>fw", "<cmd>Telescope grep_string<cr>", { noremap = true, silent = true })
 map("n", "<leader>sg", "<cmd>Telescope git_files<cr>", { noremap = true })
 map("n", "<leader>sG", "<cmd>Telescope find_files<cr>", { noremap = true })
 map("n", "<leader>sc", "<cmd>Telescope git_commits<cr>", { noremap = true })
