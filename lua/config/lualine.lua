@@ -1,8 +1,12 @@
 require("lualine").setup({
   options = {
-    theme = "onedark",
+    icons_enabled = false,
+    theme = "auto",
     component_separators = "|",
     section_separators = "",
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    -- globalstatus = true,
   },
   sections = {
     -- lualine_b = {
@@ -31,4 +35,5 @@ require("lualine").setup({
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
+  -- extensions = { "quickfix" },
 })

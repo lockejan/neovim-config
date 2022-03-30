@@ -23,6 +23,7 @@ return require("packer").startup(function(use)
   -- use("joshdick/onedark.vim")
   -- use("olimorris/onedarkpro.nvim")
   use("navarasu/onedark.nvim")
+  use("daschw/leaf.nvim")
 
   -- Fuzzy finding stuff via telescope
   use("cljoly/telescope-repo.nvim")
@@ -129,13 +130,10 @@ return require("packer").startup(function(use)
   -- use "ray-x/lsp_signature.nvim"
 
   -- quick LSP warnings+errors navigation
-  -- use({
-  --   "folke/trouble.nvim",
-  --   requires = "kyazdani42/nvim-web-devicons",
-  --   config = function()
-  --     require("trouble").setup({})
-  --   end,
-  -- })
+  use({
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+  })
   -- use({
   --   "jose-elias-alvarez/null-ls.nvim",
   --   config = function()
@@ -196,7 +194,6 @@ return require("packer").startup(function(use)
   use("romgrk/nvim-treesitter-context")
   -- colorize parentheses
   use("p00f/nvim-ts-rainbow")
-  -- vim.cmd([[hi rainbowcol1 guifg=#c678dd]])
   -- additional textobjects for functions, classes,...
   use("nvim-treesitter/nvim-treesitter-textobjects")
   -- match parentheses and scopes to quickly jump between them
@@ -256,7 +253,15 @@ return require("packer").startup(function(use)
   use("tpope/vim-abolish")
 
   -- preview rendered markdown files
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install", cmd = "MarkdownPreview" })
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && yarn install",
+    ft = { "markdown" },
+    config = function()
+      vim.g.mkdp_auto_start = 0
+      vim.g.mkdp_auto_close = 1
+    end,
+  })
 
   -- SNIPPETS
   --use("L3MON4D3/LuaSnip")
