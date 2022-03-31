@@ -124,7 +124,7 @@ return require("packer").startup(function(use)
   use("onsails/lspkind-nvim")
 
   -- sidebar with ooutlines
-  -- use "simrat39/symbols-outline.nvim"
+  use("simrat39/symbols-outline.nvim")
 
   -- fn signature while typing
   -- use "ray-x/lsp_signature.nvim"
@@ -260,6 +260,14 @@ return require("packer").startup(function(use)
     config = function()
       vim.g.mkdp_auto_start = 0
       vim.g.mkdp_auto_close = 1
+    end,
+  })
+
+  --ui-enhancements
+  use({
+    "stevearc/dressing.nvim",
+    config = function()
+      require("dressing").sartup({})
     end,
   })
 

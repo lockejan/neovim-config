@@ -18,6 +18,14 @@ require("formatter").setup({
         }
       end,
     },
+    java = {
+      function()
+        return {
+          exe = "google-java-code",
+          stdin = true,
+        }
+      end,
+    },
     clojure = {
       function()
         return {

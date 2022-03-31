@@ -136,4 +136,7 @@ parser_config.markdown = {
 
 require("treesitter-context").setup({ enable = true, throttle = true })
 
+vim.cmd([[set foldlevel=20]])
+vim.cmd([[set foldmethod=expr]])
+vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
 vim.cmd([[hi rainbowcol1 guifg=#c678dd]])
