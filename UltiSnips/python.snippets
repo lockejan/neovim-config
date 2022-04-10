@@ -3,8 +3,8 @@ os.environ.get('${0:${VISUAL:ENV_VAR}}')
 endsnippet
 
 snippet clat "Create a Test Class"
-class ${1:TestThisCode}(TestCase):
+class ${1:TestThisCode}(${2:TestCase}):
 
-	def test_${2:first_things_first}(self):
-		${3:pass}
+	def test_${3:first_things_first}(self):
+		${4:pass}
 endsnippet

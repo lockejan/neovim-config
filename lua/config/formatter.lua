@@ -21,7 +21,8 @@ require("formatter").setup({
     java = {
       function()
         return {
-          exe = "google-java-code",
+          exe = "google-java-format",
+          args = { "-" },
           stdin = true,
         }
       end,
@@ -92,7 +93,7 @@ vim.api.nvim_exec(
   [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua,*.clj,*.py,*.nix,*.sh Format
+  autocmd BufWritePost *.js,*.rs,*.lua,*.clj,*.py,*.nix,*.sh,*.java Format
 augroup END
 ]],
   true

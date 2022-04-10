@@ -26,7 +26,7 @@ return require("packer").startup(function(use)
   use("daschw/leaf.nvim")
 
   -- Fuzzy finding stuff via telescope
-  use("cljoly/telescope-repo.nvim")
+  -- use("cljoly/telescope-repo.nvim")
   use("fhill2/telescope-ultisnips.nvim")
   use("nvim-telescope/telescope-packer.nvim")
   -- use("dhruvmanila/telescope-bookmarks.nvim")
@@ -35,13 +35,13 @@ return require("packer").startup(function(use)
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
   })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-  use({ "jremmen/vim-ripgrep" })
+  -- use({ "jremmen/vim-ripgrep" })
 
   -- essentials: telescope, nvim-lspconfig, nvim-dap
   -- LSP and completion
   -- simplify usage of lsps
   use("neovim/nvim-lspconfig")
-  use({ "tami5/lspsaga.nvim" })
+  -- use({ "tami5/lspsaga.nvim" })
   -- use("tpope/vim-projectionist")
   use("vim-test/vim-test")
   use("mfussenegger/nvim-jdtls")
@@ -77,16 +77,16 @@ return require("packer").startup(function(use)
   -- use "kabouzeid/nvim-lspinstall"
 
   -- Regex explain
-  use({
-    "bennypowers/nvim-regexplainer",
-    config = function()
-      require("regexplainer").setup()
-    end,
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-  })
+  -- use({
+  --   "bennypowers/nvim-regexplainer",
+  --   config = function()
+  --     require("regexplainer").setup()
+  --   end,
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  -- })
 
   -- autopair of brackets on insert
   use("windwp/nvim-autopairs")
@@ -144,7 +144,7 @@ return require("packer").startup(function(use)
 
   -- Lua development
   use("folke/lua-dev.nvim")
-  use("bfredl/nvim-luadev")
+  -- use("bfredl/nvim-luadev")
 
   -- custom formatter on save
   use("mhartington/formatter.nvim")
@@ -158,11 +158,11 @@ return require("packer").startup(function(use)
   -- use("justinmk/vim-sneak")
 
   -- unix commands for vim
-  -- use("tpope/vim-eunuch")
+  use("tpope/vim-eunuch")
   use("tpope/vim-unimpaired")
 
   -- lua file explorer
-  use("kyazdani42/nvim-tree.lua")
+  -- use("kyazdani42/nvim-tree.lua")
 
   -- autochange to project root dir
   use("airblade/vim-rooter")
@@ -206,7 +206,7 @@ return require("packer").startup(function(use)
   -- use "wellle/targets.vim"
 
   -- open gpg encrypted files securely
-  use("jamessan/vim-gnupg")
+  -- use("jamessan/vim-gnupg")
 
   -- save/restore vim-session
   use("tpope/vim-obsession")
@@ -249,8 +249,8 @@ return require("packer").startup(function(use)
   -- smarter vim-based increasements of dates and numbers
   use("tpope/vim-speeddating")
 
-  -- improved pattern matching and instant switch case for vars
-  use("tpope/vim-abolish")
+  -- -- improved pattern matching and instant switch case for vars
+  -- use("tpope/vim-abolish")
 
   -- preview rendered markdown files
   use({
@@ -267,13 +267,13 @@ return require("packer").startup(function(use)
   use({
     "stevearc/dressing.nvim",
     config = function()
-      require("dressing").sartup({})
+      require("dressing").setup({})
     end,
   })
 
   -- SNIPPETS
-  --use("L3MON4D3/LuaSnip")
-  --use("saadparwaiz1/cmp_luasnip")
+  -- use("L3MON4D3/LuaSnip")
+  -- use("saadparwaiz1/cmp_luasnip")
   use("SirVer/ultisnips")
   use("honza/vim-snippets")
 
