@@ -62,9 +62,9 @@ vim.g.onedark_terminal_italics = 1
 vim.cmd([[colorscheme onedark]])
 
 -- autosave when leaving insert mode
-vim.cmd([[
-  autocmd InsertLeave * wa
-]])
+-- vim.cmd([[
+--   autocmd InsertLeave * wa
+-- ]])
 
 -- trim whitespace on save
 vim.cmd([[
