@@ -33,7 +33,11 @@ cmp.setup({
       vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
-  mapping = {
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
@@ -42,7 +46,7 @@ cmp.setup({
       select = true,
       behavior = cmp.ConfirmBehavior.Replace,
     }),
-  },
+  }),
   sources = cmp.config.sources({
     --     {name = "calc"},
     --     {name = "cmp_tabnine"},
@@ -51,17 +55,27 @@ cmp.setup({
     -- {name = "luasnip"},
     { name = "npm", keyword_length = 4 },
     { name = "nvim_lsp" },
+    { name = "nvim_lsp_signature_help" },
     { name = "nvim_lua" },
     { name = "path" },
-    { name = "spell", keyword_length = 3 },
+    -- { name = "spell", keyword_length = 3 },
+    -- { name = "digraphs" },
     { name = "conjure" },
     { name = "tmux" },
     { name = "ultisnips" },
   }, {
-    { name = "buffer", keyword_length = 3, priority = 50 },
+    { name = "buffer", keyword_length = 2, priority = 50 },
   }),
   experimental = {
     native_menu = false,
     ghost_text = true,
   },
+})
+
+cmp.setup.filetype("gitcommit", {
+  sources = cmp.config.sources({
+    { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = "buffer" },
+  }),
 })

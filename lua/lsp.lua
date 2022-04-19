@@ -93,6 +93,19 @@ for _, server in pairs(servers) do
   })
 end
 
+local pid = vim.fn.getpid()
+nvim_lsp.omnisharp.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
+})
+
+nvim_lsp.rust_analyzer.setup({
+  cmd = { "rustup", "run", "nightly", "rust-analyzer" },
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
 nvim_lsp.yamlls.setup({
   on_attach = on_attach,
   capabilities = capabilities,

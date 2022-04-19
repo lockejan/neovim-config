@@ -37,6 +37,8 @@ vim.o.wildcharm = 9
 -- vim.cmd([[ set wildcharm=<C-i> ]])
 -- vim.opt.wildcharm = vim.fn.char2nr("^I")
 map("n", "<leader>bb", ":buffer<Space><C-i>", { noremap = true })
+map("n", "<leader>bd", ":bdelete<CR>", { noremap = true })
+map("n", "<leader>bw", ":%bd|e#|bd#<CR>", { noremap = true })
 map("n", "<leader><C-f>", ":set ft=<C-i>", { noremap = true })
 
 -- szw/vim-maximizer

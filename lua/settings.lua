@@ -47,8 +47,8 @@ vim.o.colorcolumn = "80"
 vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.o.wrap = false -- Disable line wrap
 
--- vim.opt.spell = true
--- vim.opt.spelllang = { "en_us", "de_de" }
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us", "de_de" }
 
 -- path
 vim.cmd([[ set path+=** ]])

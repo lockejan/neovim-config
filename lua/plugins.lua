@@ -97,7 +97,7 @@ return require("packer").startup(function(use)
   use({
     "hrsh7th/nvim-cmp",
     requires = {
-      -- "f3fora/cmp-spell",
+      "f3fora/cmp-spell",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
@@ -105,6 +105,8 @@ return require("packer").startup(function(use)
       "quangnguyen30192/cmp-nvim-ultisnips",
       "David-Kunz/cmp-npm",
       "andersevenrud/cmp-tmux",
+      "dmitmel/cmp-digraphs",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
       -- "PaterJason/cmp-conjure",
 
       -- "rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide",
@@ -113,7 +115,6 @@ return require("packer").startup(function(use)
       -- "hrsh7th/cmp-emoji"
     },
   })
-
   -- clojure
   -- use("Olical/conjure")
 
