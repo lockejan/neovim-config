@@ -170,3 +170,5 @@ vim.api.nvim_set_keymap("n", "<leader>do", ":diffoff!<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>vd", ":!ansible-vault decrypt %<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>ve", ":!ansible-vault encrypt %<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>vv", ":!ansible-vault view %<CR>", { noremap = true })
+
+vim.api.nvim_set_keymap("n", "<leader>so", ":SymbolsOutline<CR>", { noremap = true })

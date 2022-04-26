@@ -130,11 +130,37 @@ nvim_lsp.jsonls.setup({
 })
 
 -- Lua LSP
-local luadev = require("lua-dev").setup({
-  lspconfig = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = { "lua-language-server" },
+-- local luadev = require("lua-dev").setup({
+--   lspconfig = {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     cmd = { "lua-language-server" },
+--   },
+-- })
+-- nvim_lsp.sumneko_lua.setup(luadev)
+
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+nvim_lsp.sumneko_lua.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
   },
 })
-nvim_lsp.sumneko_lua.setup(luadev)

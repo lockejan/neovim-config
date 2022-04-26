@@ -1,3 +1,6 @@
+-- https://github.com/tree-sitter/tree-sitter-haskell/issues/34
+require("nvim-treesitter.install").compilers = { "gcc" }
+
 require("nvim-treesitter.configs").setup({
   ensure_installed = "all",
   highlight = {
