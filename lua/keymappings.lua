@@ -157,6 +157,7 @@ vim.api.nvim_set_keymap("n", "<leader>gh", ":h <C-R><C-W><CR>", { noremap = true
 
 -- duplicate line
 vim.api.nvim_set_keymap("n", "<A-d>", ":t.<CR>", { noremap = true })
+vim.api.nvim_set_keymap("v", "<A-d>", ":t.<CR>", { noremap = true })
 
 -- autoexpand current file dir
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
