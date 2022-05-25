@@ -52,27 +52,29 @@ require("telescope").load_extension("packer")
 
 --Add leader shortcuts
 map("n", "<leader><space>", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
+-- map(
+--   "n",
+--   "<leader>gd",
+--   "<cmd>lua require'telescope'.extensions.repo.list{fd_opts=[[]]}<CR>",
+--   { noremap = true, silent = true }
+-- )
 map(
   "n",
-  "<leader>gd",
-  "<cmd>lua require'telescope'.extensions.repo.list{fd_opts=[[]]}<CR>",
-  { noremap = true, silent = true }
-)
-map(
-  "n",
-  "<leader>sf",
+  "<leader>ff",
   [[<cmd>lua require('telescope.builtin').fd({previewer = false})<CR>]],
   { noremap = true, silent = true }
 )
 map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { noremap = true, silent = true })
 map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
 map("n", "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { noremap = true, silent = true })
-map("n", "<leader>fw", "<cmd>Telescope grep_string<cr>", { noremap = true, silent = true })
+map("n", "<leader>sw", "<cmd>Telescope grep_string<cr>", { noremap = true, silent = true })
+map("v", "<leader><space>", '"zy:Telescope grep_string default_text=<C-r>z<cr>', { noremap = true, silent = true })
 map("n", "<leader>sg", "<cmd>Telescope git_files<cr>", { noremap = true })
 map("n", "<leader>sG", "<cmd>Telescope find_files<cr>", { noremap = true })
 map("n", "<leader>sc", "<cmd>Telescope git_commits<cr>", { noremap = true })
 map("n", "<leader>sd", "<cmd>Telescope git_bcommits<cr>", { noremap = true })
 map("n", "<leader>sB", "<cmd>Telescope git_branches<cr>", { noremap = true })
-map("n", "<leader>ss", "<cmd>Telescope git_status<cr>", { noremap = true })
-map("n", "<leader>su", "<cmd>Telescope ultisnips<cr>", { noremap = true })
+-- map("n", "<leader>ss", "<cmd>Telescope git_status<cr>", { noremap = true })
+map("n", "<leader>ss", "<cmd>Telescope ultisnips<cr>", { noremap = true })
 map("n", "<leader>sP", "<cmd>Telescope packer<cr>", { noremap = true })
+map("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>", { noremap = true })

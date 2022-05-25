@@ -73,6 +73,7 @@ local servers = {
   "cssls",
   "dockerls",
   "eslint",
+  "elmls",
   "html",
   -- "hls",
   "gopls",

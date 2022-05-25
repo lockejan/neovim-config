@@ -19,6 +19,8 @@ require("settings")
 require("plugins")
 require("impatient")
 
+vim.g.onedark_terminal_italics = 1
+vim.cmd([[colorscheme onedark]])
 -- Core
 require("keymappings")
 require("lsp")

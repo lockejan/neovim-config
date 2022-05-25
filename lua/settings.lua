@@ -58,9 +58,6 @@ vim.cmd([[ set path+=** ]])
 vim.cmd([[ autocmd FileType gitcommit setlocal spell ]])
 vim.cmd([[ autocmd FileType markdown setlocal spell ]])
 
-vim.g.onedark_terminal_italics = 1
-vim.cmd([[colorscheme onedark]])
-
 -- autosave when leaving insert mode
 -- vim.cmd([[
 --   autocmd InsertLeave * wa
