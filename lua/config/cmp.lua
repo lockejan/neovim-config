@@ -3,10 +3,11 @@ vim.o.completeopt = "menu,menuone,noselect"
 -- Setup nvim-cmp.
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp = require("cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
 -- add a lisp filetype (wrap my-function), FYI: Hardcoded = { "clojure", "clojurescript", "fennel", "janet" }
-cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
+-- cmp_autopairs.lisp[#cmp_autopairs.lisp + 1] = "racket"
 
 cmp.setup({
   formatting = {
@@ -23,14 +24,14 @@ cmp.setup({
         npm = "[NPM]",
         -- conjure = "[Conjure]",
         tmux = "[Tmux]",
-        ultisnips = "[UltiSnips]",
+        -- ultisnips = "[UltiSnips]",
       },
     }),
   },
   snippet = {
     expand = function(args)
-      -- require("luasnip").lsp_expand(args.body)
-      vim.fn["UltiSnips#Anon"](args.body)
+      require("luasnip").lsp_expand(args.body)
+      -- vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
   window = {
@@ -52,7 +53,7 @@ cmp.setup({
     --     {name = "cmp_tabnine"},
     --     {name = "emoji"},
     --     {name = "look"},
-    -- {name = "luasnip"},
+    { name = "luasnip" },
     { name = "npm", keyword_length = 4 },
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
@@ -62,7 +63,7 @@ cmp.setup({
     -- { name = "digraphs" },
     { name = "conjure" },
     { name = "tmux" },
-    { name = "ultisnips" },
+    -- { name = "ultisnips" },
   }, {
     { name = "buffer", keyword_length = 2, priority = 50 },
   }),
@@ -70,6 +71,10 @@ cmp.setup({
     native_menu = false,
     ghost_text = true,
   },
+})
+
+cmp.setup.buffer({
+  sources = require("cmp").config.sources({ { name = "conventionalcommits" } }, { { name = "buffer" } }),
 })
 
 -- cmp.setup.filetype("gitcommit", {

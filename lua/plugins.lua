@@ -18,16 +18,16 @@ return require("packer").startup(function(use)
   -- use("rebelot/kanagawa.nvim")
   -- use("tanvirtin/monokai.nvim")
   -- use("EdenEast/nightfox.nvim")
-  use("shaunsingh/nord.nvim")
+  -- use("shaunsingh/nord.nvim")
   use("sainnhe/everforest")
   -- use("joshdick/onedark.vim")
   -- use("olimorris/onedarkpro.nvim")
   use("navarasu/onedark.nvim")
-  use("daschw/leaf.nvim")
+  -- use("daschw/leaf.nvim")
 
   -- Fuzzy finding stuff via telescope
   -- use("cljoly/telescope-repo.nvim")
-  use("fhill2/telescope-ultisnips.nvim")
+  -- use("fhill2/telescope-ultisnips.nvim")
   use("nvim-telescope/telescope-packer.nvim")
   -- use("dhruvmanila/telescope-bookmarks.nvim")
   use({
@@ -44,14 +44,14 @@ return require("packer").startup(function(use)
   -- use({ "tami5/lspsaga.nvim" })
   -- use("tpope/vim-projectionist")
   use("vim-test/vim-test")
-  use("mfussenegger/nvim-jdtls")
+  -- use("mfussenegger/nvim-jdtls")
 
   -- indentation guides
-  use("lukas-reineke/indent-blankline.nvim")
-  use({ "tpope/vim-sleuth" })
+  -- use("lukas-reineke/indent-blankline.nvim")
+  -- use({ "tpope/vim-sleuth" })
 
   -- automatic closing Syntax
-  use({ "tpope/vim-endwise" })
+  -- use({ "tpope/vim-endwise" })
 
   -- schema support
   use({ "b0o/schemastore.nvim" })
@@ -61,13 +61,6 @@ return require("packer").startup(function(use)
   use({ "j-hui/fidget.nvim" })
   use({ "RRethy/vim-illuminate" })
   -- use "nvim-lua/lsp-status.nvim"
-  -- use({ "jose-elias-alvarez/null-ls.nvim",
-  -- config = function()
-  --     require("null-ls").config({})
-  --     require("lspconfig")["null-ls"].setup({})
-  -- end,
-  -- requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
-  -- })
 
   -- improved and extended lsp integration
   -- decoration and code actions
@@ -76,22 +69,18 @@ return require("packer").startup(function(use)
   -- Easy LS installation
   -- use "kabouzeid/nvim-lspinstall"
 
-  -- Regex explain
-  -- use({
-  --   "bennypowers/nvim-regexplainer",
-  --   config = function()
-  --     require("regexplainer").setup()
-  --   end,
-  --   requires = {
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --   },
-  -- })
+  -- Editor-config
+  use({ "gpanders/editorconfig.nvim" })
 
   -- autopair of brackets on insert
-  use("windwp/nvim-autopairs")
+  use({
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  })
   -- insert or delete parentheses in pairs
-  use("jiangmiao/auto-pairs")
+  -- use("jiangmiao/auto-pairs")
 
   -- LSP Autocompletion plugin
   use({
@@ -102,11 +91,12 @@ return require("packer").startup(function(use)
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
-      "quangnguyen30192/cmp-nvim-ultisnips",
+      -- "quangnguyen30192/cmp-nvim-ultisnips",
       "David-Kunz/cmp-npm",
       "andersevenrud/cmp-tmux",
       "dmitmel/cmp-digraphs",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "davidsierradz/cmp-conventionalcommits",
       -- "PaterJason/cmp-conjure",
 
       -- "rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide",
@@ -125,7 +115,7 @@ return require("packer").startup(function(use)
   use("onsails/lspkind-nvim")
 
   -- sidebar with ooutlines
-  use("simrat39/symbols-outline.nvim")
+  -- use("simrat39/symbols-outline.nvim")
 
   -- fn signature while typing
   -- use "ray-x/lsp_signature.nvim"
@@ -135,13 +125,6 @@ return require("packer").startup(function(use)
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   })
-  -- use({
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   config = function()
-  --     require("null-ls").setup()
-  --   end,
-  --   requires = { "nvim-lua/plenary.nvim" },
-  -- })
 
   -- Lua development
   use("folke/lua-dev.nvim")
@@ -213,7 +196,7 @@ return require("packer").startup(function(use)
   use("tpope/vim-obsession")
 
   -- autoclose html/tsx/...-tags
-  use("windwp/nvim-ts-autotag")
+  -- use("windwp/nvim-ts-autotag")
 
   -- comment codeblocks even in mixed environments
   use("JoosepAlviste/nvim-ts-context-commentstring")
@@ -235,11 +218,11 @@ return require("packer").startup(function(use)
   -- split navigation between vim and tmux
   -- use("christoomey/vim-tmux-navigator")
 
-  use("norcalli/nvim-colorizer.lua")
+  -- use("norcalli/nvim-colorizer.lua")
 
   -- Helpers + Cheatsheet
   use("folke/which-key.nvim")
-  use("sudormrfbin/cheatsheet.nvim")
+  -- use("sudormrfbin/cheatsheet.nvim")
 
   -- decrypt and encrypt ansible-vault stuff
   -- use "danihodovic/vim-ansible-vault"
@@ -250,7 +233,7 @@ return require("packer").startup(function(use)
   -- smarter vim-based increasements of dates and numbers
   use("tpope/vim-speeddating")
 
-  -- -- improved pattern matching and instant switch case for vars
+  -- improved pattern matching and instant switch case for vars
   -- use("tpope/vim-abolish")
 
   -- preview rendered markdown files
@@ -273,16 +256,14 @@ return require("packer").startup(function(use)
   })
 
   -- SNIPPETS
-  -- use("L3MON4D3/LuaSnip")
-  -- use("saadparwaiz1/cmp_luasnip")
-  use("SirVer/ultisnips")
-  use("honza/vim-snippets")
+  use("L3MON4D3/LuaSnip")
+  use("saadparwaiz1/cmp_luasnip")
 
   -- DEBUG with DAP
-  use({ "mfussenegger/nvim-dap" })
-  use({ "mfussenegger/nvim-dap-python" })
-  use({ "nvim-telescope/telescope-dap.nvim" })
-  use("theHamsta/nvim-dap-virtual-text")
+  -- use({ "mfussenegger/nvim-dap" })
+  -- use({ "mfussenegger/nvim-dap-python" })
+  -- use({ "nvim-telescope/telescope-dap.nvim" })
+  -- use("theHamsta/nvim-dap-virtual-text")
 
   -- use { 'mfussenegger/nvim-dap-python' } -- Python
 end)

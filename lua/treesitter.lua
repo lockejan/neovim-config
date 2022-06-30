@@ -130,16 +130,10 @@ require("nvim-treesitter.configs").setup({
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.jsonc.filetype_to_parsername = "json"
 parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
-parser_config.markdown = {
-  install_info = {
-    url = "https://github.com/ikatyang/tree-sitter-markdown",
-    files = { "src/parser.c", "src/scanner.cc" },
-  },
-}
 
 require("treesitter-context").setup({ enable = true, throttle = true })
 
-vim.cmd([[set foldlevel=20]])
-vim.cmd([[set foldmethod=expr]])
-vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
+-- vim.cmd([[set foldlevel=20]])
+-- vim.cmd([[set foldmethod=expr]])
+-- vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
 vim.cmd([[hi rainbowcol1 guifg=#c678dd]])
