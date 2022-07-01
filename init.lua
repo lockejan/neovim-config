@@ -15,9 +15,11 @@ augroup end ]],
 -- Sensible defaults
 require("settings")
 
+-- impatient
+require("impatient")
+
 -- Setup plugins
 require("plugins")
-require("impatient")
 
 vim.g.onedark_terminal_italics = 1
 vim.cmd([[colorscheme onedark]])

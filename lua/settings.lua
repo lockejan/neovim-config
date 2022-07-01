@@ -1,7 +1,7 @@
 -- Disable neovim python support
 -- vim.g.loaded_python_provider = 0 # default on master
 
-vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
+-- vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
 
 -- Preview incremental substitution
 vim.o.inccommand = "nosplit"
