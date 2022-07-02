@@ -1,7 +1,11 @@
 -- Disable neovim python support
 -- vim.g.loaded_python_provider = 0 # default on master
 
--- vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
+vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
+
+-- opt-in to only rely on lua filetypes and disable filetype.vim
+vim.g.did_load_filetypes = 0
+vim.g.do_filetype_lua = 1
 
 -- Preview incremental substitution
 vim.o.inccommand = "nosplit"
@@ -75,9 +79,10 @@ vim.cmd([[
 ]])
 
 -- go to last loc when opening a buffer
-vim.cmd([[
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
-]])
+-- vim.cmd([[
+-- autocmd BufRead * autocmd FileType <buffer> ++once
+--       \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
+-- ]])
 
 -- ignore filetypes
 vim.opt.wildignore:append("*swp", "*.class", "*.pyc", "*.png", "*.jpg", "*.gif", "*.zip")

@@ -21,6 +21,9 @@ require("nvim-treesitter.configs").setup({
       node_decremental = "grm",
     },
   },
+  endwise = {
+    enable = true,
+  },
   rainbow = {
     enable = true,
     extended_mode = true,

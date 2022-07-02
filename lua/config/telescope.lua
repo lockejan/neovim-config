@@ -45,8 +45,9 @@ require("telescope").setup({
   },
 })
 require("telescope").load_extension("fzf")
+require("telescope").load_extension("projects")
 -- require("telescope").load_extension("repo")
--- require("telescope").load_extension("ultisnips")
+require("telescope").load_extension("ultisnips")
 require("telescope").load_extension("packer")
 -- require("telescope").load_extension("bookmarks")
 
@@ -77,4 +78,5 @@ map("n", "<leader>sB", "<cmd>Telescope git_branches<cr>", { noremap = true })
 -- map("n", "<leader>ss", "<cmd>Telescope git_status<cr>", { noremap = true })
 -- map("n", "<leader>ss", "<cmd>Telescope ultisnips<cr>", { noremap = true })
 map("n", "<leader>sP", "<cmd>Telescope packer<cr>", { noremap = true })
+-- map("n", "<leader>op", "<cmd>Telescope projects<cr>", { noremap = true })
 map("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>", { noremap = true })
