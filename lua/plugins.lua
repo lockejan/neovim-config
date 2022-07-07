@@ -237,7 +237,6 @@ return require("packer").startup(function(use)
   use("SirVer/ultisnips")
   use("honza/vim-snippets")
 
-
   -- DEBUG
   use({ "mfussenegger/nvim-dap" })
   use({ "mfussenegger/nvim-dap-python" })

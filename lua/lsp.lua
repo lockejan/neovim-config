@@ -29,7 +29,7 @@ local nvim_lsp = require("lspconfig")
 -- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
 
 -- Your custom attach function for nvim-lspconfig goes here.
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
@@ -41,7 +41,7 @@ local on_attach = function(client, bufnr)
   require("illuminate").on_attach(client)
 
   -- Mappings
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  local bufopts = { silent = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)

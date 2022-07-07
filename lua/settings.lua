@@ -4,8 +4,8 @@
 vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
 
 -- opt-in to only rely on lua filetypes and disable filetype.vim
-vim.g.did_load_filetypes = 0
-vim.g.do_filetype_lua = 1
+-- vim.g.did_load_filetypes = 0
+-- vim.g.do_filetype_lua = 1
 
 -- Preview incremental substitution
 vim.o.inccommand = "nosplit"
@@ -14,7 +14,7 @@ vim.o.inccommand = "nosplit"
 vim.wo.number = true
 
 -- Decrease updatetime of swap
-vim.o.updatetime = 250
+vim.o.updatetime = 200
 -- vim.wo.signcolumn = "yes"
 
 -- vim.api.nvim_set_option("ruler", true) --" show the cursor position all the time (default)
@@ -30,7 +30,7 @@ vim.o.incsearch = true
 -- vim.o.joinspaces = false -- No double spaces with join after a dot (default)
 vim.o.lazyredraw = true -- faster macro execute
 vim.o.list = true -- Show some invisible characters (tabs...
-vim.o.mouse = "a" -- enable mouse mode
+-- vim.o.mouse = "a" -- enable mouse mode
 -- vim.o.pumblend = 10 -- Popup blend
 vim.o.pumheight = 30 -- Maximum number of entries in a popup
 vim.o.scrolloff = 8 -- Minumum lines to keep above and below cursor
@@ -52,15 +52,15 @@ vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.o.wrap = false -- Disable line wrap
 
 vim.opt.spell = false
-vim.opt.spelllang = { "en_us", "de_de" }
+-- vim.opt.spelllang = { "en_us", "de_de" }
 
 -- path
-vim.cmd([[ set path+=** ]])
+-- vim.cmd([[ set path+=** ]])
 -- vim.cmd([[ autocmd FileType netrw setl bufhidden=delete ]])
 
 --Add spellchecking
-vim.cmd([[ autocmd FileType gitcommit setlocal spell ]])
-vim.cmd([[ autocmd FileType markdown setlocal spell ]])
+-- vim.cmd([[ autocmd FileType gitcommit setlocal spell ]])
+-- vim.cmd([[ autocmd FileType markdown setlocal spell ]])
 
 -- autosave when leaving insert mode
 -- vim.cmd([[
