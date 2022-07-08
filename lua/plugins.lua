@@ -1,16 +1,19 @@
 vim.cmd([[packadd packer.nvim]])
 
 return require("packer").startup(function(use)
-  -- Packer can manage itself as an optional plugin
-  use({ "wbthomason/packer.nvim", opt = true })
-
   -- improve startup
   use({ "lewis6991/impatient.nvim" })
+
+  -- Packer can manage itself as an optional plugin
+  use({ "wbthomason/packer.nvim", opt = true })
 
   -- Color schemes
   use("shaunsingh/nord.nvim")
   use("sainnhe/everforest")
   use("navarasu/onedark.nvim")
+
+  -- multicursors
+  use({ "mg979/vim-visual-multi" })
 
   -- Fuzzy finding stuff via telescope
   use("fhill2/telescope-ultisnips.nvim")
@@ -29,7 +32,7 @@ return require("packer").startup(function(use)
   use("neovim/nvim-lspconfig")
   -- use("tpope/vim-projectionist")
   use("vim-test/vim-test")
-  use("mfussenegger/nvim-jdtls")
+  -- use("mfussenegger/nvim-jdtls")
 
   -- indentation guides
   use("lukas-reineke/indent-blankline.nvim")
@@ -238,9 +241,9 @@ return require("packer").startup(function(use)
   use("honza/vim-snippets")
 
   -- DEBUG
-  use({ "mfussenegger/nvim-dap" })
-  use({ "mfussenegger/nvim-dap-python" })
-  use({ "nvim-telescope/telescope-dap.nvim" })
-  use("theHamsta/nvim-dap-virtual-text")
+  -- use({ "mfussenegger/nvim-dap" })
+  -- use({ "mfussenegger/nvim-dap-python" })
+  -- use({ "nvim-telescope/telescope-dap.nvim" })
+  -- use("theHamsta/nvim-dap-virtual-text")
   -- use({ "puremourning/vimspector" })
 end)

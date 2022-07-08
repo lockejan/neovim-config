@@ -46,18 +46,12 @@ require("telescope").setup({
 })
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("projects")
--- require("telescope").load_extension("repo")
 require("telescope").load_extension("ultisnips")
 require("telescope").load_extension("packer")
 -- require("telescope").load_extension("bookmarks")
 
 --Add leader shortcuts
 map("n", "<leader><space>", "<cmd>Telescope buffers<CR>")
--- map(
---   "n",
---   "<leader>gd",
---   "<cmd>lua require'telescope'.extensions.repo.list{fd_opts=[[]]}<CR>"
--- )
 map("n", "<leader>ff", [[<cmd>lua require('telescope.builtin').fd({previewer = false})<CR>]])
 map("n", "<leader>sh", "<cmd>Telescope help_tags<cr>")
 map("n", "<leader>sp", "<cmd>Telescope live_grep<cr>")
@@ -70,7 +64,7 @@ map("n", "<leader>sc", "<cmd>Telescope git_commits<cr>")
 map("n", "<leader>sd", "<cmd>Telescope git_bcommits<cr>")
 map("n", "<leader>sB", "<cmd>Telescope git_branches<cr>")
 -- map("n", "<leader>ss", "<cmd>Telescope git_status<cr>")
--- map("n", "<leader>ss", "<cmd>Telescope ultisnips<cr>")
+map("n", "<leader>us", "<cmd>Telescope ultisnips<cr>")
 map("n", "<leader>sP", "<cmd>Telescope packer<cr>")
--- map("n", "<leader>op", "<cmd>Telescope projects<cr>")
+map("n", "<leader>op", "<cmd>Telescope projects<cr>")
 map("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>")

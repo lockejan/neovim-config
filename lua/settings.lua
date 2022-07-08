@@ -3,10 +3,6 @@
 
 vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
 
--- opt-in to only rely on lua filetypes and disable filetype.vim
--- vim.g.did_load_filetypes = 0
--- vim.g.do_filetype_lua = 1
-
 -- Preview incremental substitution
 vim.o.inccommand = "nosplit"
 
