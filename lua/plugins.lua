@@ -8,12 +8,14 @@ return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim", opt = true })
 
   -- Color schemes
-  use("shaunsingh/nord.nvim")
-  use("sainnhe/everforest")
+  -- use("shaunsingh/nord.nvim")
+  -- use("andersevenrud/nordic.nvim")
+  -- use("glepnir/zephyr-nvim")
+  -- use("sainnhe/everforest")
   use("navarasu/onedark.nvim")
 
   -- multicursors
-  use({ "mg979/vim-visual-multi" })
+  -- use({ "mg979/vim-visual-multi" })
 
   -- Fuzzy finding stuff via telescope
   use("fhill2/telescope-ultisnips.nvim")
@@ -31,7 +33,11 @@ return require("packer").startup(function(use)
   -- simplify usage of lsps
   use("neovim/nvim-lspconfig")
   -- use("tpope/vim-projectionist")
+
+  -- execute tests
   use("vim-test/vim-test")
+
+  -- java lsp support
   -- use("mfussenegger/nvim-jdtls")
 
   -- indentation guides
@@ -46,6 +52,7 @@ return require("packer").startup(function(use)
 
   -- use({ "j-hui/fidget.nvim" })
   -- use "nvim-lua/lsp-status.nvim"
+  -- navigate and highlight symbols via lsp
   use({ "RRethy/vim-illuminate" })
 
   -- improved and extended lsp integration
@@ -80,7 +87,7 @@ return require("packer").startup(function(use)
       "andersevenrud/cmp-tmux",
       "dmitmel/cmp-digraphs",
       "hrsh7th/cmp-nvim-lsp-signature-help",
-      "davidsierradz/cmp-conventionalcommits",
+      -- "davidsierradz/cmp-conventionalcommits",
     },
   })
   -- clojure
@@ -118,6 +125,7 @@ return require("packer").startup(function(use)
 
   -- unix commands for vim
   use("tpope/vim-eunuch")
+  -- quickfix nav mappings and more
   use("tpope/vim-unimpaired")
 
   -- lua file explorer
@@ -125,6 +133,7 @@ return require("packer").startup(function(use)
 
   -- autochange to project root dir
   -- use("airblade/vim-rooter")
+  -- recent project navigation and chdir to project rooter
   use({
     "ahmedkhalf/project.nvim",
     config = function()
@@ -137,8 +146,8 @@ return require("packer").startup(function(use)
   use("tpope/vim-fugitive")
 
   -- git history navigation
-  use("junegunn/gv.vim")
-  use("sindrets/diffview.nvim")
+  -- use("junegunn/gv.vim")
+  -- use("sindrets/diffview.nvim")
 
   -- Browse git-repos on GH,...
   -- use("tpope/vim-rhubarb")
