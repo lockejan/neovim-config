@@ -77,6 +77,7 @@ local servers = {
   -- "intelephense",
   "rnix",
   "pyright",
+  "vimls",
 }
 
 --Enable (broadcasting) snippet capability for completion

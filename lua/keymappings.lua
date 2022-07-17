@@ -156,8 +156,17 @@ ToggleMouse = function()
     print("Mouse enabled")
   end
 end
-
 map("n", "<leader>tm", "<cmd>lua ToggleMouse()<cr>")
+
+-- Quickly inspect spell errors on demand
+ToggleSpell = function()
+  if vim.o.spell == true then
+    vim.o.spell = false
+  else
+    vim.o.spell = true
+  end
+end
+map("n", "<leader>ts", "<cmd>lua ToggleSpell()<cr>")
 
 --Disable numbers in terminal mode
 vim.cmd([[
@@ -171,8 +180,8 @@ vim.cmd([[
 map("n", "<leader>gh", ":h <C-R><C-W><CR>")
 
 -- duplicate line
-map("n", "<A-d>", ":t.<CR>")
-map("v", "<A-d>", ":t.<CR>")
+map("n", "<A-d>", ":t.-1<CR>")
+map("v", "<A-d>", ":t.-1<CR>")
 
 -- autoexpand current file dir
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'

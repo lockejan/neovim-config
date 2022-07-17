@@ -1,3 +1,6 @@
+-- netrw split size
+vim.g.netrw_winsize = 30
+
 -- Disable neovim python support
 -- vim.g.loaded_python_provider = 0 # default on master
 
@@ -47,16 +50,21 @@ vim.o.colorcolumn = "80"
 vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.o.wrap = false -- Disable line wrap
 
-vim.opt.spell = false
--- vim.opt.spelllang = { "en_us", "de_de" }
+-- helllo
+
+vim.o.spell = false
+vim.opt.spelllang = { "en_gb", "de_de" }
+
+-- use macOS word list for word completion lookups
+vim.o.dictionary = "/usr/share/dict/words"--[[ ,~/.local/share/nvim/site/spell/de.utf-8.spl ]]
 
 -- path
 -- vim.cmd([[ set path+=** ]])
 -- vim.cmd([[ autocmd FileType netrw setl bufhidden=delete ]])
 
---Add spellchecking
--- vim.cmd([[ autocmd FileType gitcommit setlocal spell ]])
--- vim.cmd([[ autocmd FileType markdown setlocal spell ]])
+-- Add spellchecking
+vim.cmd([[ autocmd FileType gitcommit setlocal spell ]])
+vim.cmd([[ autocmd FileType markdown setlocal spell ]])
 
 -- autosave when leaving insert mode
 -- vim.cmd([[

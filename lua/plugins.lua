@@ -26,7 +26,7 @@ return require("packer").startup(function(use)
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
   })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-  -- use({ "jremmen/vim-ripgrep" })
+  use({ "jremmen/vim-ripgrep" })
 
   -- essentials: telescope, nvim-lspconfig, nvim-dap
   -- LSP and completion
@@ -100,7 +100,7 @@ return require("packer").startup(function(use)
   use("onsails/lspkind-nvim")
 
   -- sidebar with ooutlines
-  -- use("simrat39/symbols-outline.nvim")
+  use("simrat39/symbols-outline.nvim")
 
   -- quick LSP warnings+errors navigation
   use({
@@ -110,7 +110,7 @@ return require("packer").startup(function(use)
 
   -- Lua development
   use("folke/lua-dev.nvim")
-  -- use("bfredl/nvim-luadev")
+  use("bfredl/nvim-luadev")
 
   -- custom formatter on save
   use("mhartington/formatter.nvim")
@@ -144,13 +144,14 @@ return require("packer").startup(function(use)
   -- Git features
   -- git wrapper on steroids
   use("tpope/vim-fugitive")
+  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 
   -- git history navigation
   -- use("junegunn/gv.vim")
-  -- use("sindrets/diffview.nvim")
+  use("sindrets/diffview.nvim")
 
   -- Browse git-repos on GH,...
-  -- use("tpope/vim-rhubarb")
+  use("tpope/vim-rhubarb")
 
   -- file change indication for git
   use({

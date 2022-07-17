@@ -42,7 +42,7 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({
       select = true,
       behavior = cmp.ConfirmBehavior.Replace,
@@ -58,7 +58,7 @@ cmp.setup({
     -- { name = "conventionalcommits" },
     { name = "buffer" },
     -- { name = "spell", keyword_length = 3 },
-    { name = "digraphs" },
+    -- { name = "digraphs" },
     -- { name = "conjure" },
     { name = "tmux" },
     { name = "ultisnips" },
