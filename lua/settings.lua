@@ -1,5 +1,5 @@
 -- netrw split size
-vim.g.netrw_winsize = 30
+vim.g.netrw_winsize = 20
 
 -- Disable neovim python support
 -- vim.g.loaded_python_provider = 0 # default on master
