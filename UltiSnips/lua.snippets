@@ -3,3 +3,9 @@ vim.cmd([[
     autocmd ${1:"event"} ${2:"filetype"} ${2:${VISUAL}:"cmd"}
 ]])
 endsnippet
+
+snippet conf "call plugin setup"
+config = function ()
+        require('${1:${VISUAL}"foo"}').setup()
+    end
+endsnippet

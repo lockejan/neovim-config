@@ -48,7 +48,7 @@ map("n", "<leader><C-s>", ":w | luafile %<CR>")
 map("n", "<C-s>", ":w<CR>")
 map("n", "<leader>ls", ":ls<CR>")
 map("n", "<leader>cd", ":cd %:p:h<CR>")
-map("n", "<leader>w", ":write<CR>")
+-- map("n", "<leader>w", ":write<CR>")
 
 -- Undo break points
 map("i", ",", ",<c-g>u")
@@ -66,14 +66,15 @@ map("v", ">", ">gv")
 -- Quick command mode
 -- map("n", "<CR>", ":")
 map("n", "<leader>of", ":Telescope oldfiles<CR>")
+map("n", "<leader>ef", ":Lexplore<CR>")
 
 vim.o.wildcharm = 9
 -- vim.o.wildcharm = vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-i>", true, false, true), "n", false)
 -- vim.cmd([[ set wildcharm=<C-i> ]])
 -- vim.opt.wildcharm = vim.fn.char2nr("^I")
-map("n", "<leader>bb", ":buffer<Space><C-i>")
-map("n", "<leader>bd", ":bdelete<CR>")
-map("n", "<leader>bw", ":%bd|e#|bd#<CR>")
+-- map("n", "<leader>bb", ":buffer<Space><C-i>")
+-- map("n", "<leader>db", ":bdelete<CR>")
+-- map("n", "<leader>wb", ":%bd|e#|bd#<CR>")
 map("n", "<leader><C-f>", ":set ft=<C-i>")
 
 -- szw/vim-maximizer
@@ -102,20 +103,20 @@ map("n", "<leader>te", "<cmd>tabnew<cr>")
 -- custom replace
 -- map("n", "<silent> s*", "<cmd>let @/='<'.expand('<cword>').'>'<cr>cgn")
 
--- fugitive
-map("n", "<leader>gs", ":G<CR>")
-map("n", "<leader>gb", ":G praise<CR>")
-map("n", "<leader>gc", ":G commit<cr>")
-map("n", "<leader>ga", ":G commit --amend<cr>")
+-- Git related mappings
+map("n", "<leader>gs", ":Neogit<CR>")
+map("n", "<leader>gc", ":Neogit commit<cr>")
+-- map("n", "<leader>gb", ":G praise<CR>")
+-- map("n", "<leader>ga", ":G commit --amend<cr>")
 -- map("n", "<leader>gd", ":tabe %<cr>:Gvdiffsplit!<CR>")
-map("n", "<leader>gD", ":DiffviewOpen<cr>")
-map("n", "<leader>gF", ":DiffviewFileHistory<cr>")
-map("n", "<leader>gtd", ":G team disable<cr>")
-map("n", "<leader>gte", ":G team ")
+-- map("n", "<leader>gD", ":DiffviewOpen<cr>")
+-- map("n", "<leader>gF", ":DiffviewFileHistory<cr>")
+-- map("n", "<leader>gtd", ":G team disable<cr>")
+-- map("n", "<leader>gte", ":G team ")
 -- map("n", "<leader>gm", ":tabe %<cr>:Gvdiffsplit! main<CR>")
 -- map("n", "<leader>gM", ":DiffviewOpen main<cr>")
-map("n", "<leader>gl", ":Git log<cr>")
-map("n", "<leader>gp", ":Git push<cr>")
+-- map("n", "<leader>gl", ":Git log<cr>")
+-- map("n", "<leader>gp", ":Git push<cr>")
 map("n", "<leader>ll", ":diffget LOCAL<cr>")
 map("n", "<leader>rr", ":diffget REMOTE<cr>")
 
@@ -183,6 +184,10 @@ map("n", "<leader>gh", ":h <C-R><C-W><CR>")
 map("n", "<A-d>", ":t.-1<CR>")
 map("v", "<A-d>", ":t.-1<CR>")
 
+-- Format selection
+map("v", "<A-f>", ":FormatWrite<CR>")
+map("n", "<A-f>", ":FormatWrite<CR>")
+
 -- autoexpand current file dir
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
@@ -191,9 +196,17 @@ map("n", "<leader>ds", ":windo diffthis<CR>")
 map("n", "<leader>df", ":Gitsigns diffthis<CR>")
 map("n", "<leader>do", ":diffoff!<CR>")
 
+map("n", "<leader>dc", ":DiffviewClose<CR>")
+map("n", "<leader>dv", ":DiffviewFileHistory %<CR>")
+map("v", "<leader>dv", ":'<,'>DiffviewFileHistory<CR>")
+
 -- ansible vault
 map("n", "<leader>vd", ":!ansible-vault decrypt %<CR>")
 map("n", "<leader>ve", ":!ansible-vault encrypt %<CR>")
 map("n", "<leader>vv", ":!ansible-vault view %<CR>")
 
 map("n", "<leader>so", ":SymbolsOutline<CR>")
+
+-- lir explorer
+map("n", "<leader>ee", ":lua require'lir.float'.toggle()<CR>")
+map("n", "<leader>tt", ":FloatermToggle<CR>")

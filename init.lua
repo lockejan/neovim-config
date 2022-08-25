@@ -4,33 +4,24 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
 
-vim.api.nvim_exec(
-  [[ augroup Packer
-autocmd!
-autocmd BufWritePost init.lua PackerCompile
-augroup end ]],
-  false
-)
-
--- Sensible defaults
-require("settings")
-
 -- impatient
 require("impatient")
 
 -- Setup plugins
 require("plugins")
 
-vim.g.onedark_terminal_italics = 1
-vim.cmd([[colorscheme onedark]])
+-- Sensible defaults
+require("settings")
+
 -- Core
 require("keymappings")
 require("lsp")
 require("treesitter")
+require("colors")
 
 -- Plugin config
 require("config.cmp")
---require("config.colorizer")
+require("config.colorizer")
 require("config.comment")
 require("config.diffview")
 -- require("config.fidget")
@@ -38,6 +29,7 @@ require("config.formatter")
 require("config.gitsigns")
 require("config.indent-blankline")
 require("config.lualine")
+require("config.nvim-dap")
 -- require("config.nvim-tree")
 require("config.telescope")
 require("config.trouble")

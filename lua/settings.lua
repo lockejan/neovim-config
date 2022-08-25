@@ -3,6 +3,9 @@ vim.g.netrw_winsize = 20
 
 -- Disable neovim python support
 -- vim.g.loaded_python_provider = 0 # default on master
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
 
 vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python"
 

@@ -56,14 +56,21 @@ cmp.setup({
     { name = "nvim_lua" },
     { name = "path" },
     -- { name = "conventionalcommits" },
-    { name = "buffer" },
+    {
+      name = "buffer",
+      keyword_length = 2,
+      priority = 50,
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end,
+      },
+    },
     -- { name = "spell", keyword_length = 3 },
     -- { name = "digraphs" },
-    -- { name = "conjure" },
+    { name = "conjure" },
     { name = "tmux" },
     { name = "ultisnips" },
-  }, {
-    { name = "buffer", keyword_length = 2, priority = 50 },
   }),
   experimental = {
     native_menu = false,

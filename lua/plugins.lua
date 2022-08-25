@@ -1,7 +1,18 @@
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
 vim.cmd([[packadd packer.nvim]])
 
+require("packer").init({ max_jobs = 16 })
 return require("packer").startup({
   function(use)
+    -- Packer can manage itself as an optional plugin
+    use({ "wbthomason/packer.nvim", opt = true })
+
     -- improve startup
     use({ "lewis6991/impatient.nvim" })
 
@@ -9,15 +20,15 @@ return require("packer").startup({
     use({ "wbthomason/packer.nvim", opt = true })
 
     -- Color schemes
-    -- use("shaunsingh/nord.nvim")
+    use("folke/tokyonight.nvim")
+    use("shaunsingh/nord.nvim")
     -- use("andersevenrud/nordic.nvim")
     use("glepnir/zephyr-nvim")
-    -- use("sainnhe/everforest")
+    use("rebelot/kanagawa.nvim")
+    use("sainnhe/everforest")
     use("navarasu/onedark.nvim")
-
-    -- multicursors
-    use({ "mg979/vim-visual-multi" })
-
+    use("ellisonleao/gruvbox.nvim")
+    --
     -- Fuzzy finding stuff via telescope
     use("fhill2/telescope-ultisnips.nvim")
     use("nvim-telescope/telescope-packer.nvim")
@@ -37,6 +48,7 @@ return require("packer").startup({
 
     -- execute tests
     use("vim-test/vim-test")
+    vim.g["test#strategy"] = "neovim"
 
     -- java lsp support
     -- use("mfussenegger/nvim-jdtls")
@@ -82,21 +94,28 @@ return require("packer").startup({
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lua",
+        -- "hrsh7th/nvim-pasta",
         "hrsh7th/cmp-path",
         "quangnguyen30192/cmp-nvim-ultisnips",
         "David-Kunz/cmp-npm",
         "andersevenrud/cmp-tmux",
         "dmitmel/cmp-digraphs",
         "hrsh7th/cmp-nvim-lsp-signature-help",
+        -- "rcarriga/cmp-dap",
+        -- "KadoBOT/cmp-plugins", -- sources for nvim plugins
         -- "davidsierradz/cmp-conventionalcommits",
+        use("PaterJason/cmp-conjure"),
       },
     })
     -- clojure
-    -- use("Olical/conjure")
+    use("Olical/conjure")
+    -- use("liquidz/vim-iced")
 
     -- db interaction within vim
     -- use("tpope/vim-dadbod")
 
+    -- LSP TypeScript enhancements
+    use({ "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils" })
     -- pictograms for LSP completion
     use("onsails/lspkind-nvim")
 
@@ -142,10 +161,20 @@ return require("packer").startup({
       end,
     })
 
-    -- Git features
+    -- Git Features
     -- git wrapper on steroids
-    use("tpope/vim-fugitive")
-    use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+    -- use("tpope/vim-fugitive")
+    use({
+      "TimUntersberger/neogit",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("neogit").setup({
+          integrations = {
+            diffview = true,
+          },
+        })
+      end,
+    })
 
     -- git history navigation
     -- use("junegunn/gv.vim")
@@ -212,6 +241,7 @@ return require("packer").startup({
     -- use("christoomey/vim-tmux-navigator")
 
     -- use("norcalli/nvim-colorizer.lua")
+    use("NvChad/nvim-colorizer.lua")
 
     -- Helpers + Cheatsheet
     use("folke/which-key.nvim")
@@ -252,12 +282,70 @@ return require("packer").startup({
     use("SirVer/ultisnips")
     use("honza/vim-snippets")
 
+
+    -- GH browser
+    use({
+      "pwntester/octo.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "kyazdani42/nvim-web-devicons",
+      },
+      config = function()
+        require("octo").setup()
+      end,
+    })
+    -- use { 'mfussenegger/nvim-lint' }
     -- DEBUG
-    -- use({ "mfussenegger/nvim-dap" })
-    -- use({ "mfussenegger/nvim-dap-python" })
+    -- Debugging
+    use({ "mfussenegger/nvim-dap" })
+    use({
+      "leoluz/nvim-dap-go",
+      config = function()
+        require("dap-go").setup()
+      end,
+    })
+    use({
+      "rcarriga/nvim-dap-ui",
+      config = function()
+        require("dapui").setup()
+      end,
+    })
+    -- use({ "mfussenegger/nvim-dap-python", config = function ()
+    --         require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+    --     end })
     -- use({ "nvim-telescope/telescope-dap.nvim" })
-    -- use("theHamsta/nvim-dap-virtual-text")
-    -- use({ "puremourning/vimspector" })
+    use({
+      "theHamsta/nvim-dap-virtual-text",
+      config = function()
+        require("nvim-dap-virtual-text").setup()
+      end,
+    })
+    -- use({ "https://github.com/HiPhish/debugpy.nvim" })
+    -- use({ "jbyuki/one-small-step-for-vimkind" })
+    use("nvim-treesitter/playground")
+    -- use("gpanders/nvim-parinfer")
+    --  use("ggandor/leap.nvim") -- quick moves
+
+    use({ "AndrewRadev/splitjoin.vim", keys = { "gJ", "gS" } })
+    use({ "AndrewRadev/switch.vim" })
+
+    -- use("cormacrelf/dark-notify")
+    -- use("jubnzv/virtual-types.nvim") -- virtaul type hints
+    -- use("weilbith/nvim-code-action-menu")
+    use({
+      "kosayoda/nvim-lightbulb",
+      requires = "antoinemadec/FixCursorHold.nvim",
+    }) -- indicate code actions
+
+    -- file explorer
+    use({ "tamago324/lir.nvim" })
+
+    -- floating window with terminal
+    use("voldikss/vim-floaterm")
+
+    -- multicursors
+    use({ "mg979/vim-visual-multi" })
   end,
   config = {
     display = {
