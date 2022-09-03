@@ -73,7 +73,7 @@ vim.o.wildcharm = 9
 -- vim.cmd([[ set wildcharm=<C-i> ]])
 -- vim.opt.wildcharm = vim.fn.char2nr("^I")
 -- map("n", "<leader>bb", ":buffer<Space><C-i>")
--- map("n", "<leader>db", ":bdelete<CR>")
+map("n", "<leader>bd", ":bdelete<CR>")
 -- map("n", "<leader>wb", ":%bd|e#|bd#<CR>")
 map("n", "<leader><C-f>", ":set ft=<C-i>")
 

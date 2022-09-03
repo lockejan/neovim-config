@@ -21,6 +21,7 @@ require("colors")
 
 -- Plugin config
 require("config.cmp")
+require("config.lir")
 require("config.colorizer")
 require("config.comment")
 require("config.diffview")
@@ -34,3 +35,4 @@ require("config.nvim-dap")
 require("config.telescope")
 require("config.trouble")
 require("config.which-key")
+require("perfanno").setup()

@@ -38,11 +38,14 @@ return require("packer").startup({
       requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
     })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+    -- use({ "ibhagwan/fzf-lua" })
+    -- use({ "vijaymarupudi/nvim-fzf" })
     use({ "jremmen/vim-ripgrep" })
 
     -- essentials: telescope, nvim-lspconfig, nvim-dap
     -- LSP and completion
     -- simplify usage of lsps
+    -- use("williamboman/mason.nvim")
     use("neovim/nvim-lspconfig")
     -- use("tpope/vim-projectionist")
 
@@ -282,6 +285,12 @@ return require("packer").startup({
     use("SirVer/ultisnips")
     use("honza/vim-snippets")
 
+    -- TODO TEST
+    --  use { 'rcarriga/nvim-notify' }
+    -- use { 'jamestthompson3/nvim-remote-containers' } -- Develop inside docker containers
+    -- use { 'CRAG666/code_runner.nvim' } -- executor / code runner
+    -- use {'nvim-treesitter/nvim-tree-docs'} -- add docs with treesitter
+    --  use {'Chaitanyabsprip/present.nvim'}
 
     -- GH browser
     use({
@@ -292,7 +301,7 @@ return require("packer").startup({
         "kyazdani42/nvim-web-devicons",
       },
       config = function()
-        require("octo").setup()
+        require("octo").setup({default_remote = {"upstream", "origin","source","lockejan"}})
       end,
     })
     -- use { 'mfussenegger/nvim-lint' }
@@ -325,7 +334,7 @@ return require("packer").startup({
     -- use({ "jbyuki/one-small-step-for-vimkind" })
     use("nvim-treesitter/playground")
     -- use("gpanders/nvim-parinfer")
-    --  use("ggandor/leap.nvim") -- quick moves
+     use("ggandor/leap.nvim") -- quick moves
 
     use({ "AndrewRadev/splitjoin.vim", keys = { "gJ", "gS" } })
     use({ "AndrewRadev/switch.vim" })
@@ -346,6 +355,49 @@ return require("packer").startup({
 
     -- multicursors
     use({ "mg979/vim-visual-multi" })
+
+    use({ "t-troebst/perfanno.nvim" })
+    -- use("windwp/nvim-spectre")
+    -- improve snap for autocmd relying plugins
+    -- use({
+    --   "antoinemadec/FixCursorHold.nvim",
+    --   run = function()
+    --     vim.g.curshold_updatime = 1000
+    --   end,
+    -- })
+
+    -- use({
+    --   "NTBBloodbath/rest.nvim",
+    --   requires = { "nvim-lua/plenary.nvim" },
+    --   config = function()
+    --     require("rest-nvim").setup({
+    --       -- Open request results in a horizontal split
+    --       result_split_horizontal = false,
+    --       -- Keep the http file buffer above|left when split horizontal|vertical
+    --       result_split_in_place = false,
+    --       -- Skip SSL verification, useful for unknown certificates
+    --       skip_ssl_verification = false,
+    --       -- Highlight request on run
+    --       highlight = {
+    --         enabled = true,
+    --         timeout = 150,
+    --       },
+    --       result = {
+    --         -- toggle showing URL, HTTP info, headers at top the of result window
+    --         show_url = true,
+    --         show_http_info = true,
+    --         show_headers = true,
+    --       },
+    --       -- Jump to request line on run
+    --       jump_to_request = false,
+    --       env_file = ".env",
+    --       custom_dynamic_variables = {},
+    --       yank_dry_run = true,
+    --     })
+    --   end,
+    -- })
+
+    -- use({ "neovimhaskell/haskell-vim", ft = "haskell" })
   end,
   config = {
     display = {
