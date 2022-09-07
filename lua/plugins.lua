@@ -5,10 +5,11 @@ vim.cmd([[
   augroup end
 ]])
 
-vim.cmd([[packadd packer.nvim]])
+-- vim.cmd([[packadd packer.nvim]])
+local packer = require("packer")
+packer.init({ max_jobs = 16 })
 
-require("packer").init({ max_jobs = 16 })
-return require("packer").startup({
+return packer.startup({
   function(use)
     -- Packer can manage itself as an optional plugin
     use({ "wbthomason/packer.nvim", opt = true })
