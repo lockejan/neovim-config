@@ -123,3 +123,17 @@ vim.cmd("au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup no
 
 -- detect djangohtml
 vim.cmd("au BufNewFile,BufRead *.html set filetype=htmldjango")
+
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+
+RELOAD = function(...)
+  return require("plenary.reload").reload_module(...)
+end
+
+R = function(name)
+  RELOAD(name)
+  return require(name)
+end

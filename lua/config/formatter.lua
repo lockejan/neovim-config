@@ -49,7 +49,7 @@ require("formatter").setup({
     nix = {
       function()
         return {
-          exe = "nixfmt",
+          exe = "nixpkgs-fmt",
           args = {},
           stdin = true,
         }

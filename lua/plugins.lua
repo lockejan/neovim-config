@@ -17,8 +17,8 @@ return packer.startup({
     -- improve startup
     use({ "lewis6991/impatient.nvim" })
 
-    -- Packer can manage itself as an optional plugin
-    use({ "wbthomason/packer.nvim", opt = true })
+    use({ "milisims/nvim-luaref" })
+    use({ "nanotee/luv-vimdocs" })
 
     -- Color schemes
     use("folke/tokyonight.nvim")
@@ -302,7 +302,7 @@ return packer.startup({
         "kyazdani42/nvim-web-devicons",
       },
       config = function()
-        require("octo").setup({default_remote = {"upstream", "origin","source","lockejan"}})
+        require("octo").setup({ default_remote = { "upstream", "origin", "source", "lockejan" } })
       end,
     })
     -- use { 'mfussenegger/nvim-lint' }
@@ -335,7 +335,7 @@ return packer.startup({
     -- use({ "jbyuki/one-small-step-for-vimkind" })
     use("nvim-treesitter/playground")
     -- use("gpanders/nvim-parinfer")
-     use("ggandor/leap.nvim") -- quick moves
+    use("ggandor/leap.nvim") -- quick moves
 
     use({ "AndrewRadev/splitjoin.vim", keys = { "gJ", "gS" } })
     use({ "AndrewRadev/switch.vim" })
