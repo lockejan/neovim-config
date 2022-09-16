@@ -19,6 +19,13 @@ return packer.startup({
 
     use({ "milisims/nvim-luaref" })
     use({ "nanotee/luv-vimdocs" })
+    --  use({'hkupty/runes.nvim'}) -- test-framework for nvim-lua-plugins
+    -- homecooked
+    use({ "~/plugins/broccoli.nvim" })
+    -- ui tool to interact with ansible-vault
+    -- use ({ '~/plugins/ansible.nvim' })
+    -- ui tool to interact with git-team
+    -- use ({ '~/plugins/git-team.nvim' })
 
     -- Color schemes
     use("folke/tokyonight.nvim")
