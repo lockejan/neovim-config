@@ -17,6 +17,7 @@ return packer.startup({
     -- improve startup
     use({ "lewis6991/impatient.nvim" })
 
+    use({ "mfussenegger/nvim-lint" })
     use({ "milisims/nvim-luaref" })
     use({ "nanotee/luv-vimdocs" })
     --  use({'hkupty/runes.nvim'}) -- test-framework for nvim-lua-plugins
@@ -62,7 +63,7 @@ return packer.startup({
     vim.g["test#strategy"] = "neovim"
 
     -- java lsp support
-    -- use("mfussenegger/nvim-jdtls")
+    use("mfussenegger/nvim-jdtls")
 
     -- indentation guides
     use("lukas-reineke/indent-blankline.nvim")
@@ -341,10 +342,11 @@ return packer.startup({
     -- use({ "https://github.com/HiPhish/debugpy.nvim" })
     -- use({ "jbyuki/one-small-step-for-vimkind" })
     use("nvim-treesitter/playground")
-    -- use("gpanders/nvim-parinfer")
+    use("gpanders/nvim-parinfer")
     use("ggandor/leap.nvim") -- quick moves
 
     use({ "AndrewRadev/splitjoin.vim", keys = { "gJ", "gS" } })
+    -- use gs to switch predefined cases, e.g. booleans
     use({ "AndrewRadev/switch.vim" })
 
     -- use("cormacrelf/dark-notify")

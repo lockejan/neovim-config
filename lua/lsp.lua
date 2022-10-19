@@ -39,7 +39,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings
-  local bufopts = { silent = true, buffer = bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -55,11 +55,17 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
   vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", bufopts)
-  vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set("n", "<space>f", function()
+    vim.lsp.buf.format({ async = true })
+  end, bufopts)
 end
 
+local lsp_flags = {
+  debounce_text_changes = 150,
+}
+
 local servers = {
-  "ansiblels",
+  -- "ansiblels",
   "bashls",
   "clangd",
   -- "clojure_lsp",
@@ -79,13 +85,14 @@ local servers = {
 
 --Enable (broadcasting) snippet capability for completion
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 for _, server in pairs(servers) do
   nvim_lsp[server].setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    flags = lsp_flags,
   })
 end
 
@@ -93,24 +100,37 @@ nvim_lsp.tsserver.setup({
   init_options = require("nvim-lsp-ts-utils").init_options,
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = lsp_flags,
+})
+
+local node_mods =
+  "/Users/lockejan/dotfiles/home-manager/configs/nvim/node_modules/@ansible/ansible-language-server/bin/"
+nvim_lsp.ansiblels.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = lsp_flags,
+  cmd = { node_mods .. "ansible-language-server", "--stdio" },
 })
 
 local pid = vim.fn.getpid()
 nvim_lsp.omnisharp.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = lsp_flags,
   cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
 })
 
 nvim_lsp.rust_analyzer.setup({
   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
   capabilities = capabilities,
+  flags = lsp_flags,
   on_attach = on_attach,
 })
 
 nvim_lsp.yamlls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = lsp_flags,
   settings = {
     yaml = {
       schemas = {
@@ -124,6 +144,7 @@ nvim_lsp.yamlls.setup({
 nvim_lsp.jsonls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = lsp_flags,
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
@@ -136,6 +157,7 @@ nvim_lsp.jsonls.setup({
 --   lspconfig = {
 --     on_attach = on_attach,
 --     capabilities = capabilities,
+-- flags = lsp_flags,
 --     cmd = { "lua-language-server" },
 --   },
 -- })
@@ -148,6 +170,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 nvim_lsp.sumneko_lua.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = lsp_flags,
   settings = {
     Lua = {
       runtime = {
