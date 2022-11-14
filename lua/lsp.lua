@@ -12,6 +12,8 @@ vim.diagnostic.config({
     source = "always", -- Or "if_many"
   },
   float = {
+    style = "minimal",
+    border = "rounded",
     source = "always", -- Or "if_many"
   },
 })
