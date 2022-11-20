@@ -137,7 +137,7 @@ return packer.startup({
     -- quick LSP warnings+errors navigation
     use({
       "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
+      requires = "nvim-tree/nvim-web-devicons",
     })
 
     -- Lua development
@@ -307,7 +307,7 @@ return packer.startup({
       requires = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
-        "kyazdani42/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
       },
       config = function()
         require("octo").setup({ default_remote = { "upstream", "origin", "source", "lockejan" } })
