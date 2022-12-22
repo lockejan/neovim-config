@@ -155,6 +155,7 @@ return packer.startup({
     -- use("justinmk/vim-dirvish")
     -- use("justinmk/vim-sneak")
 
+    use({ "LnL7/vim-nix" })
     -- unix commands for vim
     use("tpope/vim-eunuch")
     -- quickfix nav mappings and more
