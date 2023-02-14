@@ -68,7 +68,7 @@ cmp.setup({
     },
     -- { name = "spell", keyword_length = 3 },
     -- { name = "digraphs" },
-    { name = "conjure" },
+    -- { name = "conjure" },
     { name = "tmux" },
     { name = "ultisnips" },
   }),

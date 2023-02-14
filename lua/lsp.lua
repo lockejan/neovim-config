@@ -37,7 +37,7 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings
@@ -82,7 +82,7 @@ local servers = {
   "rnix",
   "pyright",
   -- "tsserver",
-  "vimls",
+  -- "vimls",
 }
 
 --Enable (broadcasting) snippet capability for completion
@@ -114,19 +114,47 @@ nvim_lsp.ansiblels.setup({
   cmd = { node_mods .. "ansible-language-server", "--stdio" },
 })
 
-local pid = vim.fn.getpid()
-nvim_lsp.omnisharp.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
-  cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) },
-})
+-- nvim_lsp.rust_analyzer.setup({
+--   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
+--   capabilities = capabilities,
+--   flags = lsp_flags,
+--   on_attach = on_attach,
+-- })
 
-nvim_lsp.rust_analyzer.setup({
-  cmd = { "rustup", "run", "nightly", "rust-analyzer" },
-  capabilities = capabilities,
-  flags = lsp_flags,
-  on_attach = on_attach,
+-- nvim_lsp.rust_analyzer.setup({
+--   on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = lsp_flags,
+--   settings = {
+--     ["rust-analyzer"] = {
+--       imports = {
+--         granularity = {
+--           group = "module",
+--         },
+--         prefix = "self",
+--       },
+--       cargo = {
+--         buildScripts = {
+--           enable = true,
+--         },
+--       },
+--       procMacro = {
+--         enable = true,
+--       },
+--     },
+--   },
+-- })
+
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
 })
 
 nvim_lsp.yamlls.setup({
@@ -169,7 +197,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-nvim_lsp.sumneko_lua.setup({
+nvim_lsp.lua_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
@@ -184,6 +212,7 @@ nvim_lsp.sumneko_lua.setup({
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false, -- THIS IS THE IMPORTANT LINE TO ADD
       },
       telemetry = {
         enable = false,

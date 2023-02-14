@@ -1,5 +1,8 @@
 require("lint").linters_by_ft = {
-  markdown = { "vale" },
+  -- markdown = { "vale" },
+  -- python = { "bandit","flake8","mypy" "pyflakes"},
+  -- clojure = { "cl-kondo" },
+  -- haskell = {"hlint"}
   nix = { "statix" },
 }
 vim.api.nvim_create_autocmd({ "TextChanged" }, {

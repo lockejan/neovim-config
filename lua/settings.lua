@@ -79,7 +79,7 @@ vim.cmd([[ autocmd FileType markdown setlocal spell ]])
 
 -- trim whitespace on save
 vim.cmd([[
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * if &ft!~?'markdown'|:%s/\s\+$//e
 ]])
 
 -- show cursor line only in active window
