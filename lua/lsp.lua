@@ -78,11 +78,9 @@ local servers = {
   "html",
   -- "hls",
   "gopls",
-  -- "intelephense",
   "rnix",
   "pyright",
   -- "tsserver",
-  -- "vimls",
 }
 
 --Enable (broadcasting) snippet capability for completion

@@ -1,20 +1,24 @@
--- Auto install packer.nvim if not exists
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
-
--- impatient
-require("impatient")
+vim.opt.rtp:prepend(lazypath)
 
 -- Setup plugins
-require("plugins")
+require("keymappings")
+require("lazy").setup("plugins")
 
 -- Sensible defaults
 require("settings")
 
 -- Core
-require("keymappings")
 require("lsp")
 require("treesitter")
 require("colors")

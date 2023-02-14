@@ -16,22 +16,6 @@ function vim.getVisualSelection()
   end
 end
 
--- search visual selection
-local tb = require("telescope.builtin")
-local opts = { noremap = true, silent = true }
-
-map("n", "<space>g", ":Telescope current_buffer_fuzzy_find<cr>")
-vim.keymap.set("v", "<space>g", function()
-  local text = vim.getVisualSelection()
-  tb.current_buffer_fuzzy_find({ default_text = text })
-end, opts)
-
-map("n", "<space>G", ":Telescope live_grep<cr>")
-vim.keymap.set("v", "<space>G", function()
-  local text = vim.getVisualSelection()
-  tb.live_grep({ default_text = text })
-end, opts)
-
 -- replace visual selection
 
 -- Fix the & cmd Tip 93
@@ -94,7 +78,7 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 --Remap escape to leave terminal mode
 map("t", "<Esc>", [[<c-\><c-n>]])
 
-map("n", "<leader>ps", ":PackerSync<CR>")
+map("n", "<leader>ps", ":Lazy sync<CR>")
 
 map("n", "<leader>tc", "<cmd>tabclose<cr>")
 map("n", "<leader>tn", "<cmd>tabnext<cr>")

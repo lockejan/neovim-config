@@ -47,7 +47,6 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("projects")
 require("telescope").load_extension("ultisnips")
-require("telescope").load_extension("packer")
 -- require("telescope").load_extension("bookmarks")
 
 --Add leader shortcuts
@@ -71,3 +70,19 @@ map("n", "<leader>us", "<cmd>Telescope ultisnips<cr>")
 map("n", "<leader>sP", "<cmd>Telescope packer<cr>")
 map("n", "<leader>op", "<cmd>Telescope projects<cr>")
 map("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>")
+
+-- search visual selection
+local tb = require("telescope.builtin")
+local opts = { noremap = true, silent = true }
+
+map("n", "<space>g", ":Telescope current_buffer_fuzzy_find<cr>")
+vim.keymap.set("v", "<space>g", function()
+  local text = vim.getVisualSelection()
+  tb.current_buffer_fuzzy_find({ default_text = text })
+end, opts)
+
+map("n", "<space>G", ":Telescope live_grep<cr>")
+vim.keymap.set("v", "<space>G", function()
+  local text = vim.getVisualSelection()
+  tb.live_grep({ default_text = text })
+end, opts)
