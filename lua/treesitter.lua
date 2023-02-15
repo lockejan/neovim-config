@@ -2,11 +2,29 @@
 require("nvim-treesitter.install").compilers = { "gcc" }
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = "all",
+  ensure_installed = {
+    "bash",
+    "c",
+    "css",
+    "dockerfile",
+    "gitcommit",
+    "help",
+    "html",
+    "lua",
+    "markdown",
+    "nix",
+    "python",
+    "rust",
+    "vim",
+    "yaml",
+  },
+  sync_install = false,
+  auto_install = true,
+
   highlight = {
     enable = true, -- false will disable the whole extension
-    use_languagetree = true,
     disable = {},
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = false,
@@ -136,6 +154,7 @@ parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 
 require("treesitter-context").setup({ enable = true, throttle = true })
 
+vim.cmd([[set foldmethod=expr]])
+vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
+vim.cmd([[set nofoldenable]])
 -- vim.cmd([[set foldlevel=20]])
--- vim.cmd([[set foldmethod=expr]])
--- vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])

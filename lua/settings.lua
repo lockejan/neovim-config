@@ -56,7 +56,6 @@ vim.o.colorcolumn = "80"
 vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.o.wrap = false -- Disable line wrap
 
--- helllo
 
 vim.o.spell = false
 vim.opt.spelllang = { "en_gb", "de_de" }
