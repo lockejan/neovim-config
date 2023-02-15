@@ -1,4 +1,4 @@
-return {
+require("lazy").setup({
   { "mfussenegger/nvim-lint" },
   { "milisims/nvim-luaref" },
   { "nanotee/luv-vimdocs" },
@@ -11,10 +11,10 @@ return {
   -- { '~/plugins/git-team.nvim' },
 
   -- Color schemes
-  -- {"folke/tokyonight.nvim"},
-  -- {"shaunsingh/nord.nvim"},
-  -- {"andersevenrud/nordic.nvim"},
-  -- {"glepnir/zephyr-nvim"},
+  { "folke/tokyonight.nvim" },
+  { "shaunsingh/nord.nvim" },
+  { "andersevenrud/nordic.nvim" },
+  { "glepnir/zephyr-nvim" },
   { "rebelot/kanagawa.nvim" },
   { "sainnhe/everforest" },
   { "navarasu/onedark.nvim" },
@@ -38,6 +38,7 @@ return {
   -- simplify usage of lsps
   -- {"williamboman/mason.nvim"},
   { "neovim/nvim-lspconfig" },
+  { "github/copilot.vim" },
   { "simrat39/rust-tools.nvim" },
   -- {"tpope/vim-projectionist"},
 
@@ -58,8 +59,8 @@ return {
   -- schema support
   { "b0o/schemastore.nvim" },
 
-  -- { "j-hui/fidget.nvim" },
-  -- use "nvim-lua/lsp-status.nvim"
+  { "j-hui/fidget.nvim" },
+  -- {"nvim-lua/lsp-status.nvim"}, -- statusline integration from lsp
   -- navigate and highlight symbols via lsp
   { "RRethy/vim-illuminate" },
 
@@ -195,10 +196,10 @@ return {
   -- additional textobjects for functions, classes,...
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   -- match parentheses and scopes to quickly jump between them
-  -- use({
+  -- {
   --   "andymass/vim-matchup",
   --   event = "CursorMoved",
-  -- })
+  -- },
 
   -- additional text objects e.g. da,
   { "wellle/targets.vim" },
@@ -294,7 +295,7 @@ return {
       require("octo").setup({ default_remote = { "upstream", "origin", "source", "lockejan" } })
     end,
   },
-  -- use { 'mfussenegger/nvim-lint' }
+  { "mfussenegger/nvim-lint" },
   -- DEBUG
   -- Debugging
   { "mfussenegger/nvim-dap" },
@@ -350,14 +351,14 @@ return {
   { "t-troebst/perfanno.nvim" },
   -- {"windwp/nvim-spectre"},
   -- improve snap for autocmd relying plugins
-  -- use({
+  -- {
   --   "antoinemadec/FixCursorHold.nvim",
   --   run = function()
   --     vim.g.curshold_updatime = 1000
   --   end,
-  -- })
+  -- },
 
-  -- use({
+  -- {
   --   "NTBBloodbath/rest.nvim",
   --   dependencies = { "nvim-lua/plenary.nvim" },
   --   config = function()
@@ -386,7 +387,7 @@ return {
   --       yank_dry_run = true,
   --     })
   --   end,
-  -- })
+  -- },
 
   -- { "neovimhaskell/haskell-vim", ft = "haskell" },
-}
+})

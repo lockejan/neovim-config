@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup plugins
 require("keymappings")
-require("lazy").setup("plugins")
+require("plugins")
 
 -- Sensible defaults
 require("settings")
@@ -29,7 +29,7 @@ require("config.lir")
 require("config.colorizer")
 require("config.comment")
 require("config.diffview")
--- require("config.fidget")
+require("config.fidget")
 require("config.formatter")
 require("config.gitsigns")
 require("config.indent-blankline")
