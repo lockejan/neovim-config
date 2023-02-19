@@ -143,7 +143,7 @@ require("lazy").setup({
   { "tpope/vim-unimpaired" },
 
   -- lua file explorer
-  -- {"kyazdani42/nvim-tree.lua"},
+  { "nvim-tree/nvim-tree.lua" },
 
   -- autochange to project root dir
   -- {"airblade/vim-rooter"},

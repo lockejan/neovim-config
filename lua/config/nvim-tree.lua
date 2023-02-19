@@ -5,14 +5,11 @@ require("nvim-tree").setup({
   hijack_netrw = false,
   open_on_setup = false,
   ignore_ft_on_setup = {},
-  auto_close = false,
+  -- auto_close = false,
   open_on_tab = false,
   hijack_cursor = false,
   update_cwd = false,
-  update_to_buf_dir = {
-    enable = true,
-    auto_open = true,
-  },
+  respect_buf_cwd = true,
   diagnostics = {
     enable = false,
     icons = {
@@ -42,10 +39,9 @@ require("nvim-tree").setup({
   },
   view = {
     width = 30,
-    height = 30,
     hide_root_folder = false,
     side = "left",
-    auto_resize = true,
+    -- auto_resize = true,
     mappings = {
       custom_only = false,
       list = {},
@@ -64,4 +60,4 @@ vim.cmd("autocmd BufWinEnter NvimTree setlocal cursorline")
 --
 -- NvimTree Shortcuts
 vim.api.nvim_set_keymap("n", "<leader>fe", ":NvimTreeFindFile<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>we", ":NvimTreeToggle<CR>", { noremap = true })
