@@ -4,16 +4,16 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 function vim.getVisualSelection()
-  vim.cmd('noau normal! "vy"')
-  local text = vim.fn.getreg("v")
-  vim.fn.setreg("v", {})
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg("v")
+	vim.fn.setreg("v", {})
 
-  text = string.gsub(text, "\n", "")
-  if #text > 0 then
-    return text
-  else
-    return ""
-  end
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ""
+	end
 end
 
 -- replace visual selection
@@ -127,29 +127,29 @@ map("n", "t<C-v>", ":TestVisit<CR>")
 
 -- Toggle to disable mouse mode and indentlines for easier paste
 ToggleMouse = function()
-  if vim.o.mouse == "a" then
-    vim.cmd([[IndentBlanklineDisable]])
-    vim.wo.signcolumn = "no"
-    vim.o.mouse = "v"
-    vim.wo.number = false
-    print("Mouse disabled")
-  else
-    vim.cmd([[IndentBlanklineEnable]])
-    vim.wo.signcolumn = "yes"
-    vim.o.mouse = "a"
-    vim.wo.number = true
-    print("Mouse enabled")
-  end
+	if vim.o.mouse == "a" then
+		vim.cmd([[IndentBlanklineDisable]])
+		vim.wo.signcolumn = "no"
+		vim.o.mouse = "v"
+		vim.wo.number = false
+		print("Mouse disabled")
+	else
+		vim.cmd([[IndentBlanklineEnable]])
+		vim.wo.signcolumn = "yes"
+		vim.o.mouse = "a"
+		vim.wo.number = true
+		print("Mouse enabled")
+	end
 end
 map("n", "<leader>tm", "<cmd>lua ToggleMouse()<cr>")
 
 -- Quickly inspect spell errors on demand
 ToggleSpell = function()
-  if vim.o.spell == true then
-    vim.o.spell = false
-  else
-    vim.o.spell = true
-  end
+	if vim.o.spell == true then
+		vim.o.spell = false
+	else
+		vim.o.spell = true
+	end
 end
 map("n", "<leader>ts", "<cmd>lua ToggleSpell()<cr>")
 
