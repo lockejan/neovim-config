@@ -78,7 +78,7 @@ local servers = {
   "html",
   -- "hls",
   "gopls",
-  "rnix",
+  "nil_ls",
   "pyright",
   -- "tsserver",
 }
