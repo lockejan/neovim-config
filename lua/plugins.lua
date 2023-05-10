@@ -23,6 +23,7 @@ require("lazy").setup({
   -- Fuzzy finding stuff via telescope
   { "fhill2/telescope-ultisnips.nvim" },
   { "nvim-telescope/telescope-packer.nvim" },
+  { "nvim-telescope/telescope-symbols.nvim" },
   -- {"dhruvmanila/telescope-bookmarks.nvim"},
   {
     "nvim-telescope/telescope.nvim",
