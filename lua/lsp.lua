@@ -80,7 +80,6 @@ local servers = {
   "gopls",
   "nil_ls",
   "pyright",
-  -- "tsserver",
   "terraformls",
 }
 
@@ -97,11 +96,17 @@ for _, server in pairs(servers) do
   })
 end
 
-nvim_lsp.tsserver.setup({
-  init_options = require("nvim-lsp-ts-utils").init_options,
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
+require("typescript").setup({
+  disable_commands = false, -- prevent the plugin from creating Vim commands
+  debug = false, -- enable debug logging for commands
+  go_to_source_definition = {
+    fallback = true, -- fall back to standard LSP definition on failure
+  },
+  server = { -- pass options to lspconfig's setup method
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+  },
 })
 
 local node_mods =

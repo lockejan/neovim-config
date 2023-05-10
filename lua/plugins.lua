@@ -112,7 +112,7 @@ require("lazy").setup({
   -- {"tpope/vim-dadbod"},
 
   -- LSP TypeScript enhancements
-  { "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils" },
+  { "jose-elias-alvarez/typescript.nvim" },
   -- pictograms for LSP completion
   { "onsails/lspkind-nvim" },
 
