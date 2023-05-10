@@ -83,6 +83,15 @@ require("formatter").setup({
         }
       end,
     },
+    terraform = {
+      function()
+        return {
+          exe = "terraform",
+          args = { "fmt", "-" },
+          stdin = true,
+        }
+      end,
+    },
     zsh = { shell_fmt },
     sh = { shell_fmt },
     bash = { shell_fmt },
