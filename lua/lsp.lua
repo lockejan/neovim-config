@@ -81,6 +81,7 @@ local servers = {
   "nil_ls",
   "pyright",
   "terraformls",
+  "texlab",
 }
 
 --Enable (broadcasting) snippet capability for completion
