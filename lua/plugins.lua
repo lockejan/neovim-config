@@ -1,3 +1,20 @@
+local opts = {
+  install = {
+    missing = true,
+  },
+  change_detection = {
+    enabled = false,
+    notify = true,
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "netrwPlugin",
+      },
+    },
+  },
+}
+
 require("lazy").setup({
   { "mfussenegger/nvim-lint" },
   { "milisims/nvim-luaref" },
@@ -60,7 +77,7 @@ require("lazy").setup({
   -- schema support
   { "b0o/schemastore.nvim" },
 
-  { "j-hui/fidget.nvim" },
+  { "j-hui/fidget.nvim", tag = "legacy" },
   -- {"nvim-lua/lsp-status.nvim"}, -- statusline integration from lsp
   -- navigate and highlight symbols via lsp
   { "RRethy/vim-illuminate" },
@@ -391,4 +408,4 @@ require("lazy").setup({
   -- },
 
   -- { "neovimhaskell/haskell-vim", ft = "haskell" },
-})
+}, opts)
