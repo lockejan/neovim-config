@@ -67,7 +67,7 @@ map("n", "<leader>sB", "<cmd>Telescope git_branches<cr>")
 map("n", "<leader>sk", "<cmd>Telescope keymaps<cr>")
 -- map("n", "<leader>ss", "<cmd>Telescope git_status<cr>")
 map("n", "<leader>us", "<cmd>Telescope ultisnips<cr>")
-map("n", "<leader>sP", "<cmd>Telescope packer<cr>")
+-- map("n", "<leader>sP", "<cmd>Telescope packer<cr>")
 map("n", "<leader>op", "<cmd>Telescope projects<cr>")
 map("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>")
 

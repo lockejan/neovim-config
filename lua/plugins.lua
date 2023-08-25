@@ -17,8 +17,8 @@ local opts = {
 
 require("lazy").setup({
   { "mfussenegger/nvim-lint" },
-  { "milisims/nvim-luaref" },
-  { "nanotee/luv-vimdocs" },
+  -- { "milisims/nvim-luaref" },
+  -- { "nanotee/luv-vimdocs" },
   --  {'hkupty/runes.nvim'}, -- test-framework for nvim-lua-plugins
   -- homecooked
   -- { "~/plugins/broccoli.nvim" },
@@ -39,7 +39,7 @@ require("lazy").setup({
   --
   -- Fuzzy finding stuff via telescope
   { "fhill2/telescope-ultisnips.nvim" },
-  { "nvim-telescope/telescope-packer.nvim" },
+  -- { "nvim-telescope/telescope-packer.nvim" },
   { "nvim-telescope/telescope-symbols.nvim" },
   -- {"dhruvmanila/telescope-bookmarks.nvim"},
   {
@@ -65,7 +65,7 @@ require("lazy").setup({
   -- vim.g["test#strategy"] = "neovim"
 
   -- java lsp support
-  { "mfussenegger/nvim-jdtls" },
+  -- { "mfussenegger/nvim-jdtls" },
 
   -- indentation guides
   { "lukas-reineke/indent-blankline.nvim" },
@@ -175,18 +175,18 @@ require("lazy").setup({
 
   -- Git Features
   -- git wrapper on steroids
-  -- {"tpope/vim-fugitive"},
-  {
-    "TimUntersberger/neogit",
-    dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("neogit").setup({
-        integrations = {
-          diffview = true,
-        },
-      })
-    end,
-  },
+  { "tpope/vim-fugitive" },
+  -- {
+  --   "TimUntersberger/neogit",
+  --   dependencies = "nvim-lua/plenary.nvim",
+  --   config = function()
+  --     require("neogit").setup({
+  --       integrations = {
+  --         diffview = true,
+  --       },
+  --     })
+  --   end,
+  -- },
 
   -- git history navigation
   -- {"junegunn/gv.vim"},
@@ -227,7 +227,7 @@ require("lazy").setup({
   -- {"jamessan/vim-gnupg"},
 
   -- save/restore vim-session
-  { "tpope/vim-obsession" },
+  -- { "tpope/vim-obsession" },
 
   -- autoclose html/tsx/...-tags
   { "windwp/nvim-ts-autotag" },
@@ -302,17 +302,17 @@ require("lazy").setup({
   --  use {'Chaitanyabsprip/present.nvim'}
 
   -- GH browser
-  {
-    "pwntester/octo.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      require("octo").setup({ default_remote = { "upstream", "origin", "source", "lockejan" } })
-    end,
-  },
+  -- {
+  --   "pwntester/octo.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  --   config = function()
+  --     require("octo").setup({ default_remote = { "upstream", "origin", "source", "lockejan" } })
+  --   end,
+  -- },
   { "mfussenegger/nvim-lint" },
   -- DEBUG
   -- Debugging

@@ -1,5 +1,5 @@
 -- https://github.com/tree-sitter/tree-sitter-haskell/issues/34
-require("nvim-treesitter.install").compilers = { "gcc" }
+-- require("nvim-treesitter.install").compilers = { "gcc" }
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
@@ -18,7 +18,7 @@ require("nvim-treesitter.configs").setup({
     "vim",
     "yaml",
   },
-  sync_install = false,
+  sync_install = true,
   auto_install = true,
 
   highlight = {
