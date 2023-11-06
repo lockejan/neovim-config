@@ -8,7 +8,6 @@ require("nvim-treesitter.configs").setup({
     "css",
     "dockerfile",
     "gitcommit",
-    "help",
     "html",
     "lua",
     "markdown",
