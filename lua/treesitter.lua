@@ -53,9 +53,6 @@ require("nvim-treesitter.configs").setup({
   autotag = {
     enable = true,
   },
-  context_commentstring = {
-    enable = true,
-  },
   textobjects = {
     select = {
       enable = true,
@@ -152,6 +149,8 @@ parser_config.jsonc.filetype_to_parsername = "json"
 parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 
 require("treesitter-context").setup({ enable = true, throttle = true })
+require("ts_context_commentstring").setup({})
+vim.g.skip_ts_context_commentstring_module = true
 
 vim.cmd([[set foldmethod=expr]])
 vim.cmd([[set foldexpr=nvim_treesitter#foldexpr()]])
