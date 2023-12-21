@@ -67,8 +67,8 @@ require("formatter").setup({
     python = {
       function()
         return {
-          exe = "yapf",
-          args = { "--style", "pep8" },
+          exe = "black",
+          args = { "-q", "--stdin-filename", vim.api.nvim_buf_get_name(0), "-" },
           stdin = true,
         }
       end,
