@@ -70,7 +70,7 @@ local servers = {
   -- "ansiblels",
   "bashls",
   "clangd",
-  -- "clojure_lsp",
+  "clojure_lsp",
   "cssls",
   "dockerls",
   "eslint",
