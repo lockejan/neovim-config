@@ -35,8 +35,8 @@ require("lazy").setup({
   { "rebelot/kanagawa.nvim" },
   { "sainnhe/everforest" },
   { "navarasu/onedark.nvim" },
-  { "ellisonleao/gruvbox.nvim" },
-  --
+  { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
+
   -- Fuzzy finding stuff via telescope
   { "fhill2/telescope-ultisnips.nvim" },
   -- { "nvim-telescope/telescope-packer.nvim" },
@@ -210,7 +210,7 @@ require("lazy").setup({
   -- displays head of scope on top (e.g. fn/class/method)
   { "romgrk/nvim-treesitter-context" },
   -- colorize parentheses
-  { "p00f/nvim-ts-rainbow" },
+  { "HiPhish/rainbow-delimiters.nvim" },
   -- additional textobjects for functions, classes,...
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   -- match parentheses and scopes to quickly jump between them
@@ -316,6 +316,7 @@ require("lazy").setup({
   { "mfussenegger/nvim-lint" },
   -- DEBUG
   -- Debugging
+  { "nvim-neotest/nvim-nio" },
   { "mfussenegger/nvim-dap" },
   {
     "leoluz/nvim-dap-go",

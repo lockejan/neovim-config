@@ -19,6 +19,8 @@ require("nvim-treesitter.configs").setup({
   },
   sync_install = true,
   auto_install = true,
+  ignore_install = {},
+  modules = {},
 
   highlight = {
     enable = true, -- false will disable the whole extension
@@ -26,7 +28,7 @@ require("nvim-treesitter.configs").setup({
     additional_vim_regex_highlighting = false,
   },
   indent = {
-    enable = false,
+    enable = true,
     -- disable_filetype = { "python" },
   },
   incremental_selection = {
