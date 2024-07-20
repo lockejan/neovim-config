@@ -79,8 +79,8 @@ local servers = {
   -- "hls",
   "gopls",
   "nil_ls",
-  "pyright",
-  -- "ruff_lsp",
+  -- "pyright",
+  "ruff",
   "terraformls",
   "texlab",
 }
@@ -97,19 +97,6 @@ for _, server in pairs(servers) do
     flags = lsp_flags,
   })
 end
-
-local on_attach_ruff = function(client, bufnr)
-  -- Disable hover in favor of Pyright
-  client.server_capabilities.hoverProvider = false
-end
-
-nvim_lsp.ruff_lsp.setup({
-  server = { -- pass options to lspconfig's setup method
-    on_attach = on_attach_ruff,
-    capabilities = capabilities,
-    flags = lsp_flags,
-  },
-})
 
 require("typescript").setup({
   disable_commands = false, -- prevent the plugin from creating Vim commands
