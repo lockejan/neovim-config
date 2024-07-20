@@ -189,6 +189,10 @@ map("n", "<leader>vd", ":!ansible-vault decrypt %<CR>")
 map("n", "<leader>ve", ":!ansible-vault encrypt %<CR>")
 map("n", "<leader>vv", ":!ansible-vault view %<CR>")
 
+-- base64
+map("v", "<leader>be", "c<c-r>=system('base64 --wrap=0',          @\")<cr><esc>")
+map("v", "<leader>bd", "c<c-r>=system('base64 --decode --wrap=0', @\")<cr><esc>")
+
 map("n", "<leader>so", ":SymbolsOutline<CR>")
 
 -- lir explorer
