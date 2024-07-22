@@ -76,6 +76,7 @@ local servers = {
   "eslint",
   "elmls",
   "html",
+  "helm_ls",
   -- "hls",
   "gopls",
   "nil_ls",

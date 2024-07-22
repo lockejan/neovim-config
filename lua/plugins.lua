@@ -82,6 +82,8 @@ require("lazy").setup({
   -- navigate and highlight symbols via lsp
   { "RRethy/vim-illuminate" },
 
+  { "towolf/vim-helm" },
+
   -- improved and extended lsp integration
   -- decoration and code actions
   -- use "glepnir/lspsaga.nvim"
