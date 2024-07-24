@@ -120,11 +120,11 @@ require("lazy").setup({
       -- "rcarriga/cmp-dap",
       -- "KadoBOT/cmp-plugins", -- sources for nvim plugins
       -- "davidsierradz/cmp-conventionalcommits",
-      { "PaterJason/cmp-conjure" },
+      -- { "PaterJason/cmp-conjure" },
     },
   },
   -- clojure
-  { "Olical/conjure" },
+  -- { "Olical/conjure" },
   -- {"liquidz/vim-iced"},
 
   -- db interaction within vim

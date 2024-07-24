@@ -40,26 +40,29 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
+  local function opts_with_desc(desc)
+    local buffer_opts = { noremap = true, silent = true, buffer = bufnr }
+    return { unpack(buffer_opts), desc = desc }
+  end
   -- Mappings
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-  -- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-  -- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-  -- vim.keymap.set("n", "<space>wl", function()
-  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  -- end, bufopts)
-  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-  vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", bufopts)
-  vim.keymap.set("n", "<space>f", function()
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts_with_desc("Go to declaration"))
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts_with_desc("Go to definition"))
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts_with_desc("Show hover"))
+  vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts_with_desc("Go to implementation"))
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts_with_desc("Show signature help"))
+  vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts_with_desc("Add workspace folder"))
+  vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts_with_desc("Remove workspace folder"))
+  vim.keymap.set("n", "<space>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, opts_with_desc("List workspace folders"))
+  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts_with_desc("Go to type definition"))
+  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts_with_desc("Rename symbol"))
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts_with_desc("Code action"))
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts_with_desc("Show references"))
+  vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts_with_desc("Show references with Telescope"))
+  vim.keymap.set("n", "<space>F", function()
     vim.lsp.buf.format({ async = true })
-  end, bufopts)
+  end, opts_with_desc("Format code via LSP"))
 end
 
 local lsp_flags = {
@@ -112,14 +115,14 @@ require("typescript").setup({
   },
 })
 
-local node_mods =
-  "/Users/lockejan/dotfiles/home-manager/configs/nvim/node_modules/@ansible/ansible-language-server/bin/"
-nvim_lsp.ansiblels.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
-  cmd = { node_mods .. "ansible-language-server", "--stdio" },
-})
+-- local node_mods =
+--   "/Users/lockejan/dotfiles/home-manager/configs/nvim/node_modules/@ansible/ansible-language-server/bin/"
+-- nvim_lsp.ansiblels.setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   flags = lsp_flags,
+--   cmd = { node_mods .. "ansible-language-server", "--stdio" },
+-- })
 
 -- nvim_lsp.rust_analyzer.setup({
 --   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
