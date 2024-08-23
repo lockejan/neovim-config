@@ -56,7 +56,24 @@ require("lazy").setup({
   -- simplify usage of lsps
   -- {"williamboman/mason.nvim"},
   { "neovim/nvim-lspconfig" },
-  { "github/copilot.vim" },
+
+  -- { "github/copilot.vim" },
+  { "zbirenbaum/copilot.lua" },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+
   { "simrat39/rust-tools.nvim" },
   -- {"tpope/vim-projectionist"},
 
@@ -277,7 +294,9 @@ require("lazy").setup({
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {},
-    dependencies = { "nvim-treesitter/nvim-treesitter", --[[ "echasnovski/mini.nvim" ]] }, -- if you use the mini.nvim suite
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter", --[[ "echasnovski/mini.nvim" ]]
+    }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
   },
