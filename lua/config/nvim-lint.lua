@@ -4,8 +4,9 @@ require("lint").linters_by_ft = {
   -- clojure = { "cl-kondo" },
   -- haskell = {"hlint"}
   nix = { "statix" },
+  dockerfile = { "hadolint" },
 }
-vim.api.nvim_create_autocmd({ "TextChanged" }, {
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
     require("lint").try_lint()
   end,

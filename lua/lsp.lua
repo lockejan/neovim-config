@@ -70,14 +70,14 @@ local lsp_flags = {
 }
 
 local servers = {
-  -- "ansiblels",
+  -- "ansible-language-server",
   "bashls",
   "clangd",
-  "clojure_lsp",
+  -- "clojure_lsp",
   "cssls",
   "dockerls",
   "eslint",
-  "elmls",
+  -- "elmls",
   "html",
   "helm_ls",
   -- "hls",
@@ -87,6 +87,7 @@ local servers = {
   "ruff",
   "terraformls",
   "texlab",
+  -- "vue-language-server",
 }
 
 --Enable (broadcasting) snippet capability for completion
@@ -115,14 +116,19 @@ require("typescript").setup({
   },
 })
 
--- local node_mods =
---   "/Users/lockejan/dotfiles/home-manager/configs/nvim/node_modules/@ansible/ansible-language-server/bin/"
--- nvim_lsp.ansiblels.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   flags = lsp_flags,
---   cmd = { node_mods .. "ansible-language-server", "--stdio" },
--- })
+nvim_lsp.ansiblels.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = lsp_flags,
+  cmd = { "ansible-language-server", "--stdio" },
+})
+
+nvim_lsp.vls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = lsp_flags,
+  cmd = { "vue-language-server", "--stdio" },
+})
 
 -- nvim_lsp.rust_analyzer.setup({
 --   cmd = { "rustup", "run", "nightly", "rust-analyzer" },

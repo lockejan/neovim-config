@@ -16,7 +16,9 @@ local opts = {
 }
 
 require("lazy").setup({
-  { "mfussenegger/nvim-lint" },
+  {
+    "mfussenegger/nvim-lint",
+  },
   -- { "milisims/nvim-luaref" },
   -- { "nanotee/luv-vimdocs" },
   --  {'hkupty/runes.nvim'}, -- test-framework for nvim-lua-plugins
@@ -26,6 +28,16 @@ require("lazy").setup({
   -- { '~/plugins/ansible.nvim' },
   -- ui tool to interact with git-team
   -- { '~/plugins/git-team.nvim' },
+  --
+  {
+    "lucidph3nx/nvim-sops",
+    event = { "BufEnter" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
 
   -- Color schemes
   { "folke/tokyonight.nvim" },
