@@ -57,13 +57,31 @@ require("lazy").setup({
   -- {"williamboman/mason.nvim"},
   { "neovim/nvim-lspconfig" },
 
-  -- { "github/copilot.vim" },
-  { "zbirenbaum/copilot.lua" },
+  { "github/copilot.vim" },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup({
+  --       keymap = {
+  --         jump_prev = "[[",
+  --         jump_next = "]]",
+  --         accept = "<TAB>",
+  --         refresh = "gr",
+  --         open = "<M-CR>",
+  --       },
+  --       suggestion = {
+  --         auto_trigger = true,
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
     dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "github/copilot.vim" }, -- or github/copilot.vim
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
     build = "make tiktoken", -- Only on MacOS or Linux
