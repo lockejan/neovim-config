@@ -5,6 +5,7 @@ require("lint").linters_by_ft = {
   -- haskell = {"hlint"}
   nix = { "statix" },
   dockerfile = { "hadolint" },
+  yaml = { "actionlint" },
 }
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
