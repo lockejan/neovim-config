@@ -103,17 +103,24 @@ for _, server in pairs(servers) do
   })
 end
 
-require("typescript").setup({
-  disable_commands = false, -- prevent the plugin from creating Vim commands
-  debug = false, -- enable debug logging for commands
-  go_to_source_definition = {
-    fallback = true, -- fall back to standard LSP definition on failure
-  },
-  server = { -- pass options to lspconfig's setup method
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-  },
+require("lspconfig").ts_ls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = lsp_flags,
+  -- init_options = {
+  --   plugins = {
+  --     {
+  --       name = "@vue/typescript-plugin",
+  --       location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+  --       languages = {"javascript", "typescript", "vue"},
+  --     },
+  --   },
+  -- },
+  -- filetypes = {
+  --   "javascript",
+  --   "typescript",
+  --   "vue",
+  -- },
 })
 
 nvim_lsp.ansiblels.setup({

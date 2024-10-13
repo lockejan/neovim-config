@@ -178,7 +178,11 @@ require("lazy").setup({
   -- {"tpope/vim-dadbod"},
 
   -- LSP TypeScript enhancements
-  { "jose-elias-alvarez/typescript.nvim" },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   -- pictograms for LSP completion
   { "onsails/lspkind-nvim" },
 
