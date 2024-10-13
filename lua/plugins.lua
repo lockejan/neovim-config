@@ -422,15 +422,15 @@ require("lazy").setup({
 
   -- file explorer
   { "tamago324/lir.nvim" },
-  {
-    "stevearc/oil.nvim",
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {},
-    -- Optional dependencies
-    dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-  },
+  -- {
+  --   "stevearc/oil.nvim",
+  --   ---@module 'oil'
+  --   ---@type oil.SetupOpts
+  --   opts = {},
+  --   -- Optional dependencies
+  --   dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  --   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+  -- },
 
   -- floating window with terminal
   { "voldikss/vim-floaterm" },
