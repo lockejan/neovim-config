@@ -177,12 +177,6 @@ require("lazy").setup({
   -- db interaction within vim
   -- {"tpope/vim-dadbod"},
 
-  -- LSP TypeScript enhancements
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-  },
   -- pictograms for LSP completion
   { "onsails/lspkind-nvim" },
 

@@ -87,7 +87,6 @@ local servers = {
   "ruff",
   "terraformls",
   "texlab",
-  -- "vue-language-server",
 }
 
 --Enable (broadcasting) snippet capability for completion
@@ -103,26 +102,6 @@ for _, server in pairs(servers) do
   })
 end
 
-require("lspconfig").ts_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
-  -- init_options = {
-  --   plugins = {
-  --     {
-  --       name = "@vue/typescript-plugin",
-  --       location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-  --       languages = {"javascript", "typescript", "vue"},
-  --     },
-  --   },
-  -- },
-  -- filetypes = {
-  --   "javascript",
-  --   "typescript",
-  --   "vue",
-  -- },
-})
-
 nvim_lsp.ansiblels.setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -130,11 +109,18 @@ nvim_lsp.ansiblels.setup({
   cmd = { "ansible-language-server", "--stdio" },
 })
 
-nvim_lsp.vls.setup({
+nvim_lsp.volar.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
   cmd = { "vue-language-server", "--stdio" },
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+  init_options = {
+    vue = {
+      -- disable hybrid mode
+      hybridMode = false,
+    },
+  },
 })
 
 -- nvim_lsp.rust_analyzer.setup({
