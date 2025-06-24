@@ -69,7 +69,7 @@ require("lazy").setup({
   -- {"williamboman/mason.nvim"},
   { "neovim/nvim-lspconfig" },
 
-  { "github/copilot.vim" },
+  -- { "github/copilot.vim" },
   -- {
   --   "zbirenbaum/copilot.lua",
   --   cmd = "Copilot",
