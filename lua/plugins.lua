@@ -67,7 +67,7 @@ require("lazy").setup({
   -- LSP and completion
   -- simplify usage of lsps
   -- {"williamboman/mason.nvim"},
-  { "neovim/nvim-lspconfig" },
+  -- { "neovim/nvim-lspconfig" },
 
   -- { "github/copilot.vim" },
   -- {
