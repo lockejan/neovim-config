@@ -104,7 +104,11 @@ require("lazy").setup({
     -- See Commands section for default commands if you want to lazy load on them
   },
 
-  { "simrat39/rust-tools.nvim" },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^6", -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
   -- {"tpope/vim-projectionist"},
 
   -- execute tests
@@ -187,7 +191,17 @@ require("lazy").setup({
   { "folke/trouble.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
 
   -- Lua development
-  { "folke/lua-dev.nvim" },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
   { "bfredl/nvim-luadev" },
 
   -- custom formatter on save

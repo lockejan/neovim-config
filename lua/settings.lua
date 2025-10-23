@@ -56,7 +56,6 @@ vim.o.colorcolumn = "80"
 vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 -- vim.o.wrap = false -- Disable line wrap
 
-
 vim.o.spell = false
 vim.opt.spelllang = { "en_gb", "de_de" }
 
@@ -103,7 +102,7 @@ vim.opt.wildignore:append("**/node_modules/*")
 
 -- Highlight on yank
 vim.cmd([[
-    au TextYankPost * silent! lua vim.highlight.on_yank { timeout=150, on_visual = true }
+    au TextYankPost * silent! lua vim.hl.on_yank { timeout=150, on_visual = true }
     ]])
 
 --Disable numbers in terminal mode

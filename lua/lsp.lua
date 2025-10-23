@@ -25,15 +25,17 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-local nvim_lsp = require("lspconfig")
-
 -- diagnostic preview on cursor visit
--- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
 
 -- Your custom attach function for nvim-lspconfig goes here.
 local opts = { silent = true }
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, opts)
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, opts)
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
@@ -81,12 +83,14 @@ local servers = {
   "html",
   "helm_ls",
   -- "hls",
+  "lua_ls",
   "gopls",
   "nil_ls",
   -- "pyright",
   "ruff",
   "terraformls",
   "texlab",
+  -- "vue_ls",
 }
 
 --Enable (broadcasting) snippet capability for completion
@@ -95,21 +99,22 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 for _, server in pairs(servers) do
-  nvim_lsp[server].setup({
+  vim.lsp.enable(server)
+  vim.lsp.config(server, {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
   })
 end
 
-nvim_lsp.ansiblels.setup({
+vim.lsp.config.ansiblels = {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
   cmd = { "ansible-language-server", "--stdio" },
-})
+}
 
-nvim_lsp.volar.setup({
+vim.lsp.config.volar = {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
@@ -121,52 +126,9 @@ nvim_lsp.volar.setup({
       hybridMode = false,
     },
   },
-})
+}
 
--- nvim_lsp.rust_analyzer.setup({
---   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
---   capabilities = capabilities,
---   flags = lsp_flags,
---   on_attach = on_attach,
--- })
-
--- nvim_lsp.rust_analyzer.setup({
---   on_attach = on_attach,
---     capabilities = capabilities,
---     flags = lsp_flags,
---   settings = {
---     ["rust-analyzer"] = {
---       imports = {
---         granularity = {
---           group = "module",
---         },
---         prefix = "self",
---       },
---       cargo = {
---         buildScripts = {
---           enable = true,
---         },
---       },
---       procMacro = {
---         enable = true,
---       },
---     },
---   },
--- })
-
-local rt = require("rust-tools")
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-})
-
-nvim_lsp.yamlls.setup({
+vim.lsp.config.yamlls = {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
@@ -178,9 +140,9 @@ nvim_lsp.yamlls.setup({
       },
     },
   },
-})
+}
 
-nvim_lsp.jsonls.setup({
+vim.lsp.config.jsonls = {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
@@ -189,24 +151,13 @@ nvim_lsp.jsonls.setup({
       schemas = require("schemastore").json.schemas(),
     },
   },
-})
-
--- Lua LSP
--- local luadev = require("lua-dev").setup({
---   lspconfig = {
---     on_attach = on_attach,
---     capabilities = capabilities,
--- flags = lsp_flags,
---     cmd = { "lua-language-server" },
---   },
--- })
--- nvim_lsp.sumneko_lua.setup(luadev)
+}
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-nvim_lsp.lua_ls.setup({
+vim.lsp.config.lua_ls = {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
@@ -228,4 +179,4 @@ nvim_lsp.lua_ls.setup({
       },
     },
   },
-})
+}
