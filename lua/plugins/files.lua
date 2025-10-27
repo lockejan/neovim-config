@@ -21,7 +21,7 @@ return {
       { "<leader>sd", "<cmd>Telescope git_bcommits<cr>", desc = "Git buffer commits" },
       { "<leader>sB", "<cmd>Telescope git_branches<cr>", desc = "Git branches" },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Search keymaps" },
-      { "<leader>us", "<cmd>Telescope ultisnips<cr>", desc = "Search snippets" },
+      -- Snippet search removed (UltiSnips → LuaSnip migration)
       { "<leader>op", "<cmd>Telescope projects<cr>", desc = "Search projects" },
       { "<leader>cs", "<cmd>Telescope colorscheme<cr>", desc = "Change colorscheme" },
       { "<space>g", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find in buffer" },
@@ -70,7 +70,6 @@ return {
       -- Load extensions
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("projects")
-      require("telescope").load_extension("ultisnips")
 
       -- Visual selection search support
       local tb = require("telescope.builtin")
@@ -95,10 +94,7 @@ return {
     lazy = true,
   },
 
-  {
-    "fhill2/telescope-ultisnips.nvim",
-    lazy = true,
-  },
+  -- telescope-ultisnips removed (migrated to LuaSnip)
 
   {
     "nvim-telescope/telescope-symbols.nvim",

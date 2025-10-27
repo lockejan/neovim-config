@@ -28,7 +28,7 @@ require("lazy").setup({
     missing = true,
   },
   change_detection = {
-    enabled = false,
+    enabled = true,
     notify = true,
   },
   performance = {
@@ -42,9 +42,3 @@ require("lazy").setup({
 
 -- Sensible defaults (general vim settings)
 require("settings")
-
--- TEMPORARY: These will be moved to plugin specs during migration
--- TODO: Remove these once corresponding plugin categories are migrated
-require("lsp")
-require("treesitter")
-require("colors")

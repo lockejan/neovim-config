@@ -69,13 +69,15 @@ return {
     "ggandor/leap.nvim",
     keys = {
       { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-      { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+      { "<leader>s", mode = { "n", "x", "o" }, desc = "Leap backward to" },
       { "gS", mode = { "n", "x", "o" }, desc = "Leap from windows" },
     },
     config = function()
       -- Manual mappings (non-deprecated approach)
+      -- Note: S is NOT mapped to preserve native vim command (substitute line)
+      -- Note: gs is NOT mapped to avoid conflict with switch.vim
       vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
-      vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
+      vim.keymap.set({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-backward)")
       vim.keymap.set({ "n", "x", "o" }, "gS", "<Plug>(leap-from-window)")
     end,
   },
