@@ -118,9 +118,9 @@ return {
   -- { "ibhagwan/fzf-lua" },
   -- { "vijaymarupudi/nvim-fzf" },
 
-  -- Project management
+  -- Project management (actively maintained fork)
   {
-    "ahmedkhalf/project.nvim",
+    "DrKJeff16/project.nvim",
     event = "VeryLazy",
     config = function()
       require("project_nvim").setup({})

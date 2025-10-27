@@ -169,9 +169,9 @@ map("n", "<leader>gh", ":h <C-R><C-W><CR>")
 map("n", "<A-d>", ":t.-1<CR>")
 map("v", "<A-d>", ":t.-1<CR>")
 
--- Format selection
-map("v", "<A-f>", ":FormatWrite<CR>")
-map("n", "<A-f>", ":FormatWrite<CR>")
+-- Format selection (handled by conform.nvim in lua/plugins/formatting.lua)
+-- map("v", "<A-f>", ":FormatWrite<CR>")
+-- map("n", "<A-f>", ":FormatWrite<CR>")
 
 -- autoexpand current file dir
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
