@@ -115,7 +115,8 @@ map("n", "<leader>lr", ":LspRestart<CR>")
 -- visit file even if not present
 map("n", "gF", ":edit <cfile><cr>")
 
-map("n", "<leader>x", ":!open %<cr>")
+-- Disabled: conflicts with Trouble keybindings (<leader>xx, <leader>xw, etc.)
+-- map("n", "<leader>x", ":!open %<cr>")
 
 -- vim-test
 -- these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
@@ -168,9 +169,9 @@ map("n", "<leader>gh", ":h <C-R><C-W><CR>")
 map("n", "<A-d>", ":t.-1<CR>")
 map("v", "<A-d>", ":t.-1<CR>")
 
--- Format selection
-map("v", "<A-f>", ":FormatWrite<CR>")
-map("n", "<A-f>", ":FormatWrite<CR>")
+-- Format selection (handled by conform.nvim in lua/plugins/formatting.lua)
+-- map("v", "<A-f>", ":FormatWrite<CR>")
+-- map("n", "<A-f>", ":FormatWrite<CR>")
 
 -- autoexpand current file dir
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'

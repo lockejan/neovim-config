@@ -1,3 +1,4 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -14,34 +15,30 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Setup plugins
+-- Load keymappings early (before plugins, as leader key needs to be set)
 require("keymappings")
-require("plugins")
 
--- Sensible defaults
+-- Setup lazy.nvim with modular plugin imports
+require("lazy").setup({
+  spec = {
+    -- Import all plugin specs from lua/plugins/*.lua
+    { import = "plugins" },
+  },
+  install = {
+    missing = true,
+  },
+  change_detection = {
+    enabled = true,
+    notify = true,
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "netrwPlugin",
+      },
+    },
+  },
+})
+
+-- Sensible defaults (general vim settings)
 require("settings")
-
--- Core
-require("lsp")
-require("treesitter")
-require("colors")
-
--- Plugin config
-require("config.cmp")
-require("config.lir")
-require("config.colorizer")
-require("config.copilot")
-require("config.comment")
-require("config.diffview")
-require("config.fidget")
-require("config.formatter")
-require("config.gitsigns")
-require("config.indent-blankline")
-require("config.lualine")
--- require("config.nvim-dap")
-require("config.nvim-lint")
--- require("config.nvim-tree")
-require("config.telescope")
-require("config.trouble")
-require("config.which-key")
--- require("perfanno").setup()
