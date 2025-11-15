@@ -118,9 +118,10 @@ return {
   {
     "DrKJeff16/project.nvim",
     event = "VeryLazy",
-    config = function()
-      require("project_nvim").setup({})
-    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {},
   },
 
   -- File explorers
