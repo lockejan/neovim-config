@@ -1,0 +1,9 @@
+snippet auc create autocommand
+	vim.cmd([[
+	    autocmd ${1:event} ${2:filetype} ${3:${VISUAL:cmd}}
+	]])
+
+snippet conf call plugin setup
+	config = function ()
+	        require('${1:${VISUAL:foo}}').setup()
+	    end

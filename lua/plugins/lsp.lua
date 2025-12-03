@@ -7,7 +7,11 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "b0o/schemastore.nvim",
+      "hrsh7th/cmp-nvim-lsp", -- Needed for capabilities in lua/lsp.lua
     },
+    config = function()
+      require("lsp")
+    end,
   },
 
   -- JSON/YAML schema support

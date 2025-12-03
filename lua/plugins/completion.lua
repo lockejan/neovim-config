@@ -16,7 +16,7 @@ return {
       -- Load snippets from friendly-snippets
       require("luasnip.loaders.from_vscode").lazy_load()
 
-      -- Load snippets from honza/vim-snippets (if you want to keep them)
+      -- Load snippets from honza/vim-snippets and custom snippets/ directory
       require("luasnip.loaders.from_snipmate").lazy_load()
 
       -- Snippet navigation is handled by Tab/S-Tab in cmp mappings below
@@ -137,22 +137,20 @@ return {
             select = true,
             behavior = cmp.ConfirmBehavior.Replace,
           }),
-          -- Tab to select next item or expand snippet
+          -- Use Ctrl-n/Ctrl-p for completion navigation (Tab reserved for Copilot)
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          -- Tab/S-Tab: Let Copilot handle these (fallback when cmp not visible)
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
             else
-              fallback()
+              fallback() -- Copilot will handle this
             end
           end, { "i", "s" }),
-          -- Shift-Tab to select previous item or jump backward in snippet
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
             else
               fallback()
             end

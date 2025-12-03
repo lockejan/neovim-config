@@ -1,0 +1,9 @@
+snippet qt QUnit Test
+	QUnit.test("${1:name}", function(assert){
+		${2:fn-body}
+	});
+
+snippet jq jQuery function
+	$("${1:selector}").on('${2:event}', function() {
+		$('.${3:class}').${4:fn}()
+		});
