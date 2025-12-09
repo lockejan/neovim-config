@@ -75,12 +75,16 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-      -- Only enable the input module for vim.ui replacements
+      -- Enable input and picker modules for vim.ui replacements
       input = { enabled = true },
-      notifier = { enabled = false },
+      picker = {
+        enabled = true,
+        ui_select = true, -- This replaces vim.ui.select with snacks picker
+      },
+      notifier = { enabled = true },
       quickfile = { enabled = false },
       statuscolumn = { enabled = false },
-      words = { enabled = false },
+      words = { enabled = true },
     },
   },
 
