@@ -7,7 +7,11 @@ return {
     cmd = "Telescope",
     keys = {
       { "<leader><space>", "<cmd>Telescope buffers<CR>", desc = "Find buffers" },
-      { "<leader>ff", "<cmd>lua require('telescope.builtin').fd({previewer = false})<CR>", desc = "Find files (no preview)" },
+      {
+        "<leader>ff",
+        "<cmd>lua require('telescope.builtin').fd({previewer = false})<CR>",
+        desc = "Find files (no preview)",
+      },
       { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<leader>of", "<cmd>Telescope oldfiles<cr>", desc = "Find old files" },
       { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
@@ -196,7 +200,6 @@ return {
           vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
         end,
       })
-
     end,
   },
 
@@ -208,4 +211,11 @@ return {
   --   opts = {},
   --   dependencies = { { "echasnovski/mini.icons", opts = {} } },
   -- },
+  {
+    "brianhuster/live-preview.nvim",
+    dependencies = {
+      -- You can choose one of the following pickers
+      "nvim-telescope/telescope.nvim",
+    },
+  },
 }
