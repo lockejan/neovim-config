@@ -1,4 +1,3 @@
--- disable virtual_text diagnostics in buffer
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
   virtual_text = false,
@@ -9,12 +8,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 vim.diagnostic.config({
   virtual_text = {
-    source = "always", -- Or "if_many"
+    source = true,
+    current_line = false,
   },
+  virtual_lines = false,
   float = {
     style = "minimal",
     border = "rounded",
-    source = "always", -- Or "if_many"
+    source = true,
   },
 })
 
@@ -40,12 +41,11 @@ vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 local on_attach = function(_, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
   local function opts_with_desc(desc)
     local buffer_opts = { noremap = true, silent = true, buffer = bufnr }
     return { unpack(buffer_opts), desc = desc }
   end
+
   -- Mappings
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts_with_desc("Go to declaration"))
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts_with_desc("Go to definition"))

@@ -5,7 +5,7 @@ vim.g.ts_highlight_lua = true
 vim.g.netrw_winsize = 20
 
 -- Disable neovim python support
-vim.g.loaded_python_provider = 0  -- Python 2 provider (deprecated)
+vim.g.loaded_python_provider = 0 -- Python 2 provider (deprecated)
 vim.g.loaded_python3_provider = 0 -- Python 3 provider (no longer needed after UltiSnips → LuaSnip migration)
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
@@ -107,15 +107,12 @@ vim.cmd([[
     ]])
 
 --Disable numbers in terminal mode
-vim.api.nvim_exec(
-  [[
+vim.cmd([[
   augroup Terminal
     autocmd!
     au TermOpen * set nonu
   augroup end
-]],
-  false
-)
+]])
 
 -- secure gopass
 vim.cmd("au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile")
