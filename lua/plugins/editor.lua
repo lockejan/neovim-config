@@ -153,4 +153,27 @@ return {
     "gpanders/nvim-parinfer",
     ft = { "clojure", "lisp", "scheme" },
   },
+
+  -- Session management (pairs with tmux-resurrect to restore nvim sessions)
+  {
+    "tpope/vim-obsession",
+    event = "VimEnter",
+    config = function()
+      -- Auto-start session tracking when nvim is opened with no file arguments
+      -- (avoids creating sessions for transient uses like git commits)
+      vim.api.nvim_create_autocmd("VimEnter", {
+        nested = true,
+        callback = function()
+          if vim.fn.argc() == 0 and vim.fn.filereadable("Session.vim") == 1 then
+            vim.cmd("source Session.vim")
+          elseif vim.fn.argc() == 0 then
+            vim.cmd("Obsession")
+          end
+        end,
+      })
+
+      vim.keymap.set("n", "<leader>os", "<cmd>Obsession<cr>", { desc = "Start/toggle session tracking" })
+      vim.keymap.set("n", "<leader>oS", "<cmd>Obsession!<cr>", { desc = "Stop session tracking" })
+    end,
+  },
 }
