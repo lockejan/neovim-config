@@ -82,12 +82,6 @@ return {
     },
   },
 
-  -- Treesitter playground for debugging
-  {
-    "nvim-treesitter/playground",
-    cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
 
   -- Parinfer for Lisp-like languages
   {

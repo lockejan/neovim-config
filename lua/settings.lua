@@ -1,5 +1,3 @@
--- bundled treesitter highlight, deactivates regex based ones
-vim.g.ts_highlight_lua = true
 
 -- netrw split size
 vim.g.netrw_winsize = 20
