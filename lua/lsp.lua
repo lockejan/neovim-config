@@ -110,16 +110,23 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-vim.lsp.config("volar", {
-  cmd = { "vue-language-server", "--stdio" },
-  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-  init_options = {
-    vue = {
-      -- disable hybrid mode
-      hybridMode = false,
+-- Vue (v3+ hybrid mode): vue_ls handles template/style, ts_ls handles <script>
+-- via @vue/typescript-plugin. The plugin ships inside the (nix) vue-language-server
+-- package, so resolve it from the binary to keep versions in sync.
+local vue_ls_bin = vim.fn.exepath("vue-language-server")
+if vue_ls_bin ~= "" then
+  local vue_root = vim.fs.dirname(vim.fs.dirname(vim.uv.fs_realpath(vue_ls_bin)))
+  local vue_plugin = vim.fs.joinpath(vue_root, "lib/language-tools/packages/typescript-plugin")
+  vim.lsp.config("ts_ls", {
+    init_options = {
+      plugins = {
+        { name = "@vue/typescript-plugin", location = vue_plugin, languages = { "vue" } },
+      },
     },
-  },
-})
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+  })
+  vim.lsp.enable("vue_ls")
+end
 
 vim.lsp.enable({
   "ansiblels",
@@ -141,6 +148,6 @@ vim.lsp.enable({
   "ruff",
   "terraformls",
   "texlab",
-  -- "vue_ls",
+  "ts_ls",
   "yamlls",
 })
