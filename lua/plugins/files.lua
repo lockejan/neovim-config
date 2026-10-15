@@ -32,7 +32,6 @@ return {
       { "<space>G", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
     },
     dependencies = {
-      "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
     },
     config = function()
