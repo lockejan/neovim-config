@@ -132,6 +132,9 @@ return {
     opts = {
       delay = 200,
       large_file_cutoff = 2000,
+      large_file_overrides = {
+        providers = { "lsp" },
+      },
     },
     config = function(_, opts)
       require("illuminate").configure(opts)
@@ -151,7 +154,7 @@ return {
   -- Parinfer for Lisp/Clojure structural editing
   {
     "gpanders/nvim-parinfer",
-    ft = { "clojure", "lisp", "scheme" },
+    ft = { "clojure", "fennel", "lisp", "scheme" },
   },
 
   -- Session management (pairs with tmux-resurrect to restore nvim sessions)

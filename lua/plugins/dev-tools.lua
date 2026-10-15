@@ -60,16 +60,6 @@ return {
     cmd = { "FloatermNew", "FloatermToggle" },
   },
 
-  -- Multicursor support
-  {
-    "mg979/vim-visual-multi",
-    keys = {
-      { "<C-n>", mode = { "n", "v" } },
-      { "<C-Down>", mode = { "n", "v" } },
-      { "<C-Up>", mode = { "n", "v" } },
-    },
-  },
-
   -- Performance profiling annotations
   {
     "t-troebst/perfanno.nvim",
@@ -80,12 +70,5 @@ return {
       "PerfLuaProfileStart",
       "PerfLuaProfileStop",
     },
-  },
-
-
-  -- Parinfer for Lisp-like languages
-  {
-    "gpanders/nvim-parinfer",
-    ft = { "clojure", "fennel", "lisp", "scheme" },
   },
 }

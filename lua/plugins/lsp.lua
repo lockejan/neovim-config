@@ -46,44 +46,6 @@ return {
     cmd = { "Luadev" },
   },
 
-  -- LSP progress UI
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-    opts = {},
-  },
-
-  -- Highlight symbol under cursor
-  {
-    "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("illuminate").configure({
-        delay = 200,
-        large_file_cutoff = 2000,
-        large_file_overrides = {
-          providers = { "lsp" },
-        },
-      })
-    end,
-  },
-
-  -- Symbols outline sidebar
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
-    opts = {},
-  },
-
-  -- Quick LSP warnings+errors navigation
-  {
-    "folke/trouble.nvim",
-    cmd = { "Trouble", "TroubleToggle" },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
-  },
-
   -- Code action indicator
   {
     "kosayoda/nvim-lightbulb",
@@ -94,12 +56,6 @@ return {
         autocmd = { enabled = true },
       })
     end,
-  },
-
-  -- EditorConfig support
-  {
-    "gpanders/editorconfig.nvim",
-    event = { "BufReadPre", "BufNewFile" },
   },
 
   -- Helm chart support
