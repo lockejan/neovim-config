@@ -108,8 +108,8 @@ map("n", "<leader>rr", ":diffget REMOTE<cr>")
 map("n", "<leader>Q", ":bufdo bdelete<cr>")
 
 -- lsp shortcuts
-map("n", "<leader>li", ":LspInfo<CR>")
-map("n", "<leader>lr", ":LspRestart<CR>")
+map("n", "<leader>li", ":checkhealth vim.lsp<CR>")
+map("n", "<leader>lr", ":lsp restart<CR>")
 -- map("n", "l<C-s>", ":LspStop<Space><C-i>")
 
 -- visit file even if not present
