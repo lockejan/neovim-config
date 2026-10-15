@@ -92,15 +92,6 @@ return {
     },
   },
 
-  -- Temporary maximize current split
-  {
-    "szw/vim-maximizer",
-    cmd = { "MaximizerToggle" },
-    keys = {
-      { "<leader>m", "<cmd>MaximizerToggle!<cr>", desc = "Toggle maximize split" },
-    },
-  },
-
   -- Code outline sidebar
   {
     "hedyhli/outline.nvim",

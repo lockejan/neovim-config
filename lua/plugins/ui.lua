@@ -81,6 +81,13 @@ return {
         end,
         desc = "Toggle floating terminal",
       },
+      {
+        "<leader>m",
+        function()
+          Snacks.zen.zoom()
+        end,
+        desc = "Toggle zoom (maximize window)",
+      },
     },
     opts = {
       -- Disable heavy features (treesitter, LSP, syntax...) on big files
