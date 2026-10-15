@@ -110,12 +110,6 @@ return {
     },
   },
 
-  -- EditorConfig support
-  {
-    "gpanders/editorconfig.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-  },
-
   -- Temporary maximize current split
   {
     "szw/vim-maximizer",
