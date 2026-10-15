@@ -107,12 +107,6 @@ return {
   -- { "nvim-telescope/telescope-packer.nvim" },
   -- {"dhruvmanila/telescope-bookmarks.nvim"},
 
-  -- Ripgrep integration
-  {
-    "jremmen/vim-ripgrep",
-    cmd = { "Rg" },
-  },
-
   -- Alternative fuzzy finders (commented)
   -- { "ibhagwan/fzf-lua" },
   -- { "vijaymarupudi/nvim-fzf" },
