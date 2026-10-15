@@ -128,6 +128,11 @@ if vue_ls_bin ~= "" then
   vim.lsp.enable("vue_ls")
 end
 
+-- Only rarely needed (CV); provide it on demand, e.g. `nix shell nixpkgs#texlab`
+if vim.fn.executable("texlab") == 1 then
+  vim.lsp.enable("texlab")
+end
+
 vim.lsp.enable({
   "ansiblels",
   "bashls",
@@ -147,7 +152,6 @@ vim.lsp.enable({
   -- "pyright",
   "ruff",
   "terraformls",
-  "texlab",
   "ts_ls",
   "yamlls",
 })
