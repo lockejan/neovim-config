@@ -186,8 +186,6 @@ map("n", "<leader>vv", ":!ansible-vault view %<CR>")
 map("v", "<leader>be", "c<c-r>=system('base64 --wrap=0',          @\")<cr><esc>")
 map("v", "<leader>bd", "c<c-r>=system('base64 --decode --wrap=0', @\")<cr><esc>")
 
-map("n", "<leader>so", ":SymbolsOutline<CR>")
-
 -- lir explorer
 map("n", "<leader>ee", ":lua require'lir.float'.toggle()<CR>")
 map("n", "<leader>tt", ":FloatermToggle<CR>")

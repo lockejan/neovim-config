@@ -137,10 +137,10 @@ return {
 
   -- Code outline sidebar
   {
-    "simrat39/symbols-outline.nvim",
-    cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
+    "hedyhli/outline.nvim",
+    cmd = { "Outline", "OutlineOpen", "OutlineClose" },
     keys = {
-      { "<leader>so", "<cmd>SymbolsOutline<cr>", desc = "Toggle symbols outline" },
+      { "<leader>so", "<cmd>Outline<cr>", desc = "Toggle symbols outline" },
     },
     opts = {},
   },
