@@ -154,14 +154,6 @@ ToggleSpell = function()
 end
 map("n", "<leader>ts", "<cmd>lua ToggleSpell()<cr>")
 
---Disable numbers in terminal mode
-vim.cmd([[
-  augroup Terminal
-    autocmd!
-    au TermOpen * set nonu
-  augroup end
-]])
-
 -- quick help
 map("n", "<leader>gh", ":h <C-R><C-W><CR>")
 

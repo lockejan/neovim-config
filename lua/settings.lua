@@ -65,9 +65,13 @@ vim.o.dictionary = "/usr/share/dict/words"--[[ ,~/.local/share/nvim/site/spell/d
 -- vim.cmd([[ set path+=** ]])
 -- vim.cmd([[ autocmd FileType netrw setl bufhidden=delete ]])
 
+local augroup = vim.api.nvim_create_augroup("user_settings", { clear = true })
+local autocmd = function(event, opts)
+  vim.api.nvim_create_autocmd(event, vim.tbl_extend("force", { group = augroup }, opts))
+end
+
 -- Add spellchecking
-vim.cmd([[ autocmd FileType gitcommit setlocal spell ]])
-vim.cmd([[ autocmd FileType markdown setlocal spell ]])
+autocmd("FileType", { pattern = { "gitcommit", "markdown" }, command = "setlocal spell" })
 
 -- autosave when leaving insert mode
 -- vim.cmd([[
@@ -75,15 +79,11 @@ vim.cmd([[ autocmd FileType markdown setlocal spell ]])
 -- ]])
 
 -- trim whitespace on save
-vim.cmd([[
-autocmd BufWritePre * if &ft!~?'markdown'|:%s/\s\+$//e
-]])
+autocmd("BufWritePre", { command = [[if &ft!~?'markdown'|:%s/\s\+$//e]] })
 
 -- show cursor line only in active window
-vim.cmd([[
-  autocmd InsertLeave,WinEnter * set cursorline
-  autocmd InsertEnter,WinLeave * set nocursorline
-]])
+autocmd({ "InsertLeave", "WinEnter" }, { command = "set cursorline" })
+autocmd({ "InsertEnter", "WinLeave" }, { command = "set nocursorline" })
 
 -- go to last loc when opening a buffer
 -- vim.cmd([[
@@ -100,23 +100,23 @@ vim.opt.wildignore:append("**/node_modules/*")
 -- utils.opt("o", "clipboard", "unnamed,unnamedplus")
 
 -- Highlight on yank
-vim.cmd([[
-    au TextYankPost * silent! lua vim.hl.on_yank { timeout=150, on_visual = true }
-    ]])
+autocmd("TextYankPost", {
+  callback = function()
+    vim.hl.on_yank({ timeout = 150, on_visual = true })
+  end,
+})
 
 --Disable numbers in terminal mode
-vim.cmd([[
-  augroup Terminal
-    autocmd!
-    au TermOpen * set nonu
-  augroup end
-]])
+autocmd("TermOpen", { command = "setlocal nonumber" })
 
 -- secure gopass
-vim.cmd("au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile")
+autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "/dev/shm/gopass.*",
+  command = "setlocal noswapfile nobackup noundofile",
+})
 
 -- detect djangohtml
-vim.cmd("au BufNewFile,BufRead *.html set filetype=htmldjango")
+autocmd({ "BufNewFile", "BufRead" }, { pattern = "*.html", command = "set filetype=htmldjango" })
 
 P = function(v)
   print(vim.inspect(v))
