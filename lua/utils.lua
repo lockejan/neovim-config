@@ -1,14 +1,7 @@
 local M = {}
 
-M.map = function(mode, mapping, cmd, opts)
-  if opts == nil then
-    opts = {}
-  end
-
-  if next(opts) == nil then
-    return vim.api.nvim_set_keymap(mode, mapping, cmd, { noremap = true, silent = true })
-  end
-  return vim.api.nvim_set_keymap(mode, mapping, cmd, opts)
+M.map = function(mode, lhs, rhs, opts)
+  vim.keymap.set(mode, lhs, rhs, vim.tbl_extend("force", { silent = true }, opts or {}))
 end
 
 return M
