@@ -1,16 +1,14 @@
 vim.diagnostic.config({
   underline = true,
-  update_in_insert = true,
-  severity_sort = false,
-  virtual_text = {
-    source = true,
-    current_line = false,
-  },
+  update_in_insert = false,
+  severity_sort = true,
+  virtual_text = false, -- shown in a float on CursorHold instead
   virtual_lines = false,
   float = {
     style = "minimal",
     border = "rounded",
     source = true,
+    focusable = false,
   },
   -- diagnostic signs in column
   signs = {
@@ -35,7 +33,7 @@ local augroup = vim.api.nvim_create_augroup("user_lsp", { clear = true })
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   group = augroup,
   callback = function()
-    vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+    vim.diagnostic.open_float(nil, { focus = false, scope = "cursor", prefix = " " })
   end,
 })
 
