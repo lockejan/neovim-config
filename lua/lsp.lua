@@ -38,8 +38,7 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 local on_attach = function(_, bufnr)
   local function opts_with_desc(desc)
-    local buffer_opts = { noremap = true, silent = true, buffer = bufnr }
-    return { unpack(buffer_opts), desc = desc }
+    return { noremap = true, silent = true, buffer = bufnr, desc = desc }
   end
 
   -- Mappings
