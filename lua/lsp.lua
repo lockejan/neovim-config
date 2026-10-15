@@ -87,6 +87,9 @@ local servers = {
   "terraformls",
   "texlab",
   -- "vue_ls",
+  "ansiblels",
+  "jsonls",
+  "yamlls",
 }
 
 --Enable (broadcasting) snippet capability for completion
