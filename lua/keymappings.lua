@@ -49,7 +49,6 @@ map("v", ">", ">gv")
 
 -- Quick command mode
 -- map("n", "<CR>", ":")
-map("n", "<leader>of", ":Telescope oldfiles<CR>")
 map("n", "<leader>ef", ":Lexplore<CR>")
 
 vim.o.wildcharm = 9
@@ -60,9 +59,6 @@ vim.o.wildcharm = 9
 map("n", "<leader>bd", ":bdelete<CR>")
 -- map("n", "<leader>wb", ":%bd|e#|bd#<CR>")
 map("n", "<leader><C-f>", ":set ft=<C-i>")
-
--- szw/vim-maximizer
-map("n", "<leader>m", ":MaximizerToggle!<CR>")
 
 -- Trim trailing whitespace.
 map("n", "<leader>tw", ":%s/\\s\\+$//e<cr>")
@@ -101,8 +97,6 @@ map("n", "<leader>gc", ":Git commit<cr>")
 -- map("n", "<leader>gM", ":DiffviewOpen main<cr>")
 -- map("n", "<leader>gl", ":Git log<cr>")
 -- map("n", "<leader>gp", ":Git push<cr>")
-map("n", "<leader>ll", ":diffget LOCAL<cr>")
-map("n", "<leader>rr", ":diffget REMOTE<cr>")
 
 -- close all open buffers
 map("n", "<leader>Q", ":bufdo bdelete<cr>")
@@ -117,14 +111,6 @@ map("n", "gF", ":edit <cfile><cr>")
 
 -- Disabled: conflicts with Trouble keybindings (<leader>xx, <leader>xw, etc.)
 -- map("n", "<leader>x", ":!open %<cr>")
-
--- vim-test
--- these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
-map("n", "t<C-n>", ":TestNearest<CR>")
-map("n", "t<C-f>", ":TestFile<CR>")
-map("n", "t<C-s>", ":TestSuite<CR>")
-map("n", "t<C-l>", ":TestLast<CR>")
-map("n", "t<C-v>", ":TestVisit<CR>")
 
 -- Toggle to disable mouse mode and indentlines for easier paste
 ToggleMouse = function()
@@ -168,15 +154,6 @@ map("v", "<A-d>", ":t.-1<CR>")
 -- autoexpand current file dir
 -- cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
--- tmp diff
-map("n", "<leader>ds", ":windo diffthis<CR>")
-map("n", "<leader>df", ":Gitsigns diffthis<CR>")
-map("n", "<leader>do", ":diffoff!<CR>")
-
-map("n", "<leader>dc", ":DiffviewClose<CR>")
-map("n", "<leader>dv", ":DiffviewFileHistory %<CR>")
-map("v", "<leader>dv", ":'<,'>DiffviewFileHistory<CR>")
-
 -- ansible vault
 map("n", "<leader>vd", ":!ansible-vault decrypt %<CR>")
 map("n", "<leader>ve", ":!ansible-vault encrypt %<CR>")
@@ -186,9 +163,6 @@ map("n", "<leader>vv", ":!ansible-vault view %<CR>")
 map("v", "<leader>be", "c<c-r>=system('base64 --wrap=0',          @\")<cr><esc>")
 map("v", "<leader>bd", "c<c-r>=system('base64 --decode --wrap=0', @\")<cr><esc>")
 
--- lir explorer
-map("n", "<leader>ee", ":lua require'lir.float'.toggle()<CR>")
-map("n", "<leader>tt", ":FloatermToggle<CR>")
 
 -- copy to clipboard_name
 map("v", "<leader>y", [["+y]])
