@@ -136,16 +136,6 @@ return {
     opts = {},
   },
 
-  -- Context-aware commentstring
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
-    config = function()
-      require("ts_context_commentstring").setup({})
-      vim.g.skip_ts_context_commentstring_module = true
-    end,
-  },
-
   -- Rainbow delimiters
   {
     "HiPhish/rainbow-delimiters.nvim",
