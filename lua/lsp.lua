@@ -1,6 +1,5 @@
 vim.diagnostic.config({
   underline = true,
-  signs = true,
   update_in_insert = true,
   severity_sort = false,
   virtual_text = {
@@ -13,117 +12,74 @@ vim.diagnostic.config({
     border = "rounded",
     source = true,
   },
+  -- diagnostic signs in column
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰅚 ",
+      [vim.diagnostic.severity.WARN] = "󰀪 ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
+      [vim.diagnostic.severity.INFO] = " ",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+    },
+  },
 })
 
--- diagnostic signs in column
-local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+local augroup = vim.api.nvim_create_augroup("user_lsp", { clear = true })
 
 -- diagnostic preview on cursor visit
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+  group = augroup,
+  callback = function()
+    vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+  end,
+})
 
--- Your custom attach function for nvim-lspconfig goes here.
+-- [d / ]d (diagnostic navigation) are Neovim defaults
 local opts = { silent = true }
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
-local on_attach = function(_, bufnr)
-  local function opts_with_desc(desc)
-    return { noremap = true, silent = true, buffer = bufnr, desc = desc }
-  end
+-- Buffer-local mappings once a server attaches.
+-- Core also provides grn, gra, grr, gri, grt, gO and K / <C-s> by default.
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = augroup,
+  callback = function(ev)
+    local function map(lhs, rhs, desc)
+      vim.keymap.set("n", lhs, rhs, { silent = true, buffer = ev.buf, desc = desc })
+    end
 
-  -- Mappings
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts_with_desc("Go to declaration"))
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts_with_desc("Go to definition"))
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts_with_desc("Show hover"))
-  vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts_with_desc("Go to implementation"))
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts_with_desc("Show signature help"))
-  vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts_with_desc("Add workspace folder"))
-  vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts_with_desc("Remove workspace folder"))
-  vim.keymap.set("n", "<space>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, opts_with_desc("List workspace folders"))
-  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts_with_desc("Go to type definition"))
-  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts_with_desc("Rename symbol"))
-  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts_with_desc("Code action"))
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts_with_desc("Show references"))
-  vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts_with_desc("Show references with Telescope"))
-  vim.keymap.set("n", "<space>F", function()
-    vim.lsp.buf.format({ async = true })
-  end, opts_with_desc("Format code via LSP"))
-end
+    map("gD", vim.lsp.buf.declaration, "Go to declaration")
+    map("gd", vim.lsp.buf.definition, "Go to definition")
+    map("K", vim.lsp.buf.hover, "Show hover")
+    map("gI", vim.lsp.buf.implementation, "Go to implementation")
+    map("<C-k>", vim.lsp.buf.signature_help, "Show signature help")
+    map("<space>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
+    map("<space>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
+    map("<space>wl", function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, "List workspace folders")
+    map("<space>D", vim.lsp.buf.type_definition, "Go to type definition")
+    map("<space>rn", vim.lsp.buf.rename, "Rename symbol")
+    map("<space>ca", vim.lsp.buf.code_action, "Code action")
+    map("gr", vim.lsp.buf.references, "Show references")
+    map("gR", "<cmd>Telescope lsp_references<CR>", "Show references with Telescope")
+    map("<space>F", function()
+      vim.lsp.buf.format({ async = true })
+    end, "Format code via LSP")
+  end,
+})
 
-local lsp_flags = {
-  debounce_text_changes = 150,
-}
+-- Shared settings for every server (merged with nvim-lspconfig's lsp/*.lua defaults)
+vim.lsp.config("*", {
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
 
-local servers = {
-  -- "ansible-language-server",
-  "bashls",
-  "clangd",
-  -- "clojure_lsp",
-  "cssls",
-  "dockerls",
-  "eslint",
-  -- "elmls",
-  "html",
-  "helm_ls",
-  -- "hls",
-  "lua_ls",
-  "gopls",
-  "nil_ls",
-  -- "pyright",
-  "ruff",
-  "terraformls",
-  "texlab",
-  -- "vue_ls",
-  "ansiblels",
-  "jsonls",
-  "yamlls",
-}
-
---Enable (broadcasting) snippet capability for completion
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-for _, server in pairs(servers) do
-  vim.lsp.enable(server)
-  vim.lsp.config(server, {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-  })
-end
-
-vim.lsp.config.ansiblels = {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
-  cmd = { "ansible-language-server", "--stdio" },
-}
-
-vim.lsp.config.volar = {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
-  cmd = { "vue-language-server", "--stdio" },
-  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-  init_options = {
-    vue = {
-      -- disable hybrid mode
-      hybridMode = false,
-    },
-  },
-}
-
-vim.lsp.config.yamlls = {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
+vim.lsp.config("yamlls", {
   settings = {
     yaml = {
       schemas = {
@@ -132,27 +88,22 @@ vim.lsp.config.yamlls = {
       },
     },
   },
-}
+})
 
-vim.lsp.config.jsonls = {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
+vim.lsp.config("jsonls", {
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
     },
   },
-}
+})
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-vim.lsp.config.lua_ls = {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
+vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
       runtime = {
@@ -164,11 +115,44 @@ vim.lsp.config.lua_ls = {
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false, -- THIS IS THE IMPORTANT LINE TO ADD
+        checkThirdParty = false,
       },
-      telemetry = {
-        enable = false,
-      },
+      telemetry = { enable = false },
     },
   },
-}
+})
+
+vim.lsp.config("volar", {
+  cmd = { "vue-language-server", "--stdio" },
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+  init_options = {
+    vue = {
+      -- disable hybrid mode
+      hybridMode = false,
+    },
+  },
+})
+
+vim.lsp.enable({
+  "ansiblels",
+  "bashls",
+  "clangd",
+  -- "clojure_lsp",
+  "cssls",
+  "dockerls",
+  "eslint",
+  -- "elmls",
+  "html",
+  "helm_ls",
+  -- "hls",
+  "jsonls",
+  "lua_ls",
+  "gopls",
+  "nil_ls",
+  -- "pyright",
+  "ruff",
+  "terraformls",
+  "texlab",
+  -- "vue_ls",
+  "yamlls",
+})
