@@ -76,6 +76,17 @@ return {
     opts = {
       -- Disable heavy features (treesitter, LSP, syntax...) on big files
       bigfile = { enabled = true },
+      -- Indent guides with current scope highlighting
+      indent = {
+        enabled = true,
+        animate = { enabled = false },
+        filter = function(buf)
+          return vim.g.snacks_indent ~= false
+            and vim.b[buf].snacks_indent ~= false
+            and vim.bo[buf].buftype == ""
+            and vim.bo[buf].filetype ~= "bigfile"
+        end,
+      },
       -- Enable input and picker modules for vim.ui replacements
       input = { enabled = true },
       picker = {
@@ -87,14 +98,6 @@ return {
       statuscolumn = { enabled = false },
       words = { enabled = true },
     },
-  },
-
-  -- Indent guides
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    main = "ibl",
-    opts = {},
   },
 
   -- Color highlighter

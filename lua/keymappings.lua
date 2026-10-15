@@ -99,16 +99,16 @@ map("n", "gF", ":edit <cfile><cr>")
 -- Disabled: conflicts with Trouble keybindings (<leader>xx, <leader>xw, etc.)
 -- map("n", "<leader>x", ":!open %<cr>")
 
--- Toggle to disable mouse mode and indentlines for easier paste
+-- Toggle to disable mouse mode and indent guides for easier paste
 ToggleMouse = function()
   if vim.o.mouse == "a" then
-    vim.cmd([[IBLDisable]])
+    Snacks.indent.disable()
     vim.wo.signcolumn = "no"
     vim.o.mouse = "v"
     vim.wo.number = false
     print("Mouse disabled")
   else
-    vim.cmd([[IBLEnable]])
+    Snacks.indent.enable()
     vim.wo.signcolumn = "yes"
     vim.o.mouse = "a"
     vim.wo.number = true
