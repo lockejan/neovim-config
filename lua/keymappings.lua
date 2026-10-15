@@ -88,8 +88,8 @@ map("n", "<leader>te", "<cmd>tabnew<cr>")
 -- map("n", "<silent> s*", "<cmd>let @/='<'.expand('<cword>').'>'<cr>cgn")
 
 -- Git related mappings
-map("n", "<leader>gs", ":Neogit<CR>")
-map("n", "<leader>gc", ":Neogit commit<cr>")
+map("n", "<leader>gs", ":Git<CR>")
+map("n", "<leader>gc", ":Git commit<cr>")
 -- map("n", "<leader>gb", ":G praise<CR>")
 -- map("n", "<leader>ga", ":G commit --amend<cr>")
 -- map("n", "<leader>gd", ":tabe %<cr>:Gvdiffsplit!<CR>")
