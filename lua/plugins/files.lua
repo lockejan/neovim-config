@@ -75,16 +75,21 @@ return {
       require("telescope").load_extension("projects")
 
       -- Visual selection search support
+      local function visual_selection()
+        local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
+        return table.concat(lines, "")
+      end
+
       local tb = require("telescope.builtin")
       local opts = { noremap = true, silent = true }
 
       vim.keymap.set("v", "<space>g", function()
-        local text = vim.getVisualSelection()
+        local text = visual_selection()
         tb.current_buffer_fuzzy_find({ default_text = text })
       end, opts)
 
       vim.keymap.set("v", "<space>G", function()
-        local text = vim.getVisualSelection()
+        local text = visual_selection()
         tb.live_grep({ default_text = text })
       end, opts)
     end,
