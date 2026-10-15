@@ -11,9 +11,6 @@ vim.g.loaded_node_provider = 0
 
 -- vim.g.python3_host_prog = "$HOME/.nix-profile/bin/python" -- No longer needed
 
--- Preview incremental substitution
-vim.o.inccommand = "nosplit"
-
 --Make line numbers default
 vim.wo.number = true
 
@@ -30,7 +27,6 @@ vim.o.expandtab = true -- Tabs are spaces, not tabs
 -- vim.o.hidden = true -- switch buffers without save (default)
 vim.o.ignorecase = true -- Ignore case for search
 vim.o.hlsearch = false
-vim.o.incsearch = true
 -- vim.o.joinspaces = false -- No double spaces with join after a dot (default)
 vim.o.lazyredraw = true -- faster macro execute
 vim.o.list = true -- Show some invisible characters (tabs...
