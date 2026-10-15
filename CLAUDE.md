@@ -61,7 +61,7 @@ Telescope (`lua/plugins/files.lua`):
 - fzf-native and project.nvim extensions
 - Visual-selection search via `vim.fn.getregion()`
 
-snacks.nvim is also loaded (input, picker as `vim.ui.select`, notifier, words, bigfile).
+snacks.nvim is also loaded (input, picker as `vim.ui.select`, notifier, words, bigfile, indent, terminal on `<leader>tt`, zoom on `<leader>m`).
 
 ## Common Commands
 
