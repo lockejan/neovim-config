@@ -99,24 +99,12 @@ vim.lsp.config("jsonls", {
   },
 })
 
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
+-- Neovim runtime/plugin types are provided by lazydev.nvim
 vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
-      runtime = {
-        version = "LuaJIT",
-        path = runtime_path,
-      },
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-      },
+      runtime = { version = "LuaJIT" },
+      workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
