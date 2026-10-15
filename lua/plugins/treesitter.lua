@@ -123,10 +123,9 @@ return {
   -- Endwise (auto-close do/end, if/end, etc.)
   {
     "RRethy/nvim-treesitter-endwise",
-    event = "InsertEnter",
-    config = function()
-      require("nvim-treesitter-endwise").setup({})
-    end,
+    -- Attaches on FileType, so it must load before the first buffer's filetype is set.
+    -- No setup() needed; the plugin initializes itself.
+    event = { "BufReadPre", "BufNewFile" },
   },
 
   -- Auto-close and rename HTML tags
