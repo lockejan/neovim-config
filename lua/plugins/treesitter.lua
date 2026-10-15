@@ -20,14 +20,18 @@ return {
         "git_rebase",
         "gitcommit",
         "html",
+        "javascript",
         "lua",
         "markdown",
         "markdown_inline",
         "nix",
         "python",
         "rust",
+        "tsx",
+        "typescript",
         "vim",
         "vimdoc",
+        "vue",
         "yaml",
       })
 
