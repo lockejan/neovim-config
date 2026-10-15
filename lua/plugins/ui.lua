@@ -73,6 +73,15 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    keys = {
+      {
+        "<leader>tt",
+        function()
+          Snacks.terminal.toggle()
+        end,
+        desc = "Toggle floating terminal",
+      },
+    },
     opts = {
       -- Disable heavy features (treesitter, LSP, syntax...) on big files
       bigfile = { enabled = true },
@@ -94,6 +103,7 @@ return {
         ui_select = true, -- This replaces vim.ui.select with snacks picker
       },
       notifier = { enabled = true },
+      terminal = { win = { position = "float", border = "rounded" } },
       quickfile = { enabled = false },
       statuscolumn = { enabled = false },
       words = { enabled = true },

@@ -51,15 +51,6 @@ return {
     opts = {},
   },
 
-  -- Floating terminal
-  {
-    "voldikss/vim-floaterm",
-    keys = {
-      { "<leader>tt", "<cmd>FloatermToggle<CR>", desc = "Toggle floating terminal" },
-    },
-    cmd = { "FloatermNew", "FloatermToggle" },
-  },
-
   -- Performance profiling annotations
   {
     "t-troebst/perfanno.nvim",
