@@ -170,7 +170,10 @@ return {
             priority = 300,
             option = {
               get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
+                -- Skip big files to avoid indexing huge buffers
+                return vim.tbl_filter(function(buf)
+                  return vim.bo[buf].filetype ~= "bigfile"
+                end, vim.api.nvim_list_bufs())
               end,
             },
           },
@@ -182,6 +185,9 @@ return {
           ghost_text = true,
         },
       })
+
+      -- Disable completion in big files (see snacks.nvim bigfile)
+      cmp.setup.filetype("bigfile", { enabled = false })
     end,
   },
 }

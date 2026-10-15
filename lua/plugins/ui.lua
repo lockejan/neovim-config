@@ -75,6 +75,8 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
+      -- Disable heavy features (treesitter, LSP, syntax...) on big files
+      bigfile = { enabled = true },
       -- Enable input and picker modules for vim.ui replacements
       input = { enabled = true },
       picker = {
@@ -100,7 +102,9 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     event = { "BufReadPost", "BufNewFile" },
-    opts = {},
+    opts = {
+      filetypes = { "*", "!bigfile" },
+    },
   },
 
   -- Cheatsheet
