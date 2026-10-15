@@ -129,13 +129,13 @@ map("n", "t<C-v>", ":TestVisit<CR>")
 -- Toggle to disable mouse mode and indentlines for easier paste
 ToggleMouse = function()
   if vim.o.mouse == "a" then
-    vim.cmd([[IndentBlanklineDisable]])
+    vim.cmd([[IBLDisable]])
     vim.wo.signcolumn = "no"
     vim.o.mouse = "v"
     vim.wo.number = false
     print("Mouse disabled")
   else
-    vim.cmd([[IndentBlanklineEnable]])
+    vim.cmd([[IBLEnable]])
     vim.wo.signcolumn = "yes"
     vim.o.mouse = "a"
     vim.wo.number = true
